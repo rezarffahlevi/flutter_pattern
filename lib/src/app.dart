@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:temanbumil_web/src/routes.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -28,11 +28,17 @@ class App extends StatelessWidget {
     //   ),
     //   home: const MyHomePage(title: 'Flutter Demo Home Page'),
     // );
-    return MaterialApp.router(
-      locale: const Locale('id'),
-      routerConfig: Routes.appRoutes(),
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-    );
+    return ScreenUtilInit(
+        designSize: const Size(375, 812),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) {
+          return MaterialApp.router(
+            locale: const Locale('id'),
+            routerConfig: Routes.appRoutes(),
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+          );
+        });
   }
 }
