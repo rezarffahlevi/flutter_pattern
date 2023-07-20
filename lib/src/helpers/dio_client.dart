@@ -37,12 +37,11 @@ class DioClient {
     // if (jwtToken == '') jwtToken = 'ERROR';
 
     // options.headers["Authorization"] = jwtToken;
-
-    options.headers["DeviceID"] = '7b720ea66b3af233';
-    options.headers["PushToken"] = 'doA4_-x5Q1G1sVYVq2c9k0:APA91bFM9idUrmwet7MgctYFZKUT_vNe8W8ghhocQmaQBB1DLaAeJABGpbUM1j591PsoMCcOWtjqkrFOcu5eGI8RpziXZwOf8UVQOFL431kfbe2gZL3FRWDthDTzzxgJ7OfUmGLDsjlT';
+    options.headers["DeviceID"] = '1234567890';
+    options.headers["PushToken"] = 'AAAAAAAAAAAA';
     options.headers["Authorization"] = 'Basic JDJhJDExJDAydUhjN0dacDJRUUhaSm8zMTIxUU9adXpDeURBTlpYdDZjUXdNUGJqL1kvdnVZanNYLzlHOmFycnVZMXMzUzNKTXdja1l5TGtKV01CaVZUV3JGZGpSMnRXN09qWEVzTXltVkRDVUpP';
     options.headers["MobileSession"] = 'GDJdpFyi9Aegm.7/cn./Ij//TY8YUU1MspesHkOOS2LIG';
-    options.headers["user-agent"] = 'App/1.0.0 (iOS 16.2; iPhone; Simulator; x86)';
+    options.headers["user-agent"] = 'PostmanRuntime/7.32.3';
     options.headers["PackageName"] = 'com.temanbumil.android';
     options.headers["PackageVersion"] = '1.0.0';
     options.headers["PackageVersionNumber"] = 12;
@@ -58,7 +57,7 @@ class DioClient {
         return handler.next(options);
       },
       onResponse: (response, handler) async {
-        logger.i('ResponseLog ${response.realUri} \n'
+        logger.i('ResponseLog ${response.requestOptions.method} ${response.realUri} \n'
             '-- headers --\n'
             '${tryEncode(response.requestOptions.headers)} \n'
             '-- queryParameters --\n'
@@ -74,7 +73,7 @@ class DioClient {
         final options = err.requestOptions;
 
         logger.e('\n'
-            'ResponseLog Error ${options.uri} --> $err \n'
+            'ResponseLog Error ${options.method} ${options.uri} --> $err \n'
             '-- headers --\n'
             '${tryEncode(options.headers)} \n'
             '-- queryParameters --\n'
