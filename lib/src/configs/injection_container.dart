@@ -13,6 +13,7 @@ Future<void> initInjection() async {
   ApiSources.initInjection();
 
   // Network
-  inject.registerLazySingleton(() => inject<DioClient>().dio,
-      instanceName: 'dio');
+  inject.registerLazySingleton(() => inject<DioClient>().dio);
+  inject.registerLazySingleton(() => DioClient());
+  
 }

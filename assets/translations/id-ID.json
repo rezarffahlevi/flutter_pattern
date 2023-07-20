@@ -1,4 +1,5 @@
 {
+    "welcome_tb": "Selamat datang di Aplikasi Teman Bumil",
     "msg": "{} ditulis {} language",
     "msg_named": "Easy localization is written in the {lang} language",
     "msg_mixed": "{} are written in the {lang} language",

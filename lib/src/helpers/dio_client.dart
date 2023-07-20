@@ -37,12 +37,24 @@ class DioClient {
     // if (jwtToken == '') jwtToken = 'ERROR';
 
     // options.headers["Authorization"] = jwtToken;
+
+    options.headers["DeviceID"] = '7b720ea66b3af233';
+    options.headers["PushToken"] = 'doA4_-x5Q1G1sVYVq2c9k0:APA91bFM9idUrmwet7MgctYFZKUT_vNe8W8ghhocQmaQBB1DLaAeJABGpbUM1j591PsoMCcOWtjqkrFOcu5eGI8RpziXZwOf8UVQOFL431kfbe2gZL3FRWDthDTzzxgJ7OfUmGLDsjlT';
+    options.headers["Authorization"] = 'Basic JDJhJDExJDAydUhjN0dacDJRUUhaSm8zMTIxUU9adXpDeURBTlpYdDZjUXdNUGJqL1kvdnVZanNYLzlHOmFycnVZMXMzUzNKTXdja1l5TGtKV01CaVZUV3JGZGpSMnRXN09qWEVzTXltVkRDVUpP';
+    options.headers["MobileSession"] = 'GDJdpFyi9Aegm.7/cn./Ij//TY8YUU1MspesHkOOS2LIG';
+    options.headers["user-agent"] = 'App/1.0.0 (iOS 16.2; iPhone; Simulator; x86)';
+    options.headers["PackageName"] = 'com.temanbumil.android';
+    options.headers["PackageVersion"] = '1.0.0';
+    options.headers["PackageVersionNumber"] = 12;
     options.headers["Content-Type"] = "application/json";
+    options.headers["MobileDevice"] = 'android';
+    options.headers["ApiVersion"] = '2.0';
   }
 
   Interceptor _interceptor() {
     return InterceptorsWrapper(
       onRequest: (options, handler) async {
+        await setHeader(options);
         return handler.next(options);
       },
       onResponse: (response, handler) async {

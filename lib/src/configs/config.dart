@@ -8,8 +8,8 @@ class Config {
 
   static const String _devBuildNumber = '.1';
 
-  static const String _baseUrl = 'https://staging-rocketchat.temanbumil.com/';
-  static const String _baseUrlDev = 'https://rocketchat.temanbumil.com/';
+  static const String _baseUrl = 'https://staging-onboarding.temanbumil.com/1.0/';
+  static const String _baseUrlDev = 'https://staging-onboarding.temanbumil.com/1.0/';
 
 
   static String get getDevBuildNumber {

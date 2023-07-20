@@ -10,9 +10,9 @@ class CommonFeature {
   static List appRoutes() {
     return [
       GoRoute(
-        path: GlobalSplashScreen.routeName,
+        path: CommonSplashScreen.routeName,
         builder: (BuildContext context, GoRouterState state) {
-          return const GlobalSplashScreen();
+          return const CommonSplashScreen();
         },
       ),
     ];
