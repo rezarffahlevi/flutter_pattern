@@ -1,8 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:temanbumil_web/src/configs/configs.dart';
 import 'package:temanbumil_web/src/features/features.dart';
-import 'package:temanbumil_web/l10n/l10n.dart';
 
 class GlobalSplashScreen extends StatefulWidget {
   const GlobalSplashScreen({super.key});
@@ -71,7 +71,7 @@ class _GlobalSplashScreenState extends State<GlobalSplashScreen> {
               onPressed: () {
                 context.go(AuthLoginScreen.routeName);
               },
-              child: Text(L10n.of(context)!.titleApp),
+              child: Text('msg').tr(),
             )
           ],
         ),
