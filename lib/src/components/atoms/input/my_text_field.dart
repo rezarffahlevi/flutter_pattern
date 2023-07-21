@@ -24,7 +24,7 @@ class MyTextField extends StatelessWidget {
   final bool isArea;
   final List<TextInputFormatter> inputFormatters;
   final Function(bool)? onTextFieldTap;
-  final Color fillColor;
+  final Color? fillColor;
   final TextStyle? hintStyle;
   final Color disabledBorderColor;
   final bool isMandatory;
@@ -51,7 +51,7 @@ class MyTextField extends StatelessWidget {
       this.inputFormatters = const [],
       this.textInputAction = TextInputAction.done,
       this.onTextFieldTap,
-      this.fillColor = Colors.white,
+      this.fillColor,
       this.hintStyle,
       this.disabledBorderColor = Colors.black,
       this.isMandatory = false,
@@ -85,7 +85,7 @@ class MyTextField extends StatelessWidget {
             }
           },
           child: Container(
-            color: Colors.transparent,
+            // color: Colors.transparent,
             child: Container(
               child: Focus(
                 onFocusChange: (focus) {

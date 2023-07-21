@@ -1,7 +1,9 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:temanbumil_web/src/app.dart';
 import 'package:temanbumil_web/src/components/atoms/atoms.dart';
 import 'package:temanbumil_web/src/configs/configs.dart';
 import 'package:temanbumil_web/src/features/auth/auth.dart';
@@ -30,6 +32,8 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
     super.initState();
     bloc.init();
     Helper.fToast.init(context);
+    // Example change theme
+    // App.of(context).changeTheme(ThemeMode.light);
   }
 
   Widget _buildMainWidget(parentContext, AuthLoginBloc bloc) {
@@ -65,8 +69,7 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
           MySizedBox.normalVertical(),
           Text('Atau Masuk Dengan',
               textAlign: TextAlign.center,
-              style: MyTextStyle.contentDescriptionMedium
-                  .copyWith(color: MyColor.black)),
+              style: MyTextStyle.contentDescriptionMedium),
           MySizedBox.smallVertical(),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -217,9 +220,7 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                Text('No. Handphone',
-                    style: MyTextStyle.textFieldTitle
-                        .copyWith(color: MyColor.black)),
+                Text('No. Handphone', style: MyTextStyle.textFieldTitle),
 
                 // BlocBuilder<AuthLoginBloc, AuthLoginState>(
                 //     bloc: bloc,
@@ -550,14 +551,14 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
     return GestureDetector(
       onTap: FocusScope.of(context).unfocus,
       child: Scaffold(
-        backgroundColor: MyColor.white,
+        // backgroundColor: MyColor.white,
         body: Stack(
           children: [
             SingleChildScrollView(
               physics: BouncingScrollPhysics(),
               child: Container(
                 // height: MediaQuery.of(context).size.height,
-                color: MyColor.white,
+                // color: MyColor.white,
                 child: _buildMainWidget(context, bloc),
               ),
             ),

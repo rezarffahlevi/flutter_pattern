@@ -8,8 +8,8 @@ class MyTheme {
   }
 
   static dark() {
-    return ThemeData(
-      fontFamily: 'Nunito',
+    return ThemeData.dark().copyWith(
+      textTheme: Typography().white.apply(fontFamily: 'Nunito'),
     );
   }
 }

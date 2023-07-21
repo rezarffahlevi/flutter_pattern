@@ -12,10 +12,13 @@ class App extends StatefulWidget {
   const App({super.key});
 
   @override
-  State<App> createState() => _App();
+  State<App> createState() => _AppState();
+
+  static _AppState of(BuildContext context) => 
+      context.findAncestorStateOfType<_AppState>()!;
 }
 
-class _App extends State<App> {
+class _AppState extends State<App> {
   ThemeMode _themeMode = ThemeMode.system;
 
   @override
