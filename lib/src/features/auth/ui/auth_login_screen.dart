@@ -29,6 +29,7 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
   void initState() {
     super.initState();
     bloc.init();
+    Helper.fToast.init(context);
   }
 
   Widget _buildMainWidget(parentContext, AuthLoginBloc bloc) {

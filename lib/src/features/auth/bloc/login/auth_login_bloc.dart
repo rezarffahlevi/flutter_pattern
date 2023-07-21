@@ -28,8 +28,14 @@ class AuthLoginBloc extends Cubit<AuthLoginState> {
 
   eventOnLoginEmail(context) async {
     try {
+      Helper.showLoadingPopup(context);
       final res =
           await repo.login(email: state.email, password: state.password);
-    } catch (e) {}
+      AuthHelper.loginHandler(context, res);
+    } catch (e) {
+      Helper.showToast('Email atau password salah');
+    } finally {
+      Helper.dismissLoadingPopup(context);
+    }
   }
 }

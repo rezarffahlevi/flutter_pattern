@@ -9,6 +9,16 @@ class Prefs {
   static Future<String> get jwtToken => PreferencesHelper.getString(JWT_TOKEN);
   static Future setJwtToken(String value) =>
       PreferencesHelper.setString(JWT_TOKEN, value);
+
+  static const String LOGGED_IN = 'LOGGED_IN';
+  static Future<String> get loggedIn => PreferencesHelper.getString(LOGGED_IN);
+  static Future setLoggedIn(bool value) =>
+      PreferencesHelper.setBool(LOGGED_IN, value);
+
+  static const String MEMBER_ID = 'MEMBER_ID';
+  static Future<String> get memberId => PreferencesHelper.getString(MEMBER_ID);
+  static Future setMemberId(String value) =>
+      PreferencesHelper.setString(MEMBER_ID, value);
 }
 
 class PreferencesHelper {
@@ -45,7 +55,7 @@ class PreferencesHelper {
   static Future<String> getString(String key) async {
     final p = await prefs;
     final result = await p.read(key: key);
-    return result ?? '0';
+    return result ?? '';
   }
 
   static Future setString(String key, String? value) async {

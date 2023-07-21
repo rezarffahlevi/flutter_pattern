@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:temanbumil_web/src/configs/configs.dart';
 import 'package:temanbumil_web/src/features/features.dart';
+import 'package:temanbumil_web/src/helpers/helpers.dart';
 
 class CommonSplashScreen extends StatefulWidget {
   const CommonSplashScreen({super.key});

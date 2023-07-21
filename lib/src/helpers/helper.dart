@@ -1,10 +1,123 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:logger/logger.dart';
 import 'package:temanbumil_web/src/components/atoms/atoms.dart';
 import 'package:temanbumil_web/src/themes/themes.dart';
 
 class Helper {
+  static final GlobalKey<NavigatorState> navigatorKey =
+      new GlobalKey<NavigatorState>();
+  static final FToast fToast = FToast();
+
+  static void showToast(String msg, {String? type = 'info'}) {
+    Widget toast = Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(25.0),
+        color: type == 'error' ? Colors.redAccent : type == 'success' ? Colors.greenAccent : Colors.black54,
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(type == 'error' ? Icons.error : type == 'success' ? Icons.check : Icons.info, color: Colors.white),
+          SizedBox(
+            width: 12.0,
+          ),
+          Text('$msg', style: MyTextStyle.defaultStyle.copyWith(color: Colors.white),),
+        ],
+      ),
+    );
+
+    fToast.showToast(
+      child: toast,
+      gravity: ToastGravity.BOTTOM,
+      toastDuration: Duration(seconds: 2),
+    );
+  }
+
+  /// return error code;
+  static void showErrorToast(e) {
+    String rawResult =
+        removeAllHtmlTags(e.toString().replaceAll('Exception: ', ''));
+    final list = rawResult.split('\nErrorCode=');
+    showToast(list.first, type: 'error');
+  }
+
+  static String removeAllHtmlTags(String htmlText) {
+    if ((htmlText ?? '') == '') return '';
+    RegExp exp = RegExp(r"<[^>]*>", multiLine: true, caseSensitive: true);
+
+    return htmlText.replaceAll(exp, '');
+  }
+
+  static bool isLoadingPopupShown = false;
+
+  static void showLoadingPopup(BuildContext? context, {isVisible = true}) {
+    if (isLoadingPopupShown) return;
+
+    isLoadingPopupShown = true;
+
+    if (isVisible) {
+      showGeneralDialog(
+        context: context!,
+        barrierColor: Colors.black12.withOpacity(0.2),
+        // background color
+        barrierDismissible: false,
+        // should dialog be dismissed when tapped outside
+        barrierLabel: "Dialog",
+        // label for barrier
+        transitionDuration: Duration(milliseconds: 400),
+        // how long it takes to popup dialog after button click
+        pageBuilder: (_, __, ___) {
+          // your widget implementation
+          return WillPopScope(
+            onWillPop: () async => false,
+            child: Center(
+              child: Container(
+                alignment: Alignment.center,
+                height: 80,
+                width: 80,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: CircularProgressIndicator(
+                  color: MyColor.defaultPurple,
+                ),
+              ),
+            ),
+          );
+        },
+      );
+    } else {
+      showGeneralDialog(
+        context: context!,
+        barrierColor: Colors.black12.withOpacity(0.01),
+        // background color
+        barrierDismissible: false,
+        // should dialog be dismissed when tapped outside
+        barrierLabel: "Dialog",
+        // label for barrier
+        transitionDuration: Duration(milliseconds: 400),
+        // how long it takes to popup dialog after button click
+        pageBuilder: (_, __, ___) {
+          // your widget implementation
+          return WillPopScope(
+            onWillPop: () async => false,
+            child: Container(),
+          );
+        },
+      );
+    }
+  }
+
+  static void dismissLoadingPopup(BuildContext? context) {
+    if (!isLoadingPopupShown) return;
+
+    isLoadingPopupShown = false;
+    Navigator.pop(context!);
+  }
 
   String getMobileDevice() {
     String result = '';
@@ -15,7 +128,6 @@ class Helper {
     }
     return result;
   }
-
 
   static Future<void> showBottomSheetWidget(
     BuildContext context, {
@@ -66,7 +178,8 @@ class Helper {
       builder: (_) => WillPopScope(
         onWillPop: () async => isDismissible,
         child: Padding(
-          padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           child: Wrap(
             alignment: WrapAlignment.center,
             children: <Widget>[
@@ -115,6 +228,6 @@ class Helper {
       ),
     );
   }
-  
 }
+
 var logger = Logger();
