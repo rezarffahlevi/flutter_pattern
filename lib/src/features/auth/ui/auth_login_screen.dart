@@ -1,6 +1,3 @@
-import 'dart:async';
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:temanbumil_web/src/app.dart';
@@ -20,7 +17,6 @@ class AuthLoginScreen extends StatefulWidget {
 
 class _AuthLoginScreenState extends State<AuthLoginScreen> {
   final bloc = inject<AuthLoginBloc>();
-  int _current = 0;
 
   final txtPhoneNumber = TextEditingController();
   final txtEmail = TextEditingController();

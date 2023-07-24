@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MyColor {
-  // static Color homeBackground = Color(0xFFF7F7FA);
+  static Color primary = Color(0xFFbf095d);
   static Color homeBackground = Colors.grey[100]!;
   static Color homeBackground2 = Color(0xFFF9F9FB);
   static Color buttonEnabled = Color(0xFF5A8DF6);

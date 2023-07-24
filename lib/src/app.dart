@@ -19,7 +19,7 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  ThemeMode _themeMode = ThemeMode.system;
+  ThemeMode _themeMode = ThemeMode.light;
 
   @override
   void initState() {

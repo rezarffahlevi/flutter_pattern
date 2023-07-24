@@ -11,7 +11,7 @@ class Prefs {
       PreferencesHelper.setString(JWT_TOKEN, value);
 
   static const String LOGGED_IN = 'LOGGED_IN';
-  static Future<String> get loggedIn => PreferencesHelper.getString(LOGGED_IN);
+  static Future<bool> get loggedIn => PreferencesHelper.getBool(LOGGED_IN);
   static Future setLoggedIn(bool value) =>
       PreferencesHelper.setBool(LOGGED_IN, value);
 
@@ -36,7 +36,7 @@ class PreferencesHelper {
 
   static Future setBool(String key, bool value) async {
     final p = await prefs;
-    p.write(key: key, value: value.toString());
+    await p.write(key: key, value: value.toString());
     return true;
   }
 
@@ -48,7 +48,7 @@ class PreferencesHelper {
 
   static Future setInt(String key, int value) async {
     final p = await prefs;
-    p.write(key: key, value: value.toString());
+    await p.write(key: key, value: value.toString());
     return true;
   }
 
@@ -60,7 +60,7 @@ class PreferencesHelper {
 
   static Future setString(String key, String? value) async {
     final p = await prefs;
-    p.write(key: key, value: value.toString());
+    await p.write(key: key, value: value.toString());
     return true;
   }
 
@@ -72,7 +72,7 @@ class PreferencesHelper {
 
   static Future setDouble(String key, double value) async {
     final p = await prefs;
-    p.write(key: key, value: value.toString());
+    await p.write(key: key, value: value.toString());
     return true;
   }
 

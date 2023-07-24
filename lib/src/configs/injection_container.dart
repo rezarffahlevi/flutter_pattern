@@ -8,6 +8,7 @@ Future<void> initInjection() async {
   // BLoC
   CommonFeature.initInjection();
   AuthFeature.initInjection();
+  HomeFeature.initInjection();
 
   // Repository
   ApiSources.initInjection();

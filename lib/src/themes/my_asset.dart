@@ -2,6 +2,7 @@ class MyAsset {
   static _Image get image => _Image.custom();
 
   static String get google => 'images/ic-google.png';
+  static String get logoPurple => 'images/logo-purple.png';
 
 
 }
