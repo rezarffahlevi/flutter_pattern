@@ -36,7 +36,7 @@ class AuthLoginBloc extends Cubit<AuthLoginState> {
           await repo.login(email: state.email, password: state.password);
       AuthHelper.loginHandler(context, res);
     } catch (e) {
-      Helper.showToast('Email atau password salah');
+      Helper.showToast('Email atau password Tidak Benar');
     } finally {
       Helper.dismissLoadingPopup(context);
     }
