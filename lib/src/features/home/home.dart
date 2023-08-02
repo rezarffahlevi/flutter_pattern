@@ -10,6 +10,12 @@ class HomeFeature {
   static List appRoutes() {
     return [
       GoRoute(
+        path: HomeRootScreen.routeName,
+        builder: (BuildContext context, GoRouterState state) {
+          return const HomeRootScreen();
+        },
+      ),
+      GoRoute(
         path: HomeScreen.routeName,
         builder: (BuildContext context, GoRouterState state) {
           return const HomeScreen();
@@ -22,6 +28,7 @@ class HomeFeature {
     final inject = GetIt.instance;
 
     ///BLOC
+    inject.registerFactory(() => HomeRootBloc());
     inject.registerFactory(() => HomeBloc());
   }
 }

@@ -22,6 +22,7 @@ class AuthFeature {
     final inject = GetIt.instance;
 
     ///BLOC
+    inject.registerFactory(() => AuthBloc());
     inject.registerFactory(() => AuthLoginBloc());
   }
 }

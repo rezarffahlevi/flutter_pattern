@@ -1,6 +1,9 @@
 import 'dart:io';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart' as intl;
 import 'package:logger/logger.dart';
 import 'package:temanbumil_web/src/components/atoms/atoms.dart';
 import 'package:temanbumil_web/src/themes/themes.dart';
@@ -15,16 +18,29 @@ class Helper {
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25.0),
-        color: type == 'error' ? Colors.redAccent : type == 'success' ? Colors.greenAccent : Colors.black54,
+        color: type == 'error'
+            ? Colors.redAccent
+            : type == 'success'
+                ? Colors.greenAccent
+                : Colors.black54,
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(type == 'error' ? Icons.error : type == 'success' ? Icons.check : Icons.info, color: Colors.white),
+          Icon(
+              type == 'error'
+                  ? Icons.error
+                  : type == 'success'
+                      ? Icons.check
+                      : Icons.info,
+              color: Colors.white),
           SizedBox(
             width: 12.0,
           ),
-          Text('$msg', style: MyTextStyle.defaultStyle.copyWith(color: Colors.white),),
+          Text(
+            '$msg',
+            style: MyTextStyle.defaultStyle.copyWith(color: Colors.white),
+          ),
         ],
       ),
     );
@@ -227,6 +243,57 @@ class Helper {
         ),
       ),
     );
+  }
+
+  static String formatDate(String date, {String format = 'dd MMMM yyyy'}) {
+    try {
+      initializeDateFormatting();
+      return intl.DateFormat(format, 'id').format(DateTime.parse(date));
+    } catch (e) {
+      print(e.toString());
+      return '-';
+    }
+  }
+
+  static String formatDateWithDay(String date,
+      {String format = 'EEEE, dd MMMM yyyy'}) {
+    try {
+      initializeDateFormatting();
+      return intl.DateFormat(format, 'id').format(DateTime.parse(date));
+    } catch (e) {
+      print(e.toString());
+      return '-';
+    }
+  }
+
+  static String formatDateTime(String date,
+      {String format = 'dd MMMM yyyy HH:mm'}) {
+    try {
+      initializeDateFormatting();
+      return intl.DateFormat(format, 'id').format(DateTime.parse(date));
+    } catch (e) {
+      print(e.toString());
+      return '-';
+    }
+  }
+
+  static String formatDateTimeFromInt(int date,
+      {String format = 'dd MMMM yyyy HH:mm'}) {
+    print('formatDateTimeFromInt $date');
+    try {
+      initializeDateFormatting();
+      return intl.DateFormat(format, 'id')
+          .format(DateTime.fromMillisecondsSinceEpoch(date));
+    } catch (e) {
+      print(e.toString());
+      return '-';
+    }
+  }
+
+  static int daysBetween(DateTime from, DateTime to) {
+    from = DateTime(from.year, from.month, from.day);
+    to = DateTime(to.year, to.month, to.day);
+    return (to.difference(from).inHours / 24).round();
   }
 }
 
