@@ -7,5 +7,15 @@
         "male": "Hi man ;) {}",
         "female": "Hello girl :) {}",
         "other": "Hello {}"
+    },
+    "home": {
+        "content_title": "Aplikasi untuk Ibu Milenial",
+        "content_desc": "Teman Bumil siap menemani Mums menjalani peran sebagai ibu, sejak fase program hamil, kehamilan, menyusui dan tumbuh kembang anak dengan nyaman dan mudah.",
+        "article": {
+            "title": "Rekomendasi Artikel Mums"
+        },
+        "tips": {
+            "title": "Tips Untuk Mums"
+        }
     }
 }

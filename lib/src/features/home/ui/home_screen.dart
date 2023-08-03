@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -71,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Aplikasi untuk Ibu Milenial',
+                        'home.content_title'.tr(),
                         style: Theme.of(context)
                             .textTheme
                             .headlineLarge
@@ -80,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       MySizedBox.normalVertical(),
                       Text(
-                        'Teman Bumil siap menemani Mums menjalani peran sebagai ibu, sejak fase program hamil, kehamilan, menyusui dan tumbuh kembang anak dengan nyaman dan mudah.',
+                        'home.content_desc'.tr(),
                         style: Theme.of(context)
                             .textTheme
                             .titleMedium
@@ -107,9 +108,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 children: [
                                   Padding(
                                     padding:
-                                        EdgeInsets.only(left: 20.w, top: 20.h),
+                                        EdgeInsets.only(top: 20.h),
                                     child: Text(
-                                      'Artikel Untuk Mums',
+                                      'home.article.title'.tr(),
                                       style: Theme.of(context)
                                           .textTheme
                                           .headlineLarge,
@@ -175,43 +176,73 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: 20.w, top: 20.h),
-                      child: Text(
-                        'Tips',
-                        style: Theme.of(context).textTheme.headlineLarge,
-                      ),
-                    ),
-                    MySizedBox.smallVertical(),
-                    CupertinoScrollbar(
-                      controller: _articleScrollController,
-                      child: Container(
-                        height: 340.h,
-                        padding: EdgeInsets.only(bottom: 40.h),
-                        child: ListView.separated(
-                          controller: _articleScrollController,
-                          itemCount: 5,
-                          scrollDirection: Axis.horizontal,
-                          padding: EdgeInsets.symmetric(horizontal: 20.w),
-                          itemBuilder: (context, index) {
-                            return Container(
-                              width: ResponsiveWidget.isSmallScreen(context)
-                                  ? 0.4.sw
-                                  : 100.w,
-                              child: CardArticleWidget(
-                                title: 'Hallo $index',
-                                cover: 'https://picsum.photos/200/300',
-                                category: 'Hallo $index',
-                                createdAt: '2023-08-01',
-                              ),
-                            );
-                          },
-                          separatorBuilder: (context, index) =>
-                              MySizedBox.extraSmallHorizontal(),
-                        ),
-                      ),
-                    ),
-                    MySizedBox.normalVertical(),
+                    BlocBuilder<HomeBloc, HomeState>(
+                        bloc: bloc,
+                        builder: (contex, state) {
+                          switch (state.listData.status) {
+                            case STATUS.COMPLETED:
+                              return Column(
+                                children: [
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.only(top: 20.h),
+                                    child: Text(
+                                      'home.tips.title'.tr(),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headlineLarge,
+                                    ),
+                                  ),
+                                  MySizedBox.smallVertical(),
+                                  CupertinoScrollbar(
+                                    controller: _articleScrollController,
+                                    child: Container(
+                                      height: 340.h,
+                                      padding: EdgeInsets.only(bottom: 40.h),
+                                      child: ListView.separated(
+                                        controller: _articleScrollController,
+                                        itemCount:
+                                            state.listData.result?.length ?? 0,
+                                        scrollDirection: Axis.horizontal,
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 20.w),
+                                        itemBuilder: (context, index) {
+                                          final item =
+                                              state.listData.result![index];
+                                          return Container(
+                                            width:
+                                                ResponsiveWidget.isSmallScreen(
+                                                        context)
+                                                    ? 0.6.sw
+                                                    : 100.w,
+                                            child: CardArticleWidget(
+                                              title: item.title,
+                                              cover: item.cover,
+                                              category: item.categoryTitle,
+                                              createdAt: item.created,
+                                            ),
+                                          );
+                                        },
+                                        separatorBuilder: (context, index) =>
+                                            MySizedBox.extraSmallHorizontal(),
+                                      ),
+                                    ),
+                                  ),
+                                  MySizedBox.normalVertical(),
+                                ],
+                              );
+                              break;
+                            case STATUS.LOADING:
+                              return MyLoading();
+                              break;
+                            case STATUS.ERROR:
+                              return MyErrorWidget(state.listData.message);
+                              break;
+                            default:
+                              return Container();
+                              break;
+                          }
+                        }),
                   ],
                 ),
               ),
