@@ -59,6 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
           controller: bloc.scrollController,
           physics: const ClampingScrollPhysics(),
           child: Column(children: [
+            // Home
             HomeBgSection(
               image: MyAsset.image.bg1,
               child: Container(
@@ -93,6 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
+            // Article & Tips
             HomeBgSection(
               child: Container(
                 child: Column(
@@ -170,6 +172,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
+            
             HomeBgSection(
               child: Container(
                 child: Column(
@@ -250,7 +253,8 @@ class _HomeScreenState extends State<HomeScreen> {
             HomeBgSection(
               image: MyAsset.image.bg3,
               child: Container(
-                width: 0.3.sw,
+                width:
+                    ResponsiveWidget.isSmallScreen(context) ? 0.6.sw : 0.3.sw,
                 height: 1.sh,
                 child: Padding(
                   padding: EdgeInsets.only(left: 20.w),

@@ -43,7 +43,9 @@ class DioClient {
     options.headers["Authorization"] =
         'Basic JDJhJDExJDAydUhjN0dacDJRUUhaSm8zMTIxUU9adXpDeURBTlpYdDZjUXdNUGJqL1kvdnVZanNYLzlHOmFycnVZMXMzUzNKTXdja1l5TGtKV01CaVZUV3JGZGpSMnRXN09qWEVzTXltVkRDVUpP';
     options.headers["MobileSession"] = jwtToken;
-    options.headers["User-Agent"] = 'PostmanRuntime/7.32.3';
+    // options.headers["User-Agent"] = 'PostmanRuntime/7.32.3';
+    options.headers["Access-Control-Allow-Origin"] = '*';
+    options.headers["Accept"] = '*/*';
     options.headers["PackageName"] = 'com.temanbumil.android';
     options.headers["PackageVersion"] = '1.0.0';
     options.headers["PackageVersionNumber"] = 12;
