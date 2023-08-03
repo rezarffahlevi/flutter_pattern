@@ -52,12 +52,17 @@ class Helper {
     );
   }
 
-  /// return error code;
-  static void showErrorToast(e) {
+  static String getErrorMessage(e) {
     String rawResult =
         removeAllHtmlTags(e.toString().replaceAll('Exception: ', ''));
     final list = rawResult.split('\nErrorCode=');
-    showToast(list.first, type: 'error');
+    return list.first;
+  }
+
+  /// return error code;
+  static void showErrorToast(e) {
+    String rawResult = getErrorMessage(e);
+    showToast(rawResult, type: 'error');
   }
 
   static String removeAllHtmlTags(String htmlText) {
@@ -295,6 +300,15 @@ class Helper {
     to = DateTime(to.year, to.month, to.day);
     return (to.difference(from).inHours / 24).round();
   }
+
+  static Future<void> addDelay(int seconds) async {
+    await Future.delayed(Duration(seconds: seconds), () {});
+  }
+
+  static Future<void> addDelayInMS(int t) async {
+    await Future.delayed(Duration(milliseconds: t), () {});
+  }
+
 }
 
 var logger = Logger();

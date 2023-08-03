@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:temanbumil_web/src/app.dart';
 import 'package:temanbumil_web/src/components/atoms/atoms.dart';
 import 'package:temanbumil_web/src/components/components.dart';
@@ -10,6 +11,7 @@ import 'package:temanbumil_web/src/features/features.dart';
 import 'package:temanbumil_web/src/features/home/ui/section/home_bg_section.dart';
 import 'package:temanbumil_web/src/helpers/helpers.dart';
 import 'package:temanbumil_web/src/themes/my_asset.dart';
+import 'package:temanbumil_web/src/themes/themes.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -100,9 +102,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         bloc: bloc,
                         builder: (contex, state) {
                           switch (state.listData.status) {
-                            case STATUS.LOADING:
-                              return CircularProgressIndicator();
-                              break;
                             case STATUS.COMPLETED:
                               return Column(
                                 children: [
@@ -155,8 +154,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ],
                               );
                               break;
+                            case STATUS.LOADING:
+                              return MyLoading();
+                              break;
                             case STATUS.ERROR:
-                              return Text('Error ${state.listData.message}');
+                              return MyErrorWidget(state.listData.message);
                               break;
                             default:
                               return Container();

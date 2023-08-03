@@ -4,15 +4,15 @@ import 'package:temanbumil_web/src/repositories/models/article/article_model.dar
 
 class HomeState extends Equatable {
   final double scrollPosition;
-  final Response<List<ArticleModel>> listData;
+  final ResponseData<List<ArticleModel>> listData;
 
   const HomeState({
     this.scrollPosition = 0,
-    this.listData = const Response(),
+    this.listData = const ResponseData(),
   });
 
   HomeState copyWith(
-      {double? scrollPosition, Response<List<ArticleModel>>? listData}) {
+      {double? scrollPosition, ResponseData<List<ArticleModel>>? listData}) {
     return HomeState(
       scrollPosition: scrollPosition ?? this.scrollPosition,
       listData: listData ?? this.listData,

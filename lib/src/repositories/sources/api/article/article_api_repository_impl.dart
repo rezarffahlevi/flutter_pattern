@@ -28,7 +28,7 @@ class ArticleApiRepositoryImpl implements ArticleApiRepository {
           }));
       return ArticleListResponseModel.fromJson(res.data);
     } on DioException catch (e) {
-      throw Exception(e.error);
+      throw Exception(e.message);
     }
   }
 }

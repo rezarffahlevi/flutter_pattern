@@ -80,7 +80,7 @@ class _AppBarWebState extends State<AppBarWeb> {
                                   context: context,
                                   builder: (context) => const HomeAuthDialog(),
                                 );
-                              } else {
+                              } else if (e['link'] == 'logout'){
                                 await AuthHelper.logout(context);
                                 if (kIsWeb) html.window.location.reload();
                               }

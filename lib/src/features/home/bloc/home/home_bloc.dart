@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:temanbumil_web/src/configs/configs.dart';
@@ -17,7 +18,7 @@ class HomeBloc extends Cubit<HomeState> {
   double scrollPosition = 0;
   double opacity = 0;
 
-  init(BuildContext context) {
+  init(BuildContext context) async {
     scrollController.addListener(scrollListener);
     eventOnLoading();
   }
@@ -26,9 +27,9 @@ class HomeBloc extends Cubit<HomeState> {
     emit(state.copyWith(scrollPosition: scrollController.position.pixels));
   }
 
-
   eventOnLoading() async {
-    try{
+    try {
+      emit(state.copyWith(listData: ResponseData.loading()));
       final response = await articleRepo.getListArticle(
         page: 1,
         categoryId: '1',
@@ -38,11 +39,10 @@ class HomeBloc extends Cubit<HomeState> {
 
       final list = response.data?.article ?? [];
       emit(state.copyWith(
-              listData: Response.completed(list),
-            ));
+        listData: ResponseData.completed(list),
+      ));
     } catch (e, s) {
-      emit(state.copyWith(listData: Response.error(e.toString())));
+      emit(state.copyWith(listData: ResponseData.error(e.toString())));
     }
   }
-  
 }
