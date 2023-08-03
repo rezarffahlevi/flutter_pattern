@@ -1,4 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:temanbumil_web/src/features/auth/auth.dart';
+import 'package:temanbumil_web/src/helpers/helpers.dart';
+import 'package:temanbumil_web/src/themes/themes.dart';
+import 'dart:html' as html;
 
 class HomeAuthDialog extends StatefulWidget {
   const HomeAuthDialog({super.key});
@@ -21,6 +27,21 @@ class _HomeAuthDialogState extends State<HomeAuthDialog> {
 
   String? loginStatus;
   Color loginStringColor = Colors.green;
+
+  late AuthBloc authBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    authBloc = context.read<AuthBloc>();
+
+    textControllerEmail = TextEditingController();
+    textControllerPassword = TextEditingController();
+    textControllerEmail.text = '';
+    textControllerPassword.text = '';
+    textFocusNodeEmail = FocusNode();
+    textFocusNodePassword = FocusNode();
+  }
 
   String? _validateEmail(String value) {
     value = value.trim();
@@ -52,20 +73,9 @@ class _HomeAuthDialogState extends State<HomeAuthDialog> {
   }
 
   @override
-  void initState() {
-    textControllerEmail = TextEditingController();
-    textControllerPassword = TextEditingController();
-    textControllerEmail.text = '';
-    textControllerPassword.text = '';
-    textFocusNodeEmail = FocusNode();
-    textFocusNodePassword = FocusNode();
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Dialog(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).canvasColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8.0),
       ),
@@ -74,21 +84,15 @@ class _HomeAuthDialogState extends State<HomeAuthDialog> {
           padding: const EdgeInsets.all(16.0),
           child: Container(
             width: 400,
-            color: Theme.of(context).colorScheme.background,
+            color: Theme.of(context).canvasColor,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
                 Center(
                   child: Text(
-                    'EXPLORE',
-                    style: TextStyle(
-                      color: Theme.of(context).textTheme.displayLarge!.color,
-                      fontSize: 24,
-                      fontFamily: 'Montserrat',
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 3,
-                    ),
+                    'Masuk ke Teman Bumil',
+                    style: Theme.of(context).textTheme.headlineSmall,
                   ),
                 ),
                 const SizedBox(height: 30),
@@ -124,6 +128,7 @@ class _HomeAuthDialogState extends State<HomeAuthDialog> {
                       setState(() {
                         _isEditingEmail = true;
                       });
+                      authBloc.eventOnTextChange('email', value);
                     },
                     onSubmitted: (value) {
                       textFocusNodeEmail.unfocus();
@@ -188,6 +193,7 @@ class _HomeAuthDialogState extends State<HomeAuthDialog> {
                       setState(() {
                         _isEditingPassword = true;
                       });
+                      authBloc.eventOnTextChange('password', value);
                     },
                     onSubmitted: (value) {
                       textFocusNodePassword.unfocus();
@@ -231,35 +237,18 @@ class _HomeAuthDialogState extends State<HomeAuthDialog> {
                           width: double.maxFinite,
                           child: TextButton(
                             style: TextButton.styleFrom(
-                              foregroundColor: Colors.blueGrey.shade800,
+                              backgroundColor: MyColor.defaultPurple,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15.0),
                               ),
                             ),
                             onPressed: () async {
-                              setState(() {
-                                _isLoggingIn = true;
-                                textFocusNodeEmail.unfocus();
-                                textFocusNodePassword.unfocus();
-                              });
-                              if (_validateEmail(textControllerEmail.text) ==
-                                      null &&
-                                  _validatePassword(
-                                          textControllerPassword.text) ==
-                                      null) {
-                              } else {
-                                setState(() {
-                                  loginStatus = 'Please enter email & password';
-                                  loginStringColor = Colors.red;
-                                });
+                              final res =
+                                  await authBloc.eventOnLoginEmail(context);
+                              if (res) {
+                                Navigator.of(context).pop();
+                                if (kIsWeb) html.window.location.reload();
                               }
-                              setState(() {
-                                _isLoggingIn = false;
-                                textControllerEmail.text = '';
-                                textControllerPassword.text = '';
-                                _isEditingEmail = false;
-                                _isEditingPassword = false;
-                              });
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(
@@ -296,12 +285,12 @@ class _HomeAuthDialogState extends State<HomeAuthDialog> {
                           width: double.maxFinite,
                           child: TextButton(
                             style: TextButton.styleFrom(
-                              foregroundColor: Colors.blueGrey.shade800,
+                              backgroundColor: MyColor.defaultPurple,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15),
                               ),
                             ),
-                            onPressed: () async {
+                            onPressed: () {
                               setState(() {
                                 _isRegistering = true;
                               });
@@ -370,13 +359,13 @@ class _HomeAuthDialogState extends State<HomeAuthDialog> {
                   ),
                 ),
                 const SizedBox(height: 30),
-                Center(
-                  child: ElevatedButton(
-                    child: Text('HI'),
-                    onPressed: () {},
-                  ),
-                ),
-                const SizedBox(height: 30),
+                // Center(
+                //   child: ElevatedButton(
+                //     child: Text('Masuk'),
+                //     onPressed: () {},
+                //   ),
+                // ),
+                // const SizedBox(height: 30),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(

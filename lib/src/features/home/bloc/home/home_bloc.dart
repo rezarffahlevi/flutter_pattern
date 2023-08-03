@@ -11,6 +11,7 @@ class HomeBloc extends Cubit<HomeState> {
   HomeBloc() : super(HomeState());
 
   final repo = inject<AuthApiRepository>();
+  final articleRepo = inject<ArticleApiRepository>();
 
   final ScrollController scrollController = ScrollController();
   double scrollPosition = 0;
@@ -18,9 +19,30 @@ class HomeBloc extends Cubit<HomeState> {
 
   init(BuildContext context) {
     scrollController.addListener(scrollListener);
+    eventOnLoading();
   }
 
   scrollListener() {
     emit(state.copyWith(scrollPosition: scrollController.position.pixels));
   }
+
+
+  eventOnLoading() async {
+    try{
+      final response = await articleRepo.getListArticle(
+        page: 1,
+        categoryId: '1',
+        arraySubCategoryId: '1',
+        bookmark: false,
+      );
+
+      final list = response.data?.article ?? [];
+      emit(state.copyWith(
+              listData: Response.completed(list),
+            ));
+    } catch (e, s) {
+      emit(state.copyWith(listData: Response.error(e.toString())));
+    }
+  }
+  
 }

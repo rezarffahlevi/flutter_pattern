@@ -92,7 +92,83 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             HomeBgSection(
               child: Container(
-                height: 1.sh,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    BlocBuilder<HomeBloc, HomeState>(
+                        bloc: bloc,
+                        builder: (contex, state) {
+                          switch (state.listData.status) {
+                            case STATUS.LOADING:
+                              return CircularProgressIndicator();
+                              break;
+                            case STATUS.COMPLETED:
+                              return Column(
+                                children: [
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.only(left: 20.w, top: 20.h),
+                                    child: Text(
+                                      'Artikel Untuk Mums',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headlineLarge,
+                                    ),
+                                  ),
+                                  MySizedBox.smallVertical(),
+                                  CupertinoScrollbar(
+                                    controller: _articleScrollController,
+                                    child: Container(
+                                      height: 340.h,
+                                      padding: EdgeInsets.only(bottom: 40.h),
+                                      child: ListView.separated(
+                                        controller: _articleScrollController,
+                                        itemCount:
+                                            state.listData.result?.length ?? 0,
+                                        scrollDirection: Axis.horizontal,
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 20.w),
+                                        itemBuilder: (context, index) {
+                                          final item =
+                                              state.listData.result![index];
+                                          return Container(
+                                            width:
+                                                ResponsiveWidget.isSmallScreen(
+                                                        context)
+                                                    ? 0.4.sw
+                                                    : 100.w,
+                                            child: CardArticleWidget(
+                                              title: item.title,
+                                              cover: item.cover,
+                                              category: item.categoryTitle,
+                                              createdAt: item.created,
+                                            ),
+                                          );
+                                        },
+                                        separatorBuilder: (context, index) =>
+                                            MySizedBox.extraSmallHorizontal(),
+                                      ),
+                                    ),
+                                  ),
+                                  MySizedBox.normalVertical(),
+                                ],
+                              );
+                              break;
+                            case STATUS.ERROR:
+                              return Text('Error ${state.listData.message}');
+                              break;
+                            default:
+                              return Container();
+                              break;
+                          }
+                        }),
+                  ],
+                ),
+              ),
+            ),
+            HomeBgSection(
+              child: Container(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -100,15 +176,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     Padding(
                       padding: EdgeInsets.only(left: 20.w, top: 20.h),
                       child: Text(
-                        'Artikel',
-                        style: Theme.of(context)
-                            .textTheme
-                            .headlineLarge
-                            ?.copyWith(
-                                color: Theme.of(context).primaryColorLight),
+                        'Tips',
+                        style: Theme.of(context).textTheme.headlineLarge,
                       ),
                     ),
-                    MySizedBox.extraSmallVertical(),
+                    MySizedBox.smallVertical(),
                     CupertinoScrollbar(
                       controller: _articleScrollController,
                       child: Container(

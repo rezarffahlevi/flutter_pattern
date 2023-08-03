@@ -10,6 +10,9 @@ export 'user/user_api_repository_impl.dart';
 export 'auth/auth_api_repository.dart';
 export 'auth/auth_api_repository_impl.dart';
 
+export 'article/article_api_repository.dart';
+export 'article/article_api_repository_impl.dart';
+
 class ApiSources {
   static Future<void> initInjection() async {
     final inject = GetIt.instance;
@@ -19,5 +22,8 @@ class ApiSources {
 
     inject.registerLazySingleton<AuthApiRepository>(
         () => AuthApiRepositoryImpl(dio: inject()));
+
+    inject.registerLazySingleton<ArticleApiRepository>(
+        () => ArticleApiRepositoryImpl(dio: inject()));
   }
 }

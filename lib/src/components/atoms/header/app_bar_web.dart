@@ -1,8 +1,12 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:temanbumil_web/src/components/atoms/atoms.dart';
 import 'package:temanbumil_web/src/features/home/ui/section/home_auth_dialog.dart';
+import 'package:temanbumil_web/src/helpers/helpers.dart';
+import 'package:temanbumil_web/src/repositories/repositories.dart';
 import 'package:temanbumil_web/src/themes/themes.dart';
+import 'dart:html' as html;
 
 class AppBarWeb extends StatefulWidget {
   final double opacity;
@@ -13,7 +17,7 @@ class AppBarWeb extends StatefulWidget {
 }
 
 class _AppBarWebState extends State<AppBarWeb> {
-  final List<Map<String, dynamic>> _menu = [
+  List<Map<String, dynamic>> _menu = [
     {'menu': 'Home', 'link': '', 'hover': false},
     {'menu': 'Tentang', 'link': '', 'hover': false},
     {'menu': 'Fitur', 'link': '', 'hover': false},
@@ -21,6 +25,24 @@ class _AppBarWebState extends State<AppBarWeb> {
     {'menu': 'Screen', 'link': '', 'hover': false},
     {'menu': 'Login', 'link': 'login', 'hover': false},
   ];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    checkAccess();
+  }
+
+  checkAccess() async {
+    if (await Prefs.loggedIn) {
+      List<Map<String, dynamic>> menu = List.from(_menu);
+      menu[5]['menu'] = 'Logout';
+      menu[5]['link'] = 'logout';
+      setState(() {
+        _menu = menu;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,12 +74,15 @@ class _AppBarWebState extends State<AppBarWeb> {
                                     : _menu[index]['hover'] = false;
                               });
                             },
-                            onTap: () {
+                            onTap: () async {
                               if (e['link'] == 'login') {
                                 showDialog(
                                   context: context,
                                   builder: (context) => const HomeAuthDialog(),
                                 );
+                              } else {
+                                await AuthHelper.logout(context);
+                                if (kIsWeb) html.window.location.reload();
                               }
                             },
                             child: Column(
