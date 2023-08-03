@@ -136,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             width:
                                                 ResponsiveWidget.isSmallScreen(
                                                         context)
-                                                    ? 0.4.sw
+                                                    ? 0.6.sw
                                                     : 100.w,
                                             child: CardArticleWidget(
                                               title: item.title,
