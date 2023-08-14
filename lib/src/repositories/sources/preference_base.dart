@@ -28,7 +28,7 @@ class PreferencesHelper {
     return bool.parse(result ?? 'false');
   }
 
-  static Future<bool?> getBoolorNull(String key) async {
+  static Future<bool?> getBoolOrNull(String key) async {
     final p = await prefs;
     final result = await p.read(key: key);
     return result == null ? null : bool.parse(result);
