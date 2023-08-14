@@ -5,9 +5,9 @@ import 'package:temanbumil_web/src/helpers/helpers.dart';
 import 'package:temanbumil_web/src/repositories/repositories.dart';
 
 class DioClient {
-  String baseUrl = getBaseUrl();
-
-  DioClient();
+  String? baseUrl;
+  
+  DioClient({this.baseUrl});
 
   Dio get dio => _getDio();
 
@@ -19,9 +19,9 @@ class DioClient {
     return Config.timeOutDuration;
   }
 
-  Dio _getDio({String? baseUrlCustom}) {
+  Dio _getDio() {
     BaseOptions options = BaseOptions(
-      baseUrl: baseUrlCustom ?? baseUrl,
+      baseUrl: baseUrl ?? getBaseUrl(),
       connectTimeout: _getTimeOutDuration(),
       receiveTimeout: _getTimeOutDuration(),
     );
@@ -91,7 +91,7 @@ class DioClient {
                 // return Utilities.forceLogOut();
               } else {
                 DioException dioError = DioException(
-                    error: responseData["info"]["message"] ?? '',
+                    error: responseData["info"]["message"] ?? 'Oops! Something Went Wrong...',
                     requestOptions: response.requestOptions);
                 return handler.reject(dioError);
               }

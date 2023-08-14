@@ -15,6 +15,7 @@ Future<void> initInjection() async {
 
   // Network
   inject.registerLazySingleton(() => inject<DioClient>().dio);
+  inject.registerLazySingleton(() => DioClient(baseUrl: 'https://run.mocky.io/').dio, instanceName: 'mocky');
   inject.registerLazySingleton(() => DioClient());
   
 }

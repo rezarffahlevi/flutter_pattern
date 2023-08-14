@@ -24,6 +24,6 @@ class ApiSources {
         () => AuthApiRepositoryImpl(dio: inject()));
 
     inject.registerLazySingleton<ArticleApiRepository>(
-        () => ArticleApiRepositoryImpl(dio: inject()));
+        () => ArticleApiRepositoryImpl(dio: inject(), mocky: inject(instanceName: 'mocky')));
   }
 }
