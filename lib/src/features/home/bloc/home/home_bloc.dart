@@ -7,6 +7,7 @@ import 'package:temanbumil_web/src/components/molecules/dialog/login_dialog.dart
 import 'package:temanbumil_web/src/configs/configs.dart';
 import 'package:temanbumil_web/src/features/features.dart';
 import 'package:temanbumil_web/src/helpers/helpers.dart';
+import 'package:temanbumil_web/src/repositories/repositories.dart';
 import 'package:temanbumil_web/src/repositories/sources/api/api.dart';
 
 class HomeBloc extends Cubit<HomeState> {
@@ -27,6 +28,10 @@ class HomeBloc extends Cubit<HomeState> {
       {'menu': 'Screen', 'link': '', 'hover': false},
       {'menu': 'Login', 'link': 'login', 'hover': false},
     ])));
+    if (await Prefs.loggedIn) {
+      eventUpdateMenu(5, 'menu', 'Logout');
+      eventUpdateMenu(5, 'link', 'logout');
+    }
     scrollController.addListener(scrollListener);
     eventOnLoading();
   }
@@ -61,11 +66,24 @@ class HomeBloc extends Cubit<HomeState> {
     emit(state.copyWith(menu: ViewData.loaded(menu)));
   }
 
-
-  eventOnTapMenu(BuildContext context, int index, dynamic menu) {
+  eventOnTapMenu(BuildContext context, int index, dynamic menu) async {
     switch (menu['link']) {
       case 'login':
-        showDialog(context: context, builder: (context) => const LoginDialog());
+        final successLogin = await showDialog(
+            context: context, builder: (context) => const LoginDialog());
+        if (successLogin) {
+          if (await Prefs.loggedIn) {
+            eventUpdateMenu(5, 'menu', 'Logout');
+            eventUpdateMenu(5, 'link', 'logout');
+            eventOnLoading();
+          }
+        }
+        break;
+      case 'logout':
+        AuthHelper.logout(context);
+        eventUpdateMenu(5, 'menu', 'Login');
+        eventUpdateMenu(5, 'link', 'login');
+        // eventOnLoading();
         break;
       default:
     }

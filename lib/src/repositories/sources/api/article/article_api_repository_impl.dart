@@ -17,8 +17,8 @@ class ArticleApiRepositoryImpl implements ArticleApiRepository {
     String? arraySubCategoryId,
   }) async {
     try {
-      final res = await mocky!.post('/v3/b456bc2b-a325-4c2f-b172-262d97ec7a10',
-      // final res = await dio!.post('article/article-list-v2',
+      // final res = await mocky!.post('/v3/b456bc2b-a325-4c2f-b172-262d97ec7a10',
+      final res = await dio!.post('article/article-list-v2',
           data: jsonEncode({
             'keyword': keyword,
             'page': page,

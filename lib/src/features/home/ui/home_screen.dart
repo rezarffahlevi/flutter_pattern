@@ -6,6 +6,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:temanbumil_web/src/components/components.dart';
 import 'package:temanbumil_web/src/configs/configs.dart';
 import 'package:temanbumil_web/src/features/features.dart';
+import 'package:temanbumil_web/src/features/home/ui/section/home_section_about.dart';
+import 'package:temanbumil_web/src/features/home/ui/section/home_section_article_tips.dart';
+import 'package:temanbumil_web/src/features/home/ui/section/home_section_first.dart';
 import 'package:temanbumil_web/src/features/home/widget/home_bg_section.dart';
 import 'package:temanbumil_web/src/helpers/helpers.dart';
 import 'package:temanbumil_web/src/themes/my_asset.dart';
@@ -21,7 +24,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final bloc = inject<HomeBloc>();
-  final _articleScrollController = ScrollController();
 
   @override
   void initState() {
@@ -73,229 +75,9 @@ class _HomeScreenState extends State<HomeScreen> {
           controller: bloc.scrollController,
           physics: const ClampingScrollPhysics(),
           child: Column(children: [
-            // Home
-            HomeBgSection(
-              image: MyAsset.image.bg1,
-              child: Container(
-                width:
-                    ResponsiveWidget.isSmallScreen(context) ? 0.6.sw : 0.3.sw,
-                height: 1.sh,
-                child: Padding(
-                  padding: EdgeInsets.only(left: 20.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'home.content_title'.tr(),
-                        style: Theme.of(context)
-                            .textTheme
-                            .headlineLarge
-                            ?.copyWith(
-                                color: Theme.of(context).primaryColorLight),
-                      ),
-                      MySizedBox.normalVertical(),
-                      Text(
-                        'home.content_desc'.tr(),
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleMedium
-                            ?.copyWith(
-                                color: Theme.of(context).primaryColorLight),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            // Article & Tips
-            HomeBgSection(
-              child: Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    BlocBuilder<HomeBloc, HomeState>(
-                        bloc: bloc,
-                        builder: (contex, state) {
-                          switch (state.listArticle.status) {
-                            case ViewState.loaded:
-                              return Column(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 20.h),
-                                    child: Text(
-                                      'home.article.title'.tr(),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headlineLarge,
-                                    ),
-                                  ),
-                                  MySizedBox.smallVertical(),
-                                  CupertinoScrollbar(
-                                    controller: _articleScrollController,
-                                    child: Container(
-                                      height: 340.h,
-                                      padding: EdgeInsets.only(bottom: 40.h),
-                                      child: ListView.separated(
-                                        controller: _articleScrollController,
-                                        itemCount:
-                                            state.listArticle.data?.length ?? 0,
-                                        scrollDirection: Axis.horizontal,
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 20.w),
-                                        itemBuilder: (context, index) {
-                                          final item =
-                                              state.listArticle.data![index];
-                                          return Container(
-                                            width:
-                                                ResponsiveWidget.isSmallScreen(
-                                                        context)
-                                                    ? 0.6.sw
-                                                    : 100.w,
-                                            child: CardArticleWidget(
-                                              title: item.title,
-                                              cover: item.cover,
-                                              category: item.categoryTitle,
-                                              createdAt: item.created,
-                                            ),
-                                          );
-                                        },
-                                        separatorBuilder: (context, index) =>
-                                            MySizedBox.extraSmallHorizontal(),
-                                      ),
-                                    ),
-                                  ),
-                                  MySizedBox.normalVertical(),
-                                ],
-                              );
-                              break;
-                            case ViewState.loading:
-                              return MyLoading();
-                              break;
-                            case ViewState.error:
-                              return MyErrorWidget(state.listArticle.message);
-                              break;
-                            default:
-                              return Container();
-                              break;
-                          }
-                        }),
-                  ],
-                ),
-              ),
-            ),
-
-            HomeBgSection(
-              child: Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    BlocBuilder<HomeBloc, HomeState>(
-                        bloc: bloc,
-                        builder: (contex, state) {
-                          switch (state.listArticle.status) {
-                            case ViewState.loaded:
-                              return Column(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 20.h),
-                                    child: Text(
-                                      'home.tips.title'.tr(),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headlineLarge,
-                                    ),
-                                  ),
-                                  MySizedBox.smallVertical(),
-                                  CupertinoScrollbar(
-                                    controller: _articleScrollController,
-                                    child: Container(
-                                      height: 340.h,
-                                      padding: EdgeInsets.only(bottom: 40.h),
-                                      child: ListView.separated(
-                                        controller: _articleScrollController,
-                                        itemCount:
-                                            state.listArticle.data?.length ?? 0,
-                                        scrollDirection: Axis.horizontal,
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 20.w),
-                                        itemBuilder: (context, index) {
-                                          final item =
-                                              state.listArticle.data![index];
-                                          return Container(
-                                            width:
-                                                ResponsiveWidget.isSmallScreen(
-                                                        context)
-                                                    ? 0.6.sw
-                                                    : 100.w,
-                                            child: CardArticleWidget(
-                                              title: item.title,
-                                              cover: item.cover,
-                                              category: item.categoryTitle,
-                                              createdAt: item.created,
-                                            ),
-                                          );
-                                        },
-                                        separatorBuilder: (context, index) =>
-                                            MySizedBox.extraSmallHorizontal(),
-                                      ),
-                                    ),
-                                  ),
-                                  MySizedBox.normalVertical(),
-                                ],
-                              );
-                              break;
-                            case ViewState.loaded:
-                              return MyLoading();
-                              break;
-                            case ViewState.error:
-                              return MyErrorWidget(state.listArticle.message);
-                              break;
-                            default:
-                              return Container();
-                              break;
-                          }
-                        }),
-                  ],
-                ),
-              ),
-            ),
-            HomeBgSection(
-              image: MyAsset.image.bg3,
-              child: Container(
-                width:
-                    ResponsiveWidget.isSmallScreen(context) ? 0.6.sw : 0.3.sw,
-                height: 1.sh,
-                child: Padding(
-                  padding: EdgeInsets.only(left: 20.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Aplikasi untuk Ibu Milenial',
-                        style: Theme.of(context)
-                            .textTheme
-                            .headlineLarge
-                            ?.copyWith(
-                                color: Theme.of(context).primaryColorLight),
-                      ),
-                      MySizedBox.normalVertical(),
-                      Text(
-                        'Teman Bumil siap menemani Mums menjalani peran sebagai ibu, sejak fase program hamil, kehamilan, menyusui dan tumbuh kembang anak dengan nyaman dan mudah.',
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleMedium
-                            ?.copyWith(
-                                color: Theme.of(context).primaryColorLight),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+            HomeSectionFirst(),
+            HomeSectionArticleTips(bloc),
+            HomeSectionAbout(),
           ]),
         ),
       ),

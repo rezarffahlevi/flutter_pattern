@@ -246,8 +246,7 @@ class _LoginDialogState extends State<LoginDialog> {
                               final res =
                                   await authBloc.eventOnLoginEmail(context);
                               if (res) {
-                                Navigator.of(context).pop();
-                                if (kIsWeb) html.window.location.reload();
+                                Navigator.of(context).pop(true);
                               }
                             },
                             child: Padding(

@@ -6,7 +6,7 @@ import 'package:temanbumil_web/src/repositories/repositories.dart';
 
 class DioClient {
   String? baseUrl;
-  
+
   DioClient({this.baseUrl});
 
   Dio get dio => _getDio();
@@ -85,19 +85,21 @@ class DioClient {
                       .toLowerCase()
                       .contains('session')) {
                 DioException dioError = DioException(
-                    error: responseData["info"]["message"] ?? '',
+                    message:
+                        'Login terlebih dahulu untuk menikmati fitur ini' ?? responseData["info"]["message"],
                     requestOptions: response.requestOptions);
-                handler.reject(dioError);
+                return handler.reject(dioError);
                 // return Utilities.forceLogOut();
               } else {
                 DioException dioError = DioException(
-                    error: responseData["info"]["message"] ?? 'Oops! Something Went Wrong...',
+                    message: responseData["info"]["message"] ??
+                        'Oops! Something Went Wrong...',
                     requestOptions: response.requestOptions);
                 return handler.reject(dioError);
               }
             } else {
               DioException dioError = DioException(
-                  error: 'Oops! Something Went Wrong...',
+                  message: 'Oops! Something Went Wrong...',
                   requestOptions: response.requestOptions);
               return handler.reject(dioError);
             }
