@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:temanbumil_web/src/app.dart';
 import 'package:temanbumil_web/src/components/atoms/atoms.dart';
-import 'package:temanbumil_web/src/components/atoms/header/app_bar_web.dart';
 import 'package:temanbumil_web/src/themes/my_text_style.dart';
 
 class MyAppbar extends StatelessWidget {
-  final double opacity;
+  double? opacity;
+  List<dynamic>? menu;
+  Function(int index, bool value)? onHover;
+  Function(BuildContext context, int index, dynamic data)? onTap;
 
-  MyAppbar({required this.opacity});
+  MyAppbar({this.opacity, this.menu, this.onHover, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +41,11 @@ class MyAppbar extends StatelessWidget {
     } else {
       return PreferredSize(
         preferredSize: Size(1.sw, 80.h),
-        child: AppBarWeb(
+        child: MyAppbarWeb(
           opacity: opacity,
+          menu: menu ?? [],
+          onHover: onHover,
+          onTap: onTap,
         ),
       );
     }

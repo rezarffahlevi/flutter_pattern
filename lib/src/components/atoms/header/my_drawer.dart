@@ -1,18 +1,21 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:temanbumil_web/src/features/home/ui/section/home_auth_dialog.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:temanbumil_web/src/components/molecules/dialog/login_dialog.dart';
 import 'package:temanbumil_web/src/themes/my_color.dart';
 
 class HomeDrawer extends StatefulWidget {
-  const HomeDrawer({super.key});
+  List<dynamic> menu = [];
+  Function(BuildContext context, int index, dynamic data)? onTap;
+
+  HomeDrawer({super.key, required this.menu, this.onTap});
 
   @override
   State<StatefulWidget> createState() => _HomeDrawerState();
 }
 
 class _HomeDrawerState extends State<HomeDrawer> {
-  bool _isProcessing = false;
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -24,42 +27,6 @@ class _HomeDrawerState extends State<HomeDrawer> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Container(
-                width: double.maxFinite,
-                child: TextButton(
-                  // color: Colors.black,
-                  // hoverColor: Colors.blueGrey[800],
-                  // highlightColor: Colors.blueGrey[700],
-                  style: TextButton.styleFrom(
-                    foregroundColor: Colors.black,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                  ),
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (context) => HomeAuthDialog(),
-                    );
-                  },
-                  // shape: RoundedRectangleBorder(
-                  //   borderRadius: BorderRadius.circular(15),
-                  // ),
-                  child: const Padding(
-                    padding: EdgeInsets.only(
-                      top: 15.0,
-                      bottom: 15.0,
-                    ),
-                    child: Text(
-                      'Sign in',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 mainAxisSize: MainAxisSize.max,
@@ -74,7 +41,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                   ),
                   const SizedBox(width: 10),
                   Text(
-                    'name',
+                    'Nama User',
                     style: const TextStyle(
                       fontSize: 20,
                       color: Colors.white70,
@@ -83,76 +50,34 @@ class _HomeDrawerState extends State<HomeDrawer> {
                 ],
               ),
               const SizedBox(height: 20),
-              Container(
-                width: double.maxFinite,
-                child: TextButton(
-                  // color: Colors.black,
-                  // hoverColor: Colors.blueGrey[800],
-                  // highlightColor: Colors.blueGrey[700],
-                  style: TextButton.styleFrom(
-                    foregroundColor: Colors.black,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
+              if (widget.menu.isNotEmpty)
+                ...widget.menu.map((e) {
+                  final index = widget.menu
+                      .indexWhere((element) => element['menu'] == e['menu']);
+                  return Padding(
+                    padding: EdgeInsets.symmetric(vertical: 3.w, horizontal: 10.w),
+                    child: InkWell(
+                      onTap: () async {
+                        if (widget.onTap != null) widget.onTap!(context, index, e);
+                      },
+                      child: Text(
+                        e['menu'],
+                        style: TextStyle(color: Colors.white, fontSize: 22),
+                      ),
                     ),
-                  ),
-                  onPressed: _isProcessing
-                      ? null
-                      : () async {
-                          setState(() {
-                            _isProcessing = true;
-                          });
-                        },
-                  // shape: RoundedRectangleBorder(
-                  //   borderRadius: BorderRadius.circular(15),
-                  // ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      top: 15.0,
-                      bottom: 15.0,
-                    ),
-                    child: _isProcessing
-                        ? const CircularProgressIndicator()
-                        : const Text(
-                            'Sign out',
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.white,
-                            ),
-                          ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-              InkWell(
-                onTap: () {},
-                child: const Text(
-                  'Discover',
-                  style: TextStyle(color: Colors.white, fontSize: 22),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
-                child: Divider(
-                  color: Colors.blueGrey[400],
-                  thickness: 2,
-                ),
-              ),
-              InkWell(
-                onTap: () {},
-                child: const Text(
-                  'Contact Us',
-                  style: TextStyle(color: Colors.white, fontSize: 22),
-                ),
-              ),
+                  );
+                }),
+
+              // Footer
               Expanded(
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: Text(
-                    'Copyright © 2020 | EXPLORE',
-                    style: TextStyle(
-                      color: Colors.blueGrey[300],
-                      fontSize: 14,
-                    ),
+                    'Copyright © 2023 | Teman Bumil',
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleSmall
+                        ?.copyWith(color: Theme.of(context).cardColor),
                   ),
                 ),
               )

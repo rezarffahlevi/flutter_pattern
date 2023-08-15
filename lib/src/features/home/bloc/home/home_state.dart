@@ -4,24 +4,27 @@ import 'package:temanbumil_web/src/repositories/models/article/article_model.dar
 
 class HomeState extends Equatable {
   final double scrollPosition;
-  final ResponseData<List<ArticleModel>> listData;
+  final ViewData<List<ArticleModel>> listArticle;
+  ViewData<List<Map<String, dynamic>>> menu;
 
-  const HomeState({
+  HomeState({
     this.scrollPosition = 0,
-    this.listData = const ResponseData(),
+    this.listArticle = const ViewData(),
+    this.menu = const ViewData(),
   });
 
-  HomeState copyWith(
-      {double? scrollPosition, ResponseData<List<ArticleModel>>? listData}) {
+  HomeState copyWith({
+    double? scrollPosition,
+    ViewData<List<ArticleModel>>? listArticle,
+    ViewData<List<Map<String, dynamic>>>? menu,
+  }) {
     return HomeState(
       scrollPosition: scrollPosition ?? this.scrollPosition,
-      listData: listData ?? this.listData,
+      listArticle: listArticle ?? this.listArticle,
+      menu: menu ?? this.menu,
     );
   }
 
   @override
-  List get props => [
-        scrollPosition,
-        listData,
-      ];
+  List get props => [scrollPosition, listArticle, menu];
 }

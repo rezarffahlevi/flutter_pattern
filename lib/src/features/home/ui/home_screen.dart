@@ -3,13 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:temanbumil_web/src/app.dart';
-import 'package:temanbumil_web/src/components/atoms/atoms.dart';
 import 'package:temanbumil_web/src/components/components.dart';
 import 'package:temanbumil_web/src/configs/configs.dart';
 import 'package:temanbumil_web/src/features/features.dart';
-import 'package:temanbumil_web/src/features/home/ui/section/home_bg_section.dart';
+import 'package:temanbumil_web/src/features/home/widget/home_bg_section.dart';
 import 'package:temanbumil_web/src/helpers/helpers.dart';
 import 'package:temanbumil_web/src/themes/my_asset.dart';
 import 'package:temanbumil_web/src/themes/themes.dart';
@@ -45,15 +42,32 @@ class _HomeScreenState extends State<HomeScreen> {
           child: BlocBuilder<HomeBloc, HomeState>(
               bloc: bloc,
               builder: (context, state) {
-                bloc.opacity = state.scrollPosition < 1.sh * 0.40
+                final opacity = state.scrollPosition < 1.sh * 0.40
                     ? state.scrollPosition / (1.sh * 0.40)
-                    : 1;
+                    : 0.90;
+
                 return MyAppbar(
-                  opacity: bloc.opacity,
+                  opacity: opacity,
+                  menu: state.menu.data,
+                  onHover: (index, value) {
+                    bloc.eventUpdateMenu(index, 'hover', value);
+                  },
+                  onTap: (context, index, menu) {
+                    bloc.eventOnTapMenu(context, index, menu);
+                  },
                 );
               }),
         ),
-        drawer: const HomeDrawer(),
+        drawer: BlocBuilder<HomeBloc, HomeState>(
+            bloc: bloc,
+            builder: (context, state) {
+              return HomeDrawer(
+                menu: state.menu.data ?? [],
+                onTap: (context, index, menu) {
+                  bloc.eventOnTapMenu(context, index, menu);
+                },
+              );
+            }),
         drawerEnableOpenDragGesture: true,
         body: SingleChildScrollView(
           controller: bloc.scrollController,
@@ -104,13 +118,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     BlocBuilder<HomeBloc, HomeState>(
                         bloc: bloc,
                         builder: (contex, state) {
-                          switch (state.listData.status) {
-                            case STATUS.COMPLETED:
+                          switch (state.listArticle.status) {
+                            case ViewState.loaded:
                               return Column(
                                 children: [
                                   Padding(
-                                    padding:
-                                        EdgeInsets.only(top: 20.h),
+                                    padding: EdgeInsets.only(top: 20.h),
                                     child: Text(
                                       'home.article.title'.tr(),
                                       style: Theme.of(context)
@@ -127,13 +140,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                       child: ListView.separated(
                                         controller: _articleScrollController,
                                         itemCount:
-                                            state.listData.result?.length ?? 0,
+                                            state.listArticle.data?.length ?? 0,
                                         scrollDirection: Axis.horizontal,
                                         padding: EdgeInsets.symmetric(
                                             horizontal: 20.w),
                                         itemBuilder: (context, index) {
                                           final item =
-                                              state.listData.result![index];
+                                              state.listArticle.data![index];
                                           return Container(
                                             width:
                                                 ResponsiveWidget.isSmallScreen(
@@ -157,11 +170,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ],
                               );
                               break;
-                            case STATUS.LOADING:
+                            case ViewState.loading:
                               return MyLoading();
                               break;
-                            case STATUS.ERROR:
-                              return MyErrorWidget(state.listData.message);
+                            case ViewState.error:
+                              return MyErrorWidget(state.listArticle.message);
                               break;
                             default:
                               return Container();
@@ -172,7 +185,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            
+
             HomeBgSection(
               child: Container(
                 child: Column(
@@ -182,13 +195,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     BlocBuilder<HomeBloc, HomeState>(
                         bloc: bloc,
                         builder: (contex, state) {
-                          switch (state.listData.status) {
-                            case STATUS.COMPLETED:
+                          switch (state.listArticle.status) {
+                            case ViewState.loaded:
                               return Column(
                                 children: [
                                   Padding(
-                                    padding:
-                                        EdgeInsets.only(top: 20.h),
+                                    padding: EdgeInsets.only(top: 20.h),
                                     child: Text(
                                       'home.tips.title'.tr(),
                                       style: Theme.of(context)
@@ -205,13 +217,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                       child: ListView.separated(
                                         controller: _articleScrollController,
                                         itemCount:
-                                            state.listData.result?.length ?? 0,
+                                            state.listArticle.data?.length ?? 0,
                                         scrollDirection: Axis.horizontal,
                                         padding: EdgeInsets.symmetric(
                                             horizontal: 20.w),
                                         itemBuilder: (context, index) {
                                           final item =
-                                              state.listData.result![index];
+                                              state.listArticle.data![index];
                                           return Container(
                                             width:
                                                 ResponsiveWidget.isSmallScreen(
@@ -235,11 +247,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ],
                               );
                               break;
-                            case STATUS.LOADING:
+                            case ViewState.loaded:
                               return MyLoading();
                               break;
-                            case STATUS.ERROR:
-                              return MyErrorWidget(state.listData.message);
+                            case ViewState.error:
+                              return MyErrorWidget(state.listArticle.message);
                               break;
                             default:
                               return Container();

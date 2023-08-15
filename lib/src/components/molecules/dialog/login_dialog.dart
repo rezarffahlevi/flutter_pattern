@@ -6,14 +6,14 @@ import 'package:temanbumil_web/src/helpers/helpers.dart';
 import 'package:temanbumil_web/src/themes/themes.dart';
 import 'dart:html' as html;
 
-class HomeAuthDialog extends StatefulWidget {
-  const HomeAuthDialog({super.key});
+class LoginDialog extends StatefulWidget {
+  const LoginDialog({super.key});
 
   @override
-  State<StatefulWidget> createState() => _HomeAuthDialogState();
+  State<StatefulWidget> createState() => _LoginDialogState();
 }
 
-class _HomeAuthDialogState extends State<HomeAuthDialog> {
+class _LoginDialogState extends State<LoginDialog> {
   late TextEditingController textControllerEmail;
   late FocusNode textFocusNodeEmail;
   bool _isEditingEmail = false;
