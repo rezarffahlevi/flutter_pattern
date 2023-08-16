@@ -1,5 +1,5 @@
 import 'package:get_it/get_it.dart';
-import '../../repositories.dart';
+import '../../../repositories.dart';
 
 export 'common/common_api_repository_impl.dart';
 export 'common/common_api_repository.dart';

@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:temanbumil_web/src/repositories/sources/api/api.dart';
+import 'package:temanbumil_web/src/repositories/repositories.dart';
 
 class CommonApiRepositoryImpl implements CommonApiRepository {
   final Dio? dio;
