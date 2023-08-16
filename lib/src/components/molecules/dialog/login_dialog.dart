@@ -1,10 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:temanbumil_web/src/features/auth/auth.dart';
-import 'package:temanbumil_web/src/helpers/helpers.dart';
 import 'package:temanbumil_web/src/themes/themes.dart';
-import 'dart:html' as html;
 
 class LoginDialog extends StatefulWidget {
   const LoginDialog({super.key});
