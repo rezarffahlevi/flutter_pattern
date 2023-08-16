@@ -51,6 +51,7 @@ class _AppState extends State<App> {
           splitScreenMode: true,
           builder: (context, child) {
             return MaterialApp.router(
+              title: 'Teman Bumil',
               routerConfig: _router,
               localizationsDelegates: context.localizationDelegates,
               supportedLocales: context.supportedLocales,

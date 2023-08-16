@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:temanbumil_web/src/components/molecules/dialog/login_dialog.dart';
 import 'package:temanbumil_web/src/configs/configs.dart';
 import 'package:temanbumil_web/src/features/features.dart';
@@ -29,8 +30,15 @@ class HomeBloc extends Cubit<HomeState> {
       {'menu': 'Login', 'link': 'login', 'hover': false},
     ])));
     if (await Prefs.loggedIn) {
-      eventUpdateMenu(5, 'menu', 'Logout');
-      eventUpdateMenu(5, 'link', 'logout');
+      emit(state.copyWith(
+          menu: ViewData.loaded([
+        {'menu': 'App', 'link': 'app', 'hover': false},
+        {'menu': 'Tentang', 'link': '', 'hover': false},
+        {'menu': 'Fitur', 'link': '', 'hover': false},
+        {'menu': 'Testimoni', 'link': '', 'hover': false},
+        {'menu': 'Screen', 'link': '', 'hover': false},
+        {'menu': 'Logout', 'link': 'logout', 'hover': false},
+      ])));
     }
     scrollController.addListener(scrollListener);
     eventOnLoading();
@@ -73,16 +81,33 @@ class HomeBloc extends Cubit<HomeState> {
             context: context, builder: (context) => const LoginDialog());
         if (successLogin) {
           if (await Prefs.loggedIn) {
-            eventUpdateMenu(5, 'menu', 'Logout');
-            eventUpdateMenu(5, 'link', 'logout');
+            emit(state.copyWith(
+                menu: ViewData.loaded([
+              {'menu': 'App', 'link': 'app', 'hover': false},
+              {'menu': 'Tentang', 'link': '', 'hover': false},
+              {'menu': 'Fitur', 'link': '', 'hover': false},
+              {'menu': 'Testimoni', 'link': '', 'hover': false},
+              {'menu': 'Screen', 'link': '', 'hover': false},
+              {'menu': 'Logout', 'link': 'logout', 'hover': false},
+            ])));
             eventOnLoading();
           }
         }
         break;
+      case 'app':
+        context.go(HomeAppScreen.routeName);
+        break;
       case 'logout':
         AuthHelper.logout(context);
-        eventUpdateMenu(5, 'menu', 'Login');
-        eventUpdateMenu(5, 'link', 'login');
+        emit(state.copyWith(
+            menu: ViewData.loaded([
+          {'menu': 'Home', 'link': '', 'hover': false},
+          {'menu': 'Tentang', 'link': '', 'hover': false},
+          {'menu': 'Fitur', 'link': '', 'hover': false},
+          {'menu': 'Testimoni', 'link': '', 'hover': false},
+          {'menu': 'Screen', 'link': '', 'hover': false},
+          {'menu': 'Login', 'link': 'login', 'hover': false},
+        ])));
         // eventOnLoading();
         break;
       default:

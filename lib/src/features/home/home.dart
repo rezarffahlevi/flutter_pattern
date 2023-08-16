@@ -21,6 +21,12 @@ class HomeFeature {
           return const HomeScreen();
         },
       ),
+      GoRoute(
+        path: HomeAppScreen.routeName,
+        builder: (BuildContext context, GoRouterState state) {
+          return const HomeAppScreen();
+        },
+      ),
     ];
   }
 
@@ -30,5 +36,6 @@ class HomeFeature {
     ///BLOC
     inject.registerFactory(() => HomeRootBloc());
     inject.registerFactory(() => HomeBloc());
+    inject.registerFactory(() => HomeAppBloc());
   }
 }
