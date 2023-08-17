@@ -8,17 +8,19 @@ class MyTheme {
       fontFamily: 'Nunito',
       primaryColor: MyColor.defaultPurple,
       focusColor: MyColor.primary,
-      textTheme: TextTheme(
-        titleMedium: MyTextStyle.contentTitle,
-        headlineMedium: MyTextStyle.bigTitle
+      hoverColor: MyColor.primary,
+      textTheme: TextTheme(),
+      colorScheme: ColorScheme.light().copyWith(
+        primary: MyColor.defaultPurple,
       ),
-      colorScheme: ColorScheme.light(),
     );
   }
 
   static dark() {
     return ThemeData.dark().copyWith(
-        textTheme: Typography().white.apply(fontFamily: 'Nunito'),
-        primaryColor: '#bf095d'.toColor());
+      textTheme: Typography().white.apply(fontFamily: 'Nunito'),
+      primaryColor: MyColor.defaultPurple,
+      focusColor: MyColor.primary,
+    );
   }
 }

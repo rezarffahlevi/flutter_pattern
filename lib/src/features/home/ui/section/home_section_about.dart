@@ -12,7 +12,7 @@ class HomeSectionAbout extends StatelessWidget {
 
     // Home
     return HomeBgSection(
-      image: MyAsset.image.bg3,
+      image: MyAsset.background.bg3,
       child: Container(
         width: ResponsiveWidget.isSmallScreen(context) ? 0.6.sw : 0.3.sw,
         height: 1.sh,
@@ -27,7 +27,7 @@ class HomeSectionAbout extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .headlineLarge
-                    ?.copyWith(color: Theme.of(context).primaryColorLight),
+                    ?.copyWith(color: Theme.of(context).colorScheme.inversePrimary),
               ),
               MySizedBox.normalVertical(),
               Text(
@@ -35,7 +35,7 @@ class HomeSectionAbout extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .titleMedium
-                    ?.copyWith(color: Theme.of(context).primaryColorLight),
+                    ?.copyWith(color: Theme.of(context).colorScheme.inversePrimary),
               ),
             ],
           ),

@@ -31,7 +31,7 @@ class _CommonSplashScreenState extends State<CommonSplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(MyAsset.logoPurple, height: 80.h),
+            Image.asset(MyAsset.logoWhite, height: 80.h),
             // Text('welcome_tb').tr(),
           ],
         ),

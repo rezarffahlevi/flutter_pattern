@@ -23,17 +23,6 @@ class _MyAppbarWebState extends State<MyAppbarWeb> {
     super.initState();
   }
 
-  checkAccess() async {
-    // if (await Prefs.loggedIn) {
-    //   List<Map<String, dynamic>> menu = List.from(widget.menu);
-    //   menu[5]['menu'] = 'Logout';
-    //   menu[5]['link'] = 'logout';
-    //   setState(() {
-    //     widget.menu = menu;
-    //   });
-    // }
-  }
-
   @override
   Widget build(BuildContext context) {
     return PreferredSize(
@@ -75,8 +64,8 @@ class _MyAppbarWebState extends State<MyAppbarWeb> {
                                     style: TextStyle(
                                       fontSize: 16,
                                       color: widget.menu[index]['hover']
-                                          ? Theme.of(context).focusColor
-                                          : Theme.of(context).primaryColorLight,
+                                          ? Theme.of(context).hoverColor
+                                          : Theme.of(context).colorScheme.inversePrimary,
                                       fontWeight: FontWeight.w900,
                                       letterSpacing: 3,
                                     ),
