@@ -3,6 +3,7 @@ class MyAsset {
   static _Background get background => _Background.custom();
 
   static String get logoWhite => 'images/logo-white.png';
+  static String get logoPurple => 'images/logo-purple.png';
   
   static String get doctor => 'images/general/doctor.png';
   static String get food => 'images/general/food.png';

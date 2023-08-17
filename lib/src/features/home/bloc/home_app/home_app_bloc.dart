@@ -12,6 +12,7 @@ class HomeAppBloc extends Cubit<HomeAppState> {
 
   final repo = inject<AuthApiRepository>();
   final articleRepo = inject<ArticleApiRepository>();
+  final tipsRepo = inject<TipsApiRepository>();
 
   final ScrollController scrollController = ScrollController();
 
@@ -36,6 +37,13 @@ class HomeAppBloc extends Cubit<HomeAppState> {
 
   eventOnLoading() async {
     try {
+      eventGetArticle();
+      eventGetTips();
+    } catch (e, s) {}
+  }
+
+  eventGetArticle() async {
+    try {
       emit(state.copyWith(listArticle: ViewData.loading()));
       final response = await articleRepo.getListArticle(
         page: 1,
@@ -50,6 +58,24 @@ class HomeAppBloc extends Cubit<HomeAppState> {
       ));
     } catch (e, s) {
       emit(state.copyWith(listArticle: ViewData.error(e.toString())));
+    }
+  }
+
+  eventGetTips() async {
+    try {
+      emit(state.copyWith(listTips: ViewData.loading()));
+      final response = await tipsRepo.getTipsList(
+        page: 1,
+        bookmark: false,
+        subCategoryId: '1'
+      );
+
+      final list = response.data?.tips ?? [];
+      emit(state.copyWith(
+        listTips: ViewData.loaded(list),
+      ));
+    } catch (e, s) {
+      emit(state.copyWith(listTips: ViewData.error(e.toString())));
     }
   }
 
@@ -70,5 +96,9 @@ class HomeAppBloc extends Cubit<HomeAppState> {
         break;
       default:
     }
+  }
+
+  eventOnChangeCategory(category) {
+    emit(state.copyWith(selectedCategory: category));
   }
 }

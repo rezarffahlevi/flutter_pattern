@@ -13,6 +13,21 @@ class Helper {
       new GlobalKey<NavigatorState>();
   static final FToast fToast = FToast();
 
+  static double responsive(BuildContext context,
+      {double? sm, double? md, required double lg}) {
+    bool small = MediaQuery.of(context).size.width < 800;
+    bool medium = MediaQuery.of(context).size.width >= 800 &&
+        MediaQuery.of(context).size.width <= 1200;
+    bool large = MediaQuery.of(context).size.width > 1200;
+
+    if (large)
+      return lg;
+    else if (medium)
+      return md ?? lg;
+    else
+      return sm ?? lg;
+  }
+
   static void showToast(String msg, {String? type = 'info'}) {
     Widget toast = Container(
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
@@ -308,7 +323,6 @@ class Helper {
   static Future<void> addDelayInMS(int t) async {
     await Future.delayed(Duration(milliseconds: t), () {});
   }
-
 }
 
 var logger = Logger();

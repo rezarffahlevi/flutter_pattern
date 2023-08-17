@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -13,6 +12,7 @@ class HomeBloc extends Cubit<HomeState> {
 
   final repo = inject<AuthApiRepository>();
   final articleRepo = inject<ArticleApiRepository>();
+  final tipsRepo = inject<TipsApiRepository>();
 
   final ScrollController scrollController = ScrollController();
 
@@ -47,6 +47,13 @@ class HomeBloc extends Cubit<HomeState> {
 
   eventOnLoading() async {
     try {
+      eventGetArticle();
+      eventGetTips();
+    } catch (e, s) {}
+  }
+
+  eventGetArticle() async {
+    try {
       emit(state.copyWith(listArticle: ViewData.loading()));
       final response = await articleRepo.getListArticle(
         page: 1,
@@ -61,6 +68,24 @@ class HomeBloc extends Cubit<HomeState> {
       ));
     } catch (e, s) {
       emit(state.copyWith(listArticle: ViewData.error(e.toString())));
+    }
+  }
+
+  eventGetTips() async {
+    try {
+      emit(state.copyWith(listTips: ViewData.loading()));
+      final response = await tipsRepo.getTipsList(
+        page: 1,
+        bookmark: false,
+        subCategoryId: '1'
+      );
+
+      final list = response.data?.tips ?? [];
+      emit(state.copyWith(
+        listTips: ViewData.loaded(list),
+      ));
+    } catch (e, s) {
+      emit(state.copyWith(listTips: ViewData.error(e.toString())));
     }
   }
 

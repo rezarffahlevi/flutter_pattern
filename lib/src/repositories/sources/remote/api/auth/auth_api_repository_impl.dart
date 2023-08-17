@@ -21,7 +21,7 @@ class AuthApiRepositoryImpl implements AuthApiRepository {
       );
       return AuthLoginResponseModel.fromJson(res.data);
     } on DioException catch (e, s) {
-      throw Exception(e.error);
+      throw Exception(e.message);
     }
   }
 }

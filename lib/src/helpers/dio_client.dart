@@ -85,8 +85,11 @@ class DioClient {
                       .toLowerCase()
                       .contains('session')) {
                 DioException dioError = DioException(
+                    error: 'Login terlebih dahulu untuk menikmati fitur ini' ??
+                        responseData["info"]["message"],
                     message:
-                        'Login terlebih dahulu untuk menikmati fitur ini' ?? responseData["info"]["message"],
+                        'Login terlebih dahulu untuk menikmati fitur ini' ??
+                            responseData["info"]["message"],
                     requestOptions: response.requestOptions);
                 return handler.reject(dioError);
                 // return Utilities.forceLogOut();
@@ -94,12 +97,15 @@ class DioClient {
                 DioException dioError = DioException(
                     message: responseData["info"]["message"] ??
                         'Oops! Something Went Wrong...',
+                    error: responseData["info"]["message"] ??
+                        'Oops! Something Went Wrong...',
                     requestOptions: response.requestOptions);
                 return handler.reject(dioError);
               }
             } else {
               DioException dioError = DioException(
                   message: 'Oops! Something Went Wrong...',
+                  error: 'Oops! Something Went Wrong...',
                   requestOptions: response.requestOptions);
               return handler.reject(dioError);
             }

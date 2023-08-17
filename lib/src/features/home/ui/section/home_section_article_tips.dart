@@ -10,6 +10,7 @@ import 'package:temanbumil_web/src/helpers/helpers.dart';
 
 class HomeSectionArticleTips extends StatelessWidget {
   final _articleScrollController = ScrollController();
+  final _tipsScrollController = ScrollController();
   final HomeBloc bloc;
   HomeSectionArticleTips(this.bloc);
 
@@ -60,11 +61,11 @@ class HomeSectionArticleTips extends StatelessWidget {
                                                 context)
                                             ? 0.6.sw
                                             : 100.w,
-                                        child: CardArticleWidget(
-                                          title: item.title,
-                                          cover: item.cover,
+                                        child: CardParallax(
+                                          name: item.title,
+                                          imageUrl: item.cover,
                                           category: item.categoryTitle,
-                                          createdAt: item.created,
+                                          // createdAt: item.created,
                                         ),
                                       );
                                     },
@@ -109,36 +110,34 @@ class HomeSectionArticleTips extends StatelessWidget {
                 BlocBuilder<HomeBloc, HomeState>(
                     bloc: bloc,
                     builder: (contex, state) {
-                      switch (state.listArticle.status) {
+                      switch (state.listTips.status) {
                         case ViewState.loaded:
                           return Column(
                             children: [
                               MySizedBox.smallVertical(),
                               CupertinoScrollbar(
-                                controller: _articleScrollController,
+                                controller: _tipsScrollController,
                                 child: Container(
-                                  height: 340.h,
+                                  height: 180.h,
                                   padding: EdgeInsets.only(bottom: 40.h),
                                   child: ListView.separated(
-                                    controller: _articleScrollController,
+                                    controller: _tipsScrollController,
                                     itemCount:
-                                        state.listArticle.data?.length ?? 0,
+                                        state.listTips.data?.length ?? 0,
                                     scrollDirection: Axis.horizontal,
                                     padding:
                                         EdgeInsets.symmetric(horizontal: 20.w),
                                     itemBuilder: (context, index) {
                                       final item =
-                                          state.listArticle.data![index];
+                                          state.listTips.data![index];
                                       return Container(
                                         width: ResponsiveWidget.isSmallScreen(
                                                 context)
                                             ? 0.6.sw
                                             : 100.w,
-                                        child: CardArticleWidget(
+                                        child: CardTips(
                                           title: item.title,
                                           cover: item.cover,
-                                          category: item.categoryTitle,
-                                          createdAt: item.created,
                                         ),
                                       );
                                     },
@@ -151,11 +150,11 @@ class HomeSectionArticleTips extends StatelessWidget {
                             ],
                           );
                           break;
-                        case ViewState.loaded:
+                        case ViewState.loading:
                           return MyLoading();
                           break;
                         case ViewState.error:
-                          return MyErrorWidget(state.listArticle.message);
+                          return MyErrorWidget(state.listTips.message);
                           break;
                         default:
                           return Container();
