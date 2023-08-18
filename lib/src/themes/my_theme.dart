@@ -29,7 +29,13 @@ class MyTheme {
       ),
       colorScheme: ColorScheme.light().copyWith(
         primary: MyColor.defaultPurple,
+        surface: MyColor.white,
+        inverseSurface: MyColor.black,
       ),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: MyColor.defaultPurple,
+        hoverColor: MyColor.primary,
+      )
     );
   }
 
@@ -59,6 +65,8 @@ class MyTheme {
       ),
       colorScheme: ColorScheme.light().copyWith(
         primary: MyColor.defaultPurple,
+        surface: MyColor.black,
+        inverseSurface: MyColor.white,
       ),
     );
   }

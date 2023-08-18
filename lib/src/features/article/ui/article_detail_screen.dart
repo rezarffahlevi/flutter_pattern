@@ -4,6 +4,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+import 'package:go_router/go_router.dart';
 import 'package:temanbumil_web/src/components/components.dart';
 import 'package:temanbumil_web/src/configs/configs.dart';
 import 'package:temanbumil_web/src/features/features.dart';
@@ -40,47 +42,20 @@ class _ArticleDetailScreenState extends State<ArticleDetailScreen> {
     return GestureDetector(
       onTap: FocusScope.of(context).unfocus,
       child: Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(
-              ResponsiveWidget.isSmallScreen(context) ? 60.h : 80.h),
-          child: BlocBuilder<ArticleDetailBloc, ArticleDetailState>(
-              bloc: bloc,
-              builder: (context, state) {
-                final opacity = state.scrollPosition < 1.sh * 0.40
-                    ? state.scrollPosition / (1.sh * 0.40)
-                    : 0.90;
-
-                return MyAppbar(
-                  opacity: 0.90,
-                  menu: state.menu.data,
-                  onHover: (index, value) {
-                    bloc.eventUpdateMenu(index, 'hover', value);
-                  },
-                  onTap: (context, index, menu) {
-                    bloc.eventOnTapMenu(context, index, menu);
-                  },
-                );
-              }),
+        floatingActionButton: Container(
+          margin: EdgeInsets.all(16.h),
+          child: FloatingActionButton(
+            onPressed: () {
+              context.go(HomeAppScreen.routeName);
+            },
+            child: Icon(Icons.arrow_back_ios, color: Theme.of(context).colorScheme.surface,),
+          ),
         ),
-        drawer: BlocBuilder<ArticleDetailBloc, ArticleDetailState>(
-            bloc: bloc,
-            builder: (context, state) {
-              return HomeDrawer(
-                menu: state.menu.data ?? [],
-                onTap: (context, index, menu) {
-                  bloc.eventOnTapMenu(context, index, menu);
-                },
-              );
-            }),
-        drawerEnableOpenDragGesture: true,
+        floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
         body: SingleChildScrollView(
           controller: bloc.scrollController,
           physics: const ClampingScrollPhysics(),
           child: Container(
-            margin: EdgeInsets.only(
-              top: Helper.responsive(context, lg: 80.h, sm: 60.h),
-            ),
             alignment: Alignment.center,
             padding: EdgeInsets.symmetric(
                 horizontal: Helper.responsive(context, lg: 40.w, sm: 0)),
@@ -112,6 +87,8 @@ class _ArticleDetailScreenState extends State<ArticleDetailScreen> {
                                       .textTheme
                                       .headlineMedium,
                                 ),
+                                MySizedBox.normalVertical(),
+                                HtmlWidget(detail?.description ?? ''),
                               ],
                             ),
                           ),
