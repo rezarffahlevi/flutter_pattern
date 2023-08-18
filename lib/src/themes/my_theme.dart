@@ -7,7 +7,6 @@ class MyTheme {
     return ThemeData(
       fontFamily: 'Nunito',
       primaryColor: MyColor.defaultPurple,
-      // focusColor: MyColor.primary,
       hoverColor: MyColor.white,
       textTheme: TextTheme(
         headlineLarge: MyTextStyle.h1.bold.copyWith(color: MyColor.black),
@@ -29,21 +28,20 @@ class MyTheme {
       ),
       colorScheme: ColorScheme.light().copyWith(
         primary: MyColor.defaultPurple,
-        surface: MyColor.white,
-        inverseSurface: MyColor.black,
+        surface: MyColor.black,
+        inverseSurface: MyColor.white,
       ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
         backgroundColor: MyColor.defaultPurple,
         hoverColor: MyColor.primary,
-      )
+      ),
     );
   }
 
   static dark() {
     return ThemeData.dark().copyWith(
       primaryColor: MyColor.defaultPurple,
-      // focusColor: MyColor.primary,
-      hoverColor: MyColor.white,
+      hoverColor: MyColor.black,
       textTheme: TextTheme(
         headlineLarge: MyTextStyle.h1.bold.copyWith(color: MyColor.white),
         headlineMedium: MyTextStyle.h3.bold.copyWith(color: MyColor.white),
@@ -65,8 +63,12 @@ class MyTheme {
       ),
       colorScheme: ColorScheme.light().copyWith(
         primary: MyColor.defaultPurple,
-        surface: MyColor.black,
-        inverseSurface: MyColor.white,
+        surface: MyColor.white,
+        inverseSurface: MyColor.black,
+      ),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: MyColor.defaultPurple,
+        hoverColor: MyColor.primary,
       ),
     );
   }

@@ -14,6 +14,7 @@ import 'package:temanbumil_web/src/features/home/widget/home_category_horizontal
 import 'package:temanbumil_web/src/helpers/helpers.dart';
 import 'package:temanbumil_web/src/repositories/models/article/article_model.dart';
 import 'package:temanbumil_web/src/repositories/repositories.dart';
+import 'package:temanbumil_web/src/themes/themes.dart';
 
 class ArticleDetailScreen extends StatefulWidget {
   static const String routeName = '/article-detail';
@@ -48,7 +49,7 @@ class _ArticleDetailScreenState extends State<ArticleDetailScreen> {
             onPressed: () {
               context.go(HomeAppScreen.routeName);
             },
-            child: Icon(Icons.arrow_back_ios, color: Theme.of(context).colorScheme.surface,),
+            child: Icon(Icons.arrow_back_ios, color: MyColor.white,),
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
@@ -88,7 +89,7 @@ class _ArticleDetailScreenState extends State<ArticleDetailScreen> {
                                       .headlineMedium,
                                 ),
                                 MySizedBox.normalVertical(),
-                                HtmlWidget(detail?.description ?? ''),
+                                HtmlWidget(detail?.description ?? '', textStyle: TextStyle(color: Theme.of(context).colorScheme.surface)),
                               ],
                             ),
                           ),
