@@ -4,12 +4,11 @@ import 'package:go_router/go_router.dart';
 import 'package:temanbumil_web/src/configs/configs.dart';
 import 'package:temanbumil_web/src/features/features.dart';
 import 'package:temanbumil_web/src/helpers/helpers.dart';
-import 'package:temanbumil_web/src/repositories/models/article/article_model.dart';
 import 'package:temanbumil_web/src/repositories/repositories.dart';
 import 'package:temanbumil_web/src/repositories/sources/remote/api/api.dart';
 
-class HomeAppBloc extends Cubit<HomeAppState> {
-  HomeAppBloc() : super(HomeAppState());
+class ArticleDetailBloc extends Cubit<ArticleDetailState> {
+  ArticleDetailBloc() : super(ArticleDetailState());
 
   final repo = inject<AuthApiRepository>();
   final articleRepo = inject<ArticleApiRepository>();
@@ -17,63 +16,33 @@ class HomeAppBloc extends Cubit<HomeAppState> {
 
   final ScrollController scrollController = ScrollController();
 
-  init(BuildContext context) async {
+  init(BuildContext context, String? id) async {
     emit(state.copyWith(
         menu: ViewData.loaded([
       {'menu': 'Home', 'link': 'home', 'hover': false},
-      {'menu': 'Artikel', 'link': '/article', 'hover': false},
+      {'menu': 'Artikel', 'link': '', 'hover': false},
       {'menu': 'Checklist', 'link': '', 'hover': false},
       {'menu': 'Tips', 'link': '', 'hover': false},
       {'menu': 'Logout', 'link': 'logout', 'hover': false},
     ])));
     scrollController.addListener(scrollListener);
-    eventOnLoading();
-    // await Helper.addDelay(1);
-    // context.pop();
+    eventOnLoading(id);
   }
 
   scrollListener() {
     emit(state.copyWith(scrollPosition: scrollController.position.pixels));
   }
 
-  eventOnLoading() async {
+  eventOnLoading(String? id) async {
     try {
-      eventGetArticle();
-      eventGetTips();
-    } catch (e, s) {}
-  }
+      emit(state.copyWith(detail: ViewData.loading()));
+      final response = await articleRepo.getDetailArticle(articleId: id);
 
-  eventGetArticle() async {
-    try {
-      emit(state.copyWith(listArticle: ViewData.loading()));
-      final response = await articleRepo.getListArticle(
-        page: 1,
-        categoryId: '1',
-        arraySubCategoryId: '1',
-        bookmark: false,
-      );
-
-      final list = response.data?.article ?? [];
       emit(state.copyWith(
-        listArticle: ViewData.loaded(list),
+        detail: ViewData.loaded(response),
       ));
     } catch (e, s) {
-      emit(state.copyWith(listArticle: ViewData.error(e.toString())));
-    }
-  }
-
-  eventGetTips() async {
-    try {
-      emit(state.copyWith(listTips: ViewData.loading()));
-      final response = await tipsRepo.getTipsList(
-          page: 1, bookmark: false, subCategoryId: '1');
-
-      final list = response.data?.tips ?? [];
-      emit(state.copyWith(
-        listTips: ViewData.loaded(list),
-      ));
-    } catch (e, s) {
-      emit(state.copyWith(listTips: ViewData.error(e.toString())));
+      emit(state.copyWith(detail: ViewData.error(e.toString())));
     }
   }
 
@@ -93,16 +62,6 @@ class HomeAppBloc extends Cubit<HomeAppState> {
         AuthHelper.logout(context);
         break;
       default:
-        context.go(menu['link']);
-        break;
     }
-  }
-
-  eventOnChangeCategory(category) {
-    emit(state.copyWith(selectedCategory: category));
-  }
-
-  eventOnTapArticle(BuildContext context, ArticleModel item) {
-    context.go('${ArticleDetailScreen.routeName}?id=${item.articleId}', extra: item);
   }
 }

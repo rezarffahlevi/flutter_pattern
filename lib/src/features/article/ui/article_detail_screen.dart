@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,22 +13,26 @@ import 'package:temanbumil_web/src/helpers/helpers.dart';
 import 'package:temanbumil_web/src/repositories/models/article/article_model.dart';
 import 'package:temanbumil_web/src/repositories/repositories.dart';
 
-class HomeAppScreen extends StatefulWidget {
-  const HomeAppScreen({super.key});
-  static const String routeName = '/home-app';
+class ArticleDetailScreen extends StatefulWidget {
+  static const String routeName = '/article-detail';
+  final ArticleModel? detail;
+  final String id;
+  const ArticleDetailScreen({super.key, this.detail, required this.id});
 
   @override
-  State<HomeAppScreen> createState() => _HomeAppScreenState();
+  State<ArticleDetailScreen> createState() => _ArticleDetailScreenState();
 }
 
-class _HomeAppScreenState extends State<HomeAppScreen> {
-  final bloc = inject<HomeAppBloc>();
+class _ArticleDetailScreenState extends State<ArticleDetailScreen> {
+  final bloc = inject<ArticleDetailBloc>();
 
   @override
   void initState() {
     super.initState();
-    bloc.init(context);
-    Helper.fToast.init(context);
+    bloc.init(context, widget.id);
+    Helper.fToast.init(
+      context,
+    );
   }
 
   @override
@@ -38,7 +44,7 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(
               ResponsiveWidget.isSmallScreen(context) ? 60.h : 80.h),
-          child: BlocBuilder<HomeAppBloc, HomeAppState>(
+          child: BlocBuilder<ArticleDetailBloc, ArticleDetailState>(
               bloc: bloc,
               builder: (context, state) {
                 final opacity = state.scrollPosition < 1.sh * 0.40
@@ -57,7 +63,7 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                 );
               }),
         ),
-        drawer: BlocBuilder<HomeAppBloc, HomeAppState>(
+        drawer: BlocBuilder<ArticleDetailBloc, ArticleDetailState>(
             bloc: bloc,
             builder: (context, state) {
               return HomeDrawer(
@@ -71,55 +77,43 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
         body: SingleChildScrollView(
           controller: bloc.scrollController,
           physics: const ClampingScrollPhysics(),
-          child: Column(children: [
-            HomeAppSectionBanner(),
-            BlocBuilder<HomeAppBloc, HomeAppState>(
+          child: Container(
+            margin: EdgeInsets.only(
+              top: Helper.responsive(context, lg: 80.h, sm: 60.h),
+            ),
+            alignment: Alignment.center,
+            padding: EdgeInsets.symmetric(
+                horizontal: Helper.responsive(context, lg: 40.w, sm: 0)),
+            child: BlocBuilder<ArticleDetailBloc, ArticleDetailState>(
                 bloc: bloc,
                 builder: (context, state) {
-                  switch (state.listArticle.status) {
+                  final detail = state.detail.data?.data;
+                  switch (state.detail.status) {
                     case ViewState.loaded:
                       return Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          HomeCategoryHorizontalWidget(
-                            categories: ['Promil', 'Kehamilan', 'Ga tau'],
-                            selected: state.selectedCategory,
-                            onTap: (value) {
-                              bloc.eventOnChangeCategory(value);
-                            },
+                          Container(
+                            height: .5.sh,
+                            color: '#CBC3E3'.toColor().withOpacity(0.2),
+                            child: Image.network(
+                              detail?.cover ?? '',
+                              fit: BoxFit.cover,
+                              width: 1.sw,
+                            ),
                           ),
-                          Wrap(
-                            direction: Axis.horizontal,
-                            // alignment: WrapAlignment.center,
-                            children: [
-                              for (ArticleModel item
-                                  in state.listArticle.data ?? [])
-                                InkWell(
-                                  onTap: (){
-                                    bloc.eventOnTapArticle(context, item);
-                                  },
-                                  child: Container(
-                                    width: Helper.responsive(context, lg:  80.w, md: 140.w, sm: 0.94.sw),
-                                    height: Helper.responsive(context, lg:  50.w, md: 100.w, sm: 200.w),
-                                    margin: EdgeInsets.all(6.w),
-                                    child: CardParallax(
-                                      imageUrl: item.cover,
-                                      name: item.title,
-                                      category: item.categoryTitle,
-                                    ),
-                                  ),
+                          Container(
+                            padding: EdgeInsets.all(12.w),
+                            child: Column(
+                              children: [
+                                Text(
+                                  '${detail?.title}',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headlineMedium,
                                 ),
-                                for (TipsModel item
-                                  in state.listTips.data ?? [])
-                                Container(
-                                  width: Helper.responsive(context, lg:  80.w, md: 140.w, sm: 0.94.sw),
-                                  height: Helper.responsive(context, lg:  50.w, md: 100.w, sm: 200.w),
-                                  margin: EdgeInsets.all(6.w),
-                                  child: CardTips(
-                                    cover: item.cover,
-                                    title: item.title,
-                                  ),
-                                ),
-                            ],
+                              ],
+                            ),
                           ),
                         ],
                       );
@@ -127,13 +121,13 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                     case ViewState.loading:
                       return MyLoading();
                     case ViewState.error:
-                      return MyErrorWidget(state.listArticle.message);
+                      return MyErrorWidget(state.detail.message);
                     default:
                       return Container();
                       break;
                   }
-                })
-          ]),
+                }),
+          ),
         ),
       ),
     );

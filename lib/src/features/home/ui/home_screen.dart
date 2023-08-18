@@ -39,8 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(
-              ResponsiveWidget.isSmallScreen(context) ? 60.h : 80.h),
+          preferredSize: Size.fromHeight(Helper.responsive(context, lg: 80.h, sm: 60.h)),
           child: BlocBuilder<HomeBloc, HomeState>(
               bloc: bloc,
               builder: (context, state) {

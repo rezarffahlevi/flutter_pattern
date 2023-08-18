@@ -7,6 +7,7 @@ class Routes {
         ...CommonFeature.appRoutes(),
         ...AuthFeature.appRoutes(),
         ...HomeFeature.appRoutes(),
+        ...ArticleFeature.appRoutes(),
       ];
   }
 }

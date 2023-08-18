@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
+import 'package:temanbumil_web/src/components/components.dart';
 import 'package:temanbumil_web/src/configs/configs.dart';
 import 'package:temanbumil_web/src/features/features.dart';
 import 'package:temanbumil_web/src/helpers/helpers.dart';
@@ -66,9 +67,7 @@ class _AppState extends State<App> {
   final _router = GoRouter(
     routes: Routes.appRoutes(),
     errorBuilder: (context, state) {
-      return Center(
-        child: Text('GoRouter Error ${state.error}'),
-      );
+      return MyErrorWidget('GoRouter Error: ${state.error}');
     },
     navigatorKey: Helper.navigatorKey,
     initialLocation: CommonSplashScreen.routeName,

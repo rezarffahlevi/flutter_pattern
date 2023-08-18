@@ -1,5 +1,8 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
+import 'package:temanbumil_web/src/repositories/models/article/article_bookmark_response_model.dart';
+import 'package:temanbumil_web/src/repositories/models/article/article_category_response_model.dart';
+import 'package:temanbumil_web/src/repositories/models/article/detail_article_response_model.dart';
 import 'package:temanbumil_web/src/repositories/repositories.dart';
 
 class ArticleApiRepositoryImpl implements ArticleApiRepository {
@@ -7,6 +10,16 @@ class ArticleApiRepositoryImpl implements ArticleApiRepository {
   final Dio? mocky;
 
   ArticleApiRepositoryImpl({this.dio, this.mocky});
+
+  @override
+  Future<ArticleCategoryResponseModel> getArticleCategory() async {
+    try {
+      final res = await dio!.get('article/article-category-v2');
+      return ArticleCategoryResponseModel.fromJson(res.data);
+    } on DioError catch (e) {
+      throw Exception(e.error);
+    }
+  }
 
   @override
   Future<ArticleListResponseModel> getListArticle({
@@ -28,6 +41,42 @@ class ArticleApiRepositoryImpl implements ArticleApiRepository {
           }));
       return ArticleListResponseModel.fromJson(res.data);
     } on DioException catch (e) {
+      throw Exception(e.error);
+    }
+  }
+
+  @override
+  Future<DetailArticleResponseModel> getDetailArticle({
+    String? categoryId,
+    String? articleId,
+    String? subCategoryId,
+  }) async {
+    try {
+      final res = await dio!.post('article/article-detail',
+          data: jsonEncode({
+            'category_id': categoryId,
+            'sub_category_id': subCategoryId,
+            'article_id': articleId,
+          }));
+      return DetailArticleResponseModel.fromJson(res.data);
+    } on DioError catch (e) {
+      throw Exception(e.error);
+    }
+  }
+
+  @override
+  Future<ArticleBookmarkResponseModel> articleBookmark({
+    String? status,
+    String? articleId,
+  }) async {
+    try {
+      final res = await dio!.post('article/article-bookmark',
+          data: jsonEncode({
+            'status': status,
+            'article_id': articleId,
+          }));
+      return ArticleBookmarkResponseModel.fromJson(res.data);
+    } on DioError catch (e) {
       throw Exception(e.error);
     }
   }
