@@ -89,7 +89,7 @@ class _LoginDialogState extends State<LoginDialog> {
                 Center(
                   child: Text(
                     'Masuk ke Teman Bumil',
-                    style: Theme.of(context).textTheme.headlineSmall,
+                    style: Theme.of(context).textTheme.headlineMedium,
                   ),
                 ),
                 const SizedBox(height: 30),
@@ -101,13 +101,7 @@ class _LoginDialogState extends State<LoginDialog> {
                   child: Text(
                     'Email address',
                     textAlign: TextAlign.left,
-                    style: TextStyle(
-                      color: Theme.of(context).textTheme.titleSmall!.color,
-                      fontSize: 18,
-                      // fontFamily: 'Montserrat',
-                      fontWeight: FontWeight.bold,
-                      // letterSpacing: 3,
-                    ),
+                    style: Theme.of(context).textTheme.labelSmall,
                   ),
                 ),
                 Padding(
@@ -166,12 +160,7 @@ class _LoginDialogState extends State<LoginDialog> {
                   child: Text(
                     'Password',
                     textAlign: TextAlign.left,
-                    style: TextStyle(
-                      color: Theme.of(context).textTheme.titleSmall!.color,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      // letterSpacing: 3,
-                    ),
+                    style: Theme.of(context).textTheme.labelSmall,
                   ),
                 ),
                 Padding(
@@ -367,12 +356,7 @@ class _LoginDialogState extends State<LoginDialog> {
                   child: Text(
                     'By proceeding, you agree to our Terms of Use and confirm you have read our Privacy Policy.',
                     maxLines: 2,
-                    style: TextStyle(
-                      color: Theme.of(context).textTheme.titleSmall!.color,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w300,
-                      // letterSpacing: 3,
-                    ),
+                    style: Theme.of(context).textTheme.displayMedium,
                   ),
                 ),
               ],
