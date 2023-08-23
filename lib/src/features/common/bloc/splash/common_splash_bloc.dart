@@ -15,7 +15,7 @@ class GlobalSplashBloc extends Cubit<GlobalSplashState> {
       if (await Prefs.loggedIn) {
         GoRouter.of(context).replace(HomeScreen.routeName);
       } else {
-        GoRouter.of(context).replace(HomeScreen.routeName);
+        GoRouter.of(context).replace(AuthLoginScreen.routeName);
       }
     });
   }
