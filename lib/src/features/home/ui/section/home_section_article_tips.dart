@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:temanbumil_web/src/features/features.dart';
 
 import '../../../../components/components.dart';
@@ -40,7 +39,7 @@ class HomeSectionArticleTips extends StatelessWidget {
                     bloc: bloc,
                     builder: (contex, state) {
                       switch (state.listArticle.status) {
-                        case ViewState.LOADED:
+                        case ViewState.LOADING:
                           return Column(
                             children: [
                               MySizedBox.smallVertical(),
@@ -59,24 +58,16 @@ class HomeSectionArticleTips extends StatelessWidget {
                                     itemBuilder: (context, index) {
                                       final item =
                                           state.listArticle.data![index];
-                                      return InkWell(
-                                        onTap: () {
-                                          context.go(
-                                            ArticleDetailScreen.routeName +
-                                                '?id=${item.articleId}',
-                                          );
-                                        },
-                                        child: Container(
-                                          width: ResponsiveWidget.isSmallScreen(
-                                                  context)
-                                              ? 0.6.sw
-                                              : 100.w,
-                                          child: CardParallax(
-                                            name: item.title,
-                                            imageUrl: item.cover,
-                                            category: item.categoryTitle,
-                                            // createdAt: item.created,
-                                          ),
+                                      return Container(
+                                        width: ResponsiveWidget.isSmallScreen(
+                                                context)
+                                            ? 0.6.sw
+                                            : 100.w,
+                                        child: CardParallax(
+                                          name: item.title,
+                                          imageUrl: item.cover,
+                                          category: item.categoryTitle,
+                                          // createdAt: item.created,
                                         ),
                                       );
                                     },

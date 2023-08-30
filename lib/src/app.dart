@@ -12,6 +12,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:temanbumil_web/src/themes/themes.dart';
 
+import 'components/components.dart';
+
 class App extends StatefulWidget {
   const App({super.key});
 
@@ -51,6 +53,7 @@ class _AppState extends State<App> {
           splitScreenMode: true,
           builder: (context, child) {
             return MaterialApp.router(
+              title: 'Teman Bumil',
               routerConfig: _router,
               localizationsDelegates: context.localizationDelegates,
               supportedLocales: context.supportedLocales,
@@ -67,9 +70,7 @@ class _AppState extends State<App> {
   final _router = GoRouter(
     routes: Routes.appRoutes(),
     errorBuilder: (context, state) {
-      return Center(
-        child: Text('GoRouter Error ${state.error}'),
-      );
+      return MyErrorWidget('GoRouter Error: ${state.error}');
     },
     navigatorKey: Helper.navigatorKey,
     initialLocation: CommonSplashScreen.routeName,

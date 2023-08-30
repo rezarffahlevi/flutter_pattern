@@ -27,6 +27,12 @@ class HomeFeature {
           return const HomeScreen();
         },
       ),
+      GoRoute(
+        path: HomeAppScreen.routeName,
+        builder: (BuildContext context, GoRouterState state) {
+          return const HomeAppScreen();
+        },
+      ),
     ];
   }
 

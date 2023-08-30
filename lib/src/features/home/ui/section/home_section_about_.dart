@@ -9,6 +9,8 @@ import '../../../../themes/themes.dart';
 class HomeSectionAbout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // TODO: implement build
+
     // Home
     return CardParallax(
       aspectRatio: ResponsiveWidget.isSmallScreen(context) ? 16 / 16 : 16 / 8,

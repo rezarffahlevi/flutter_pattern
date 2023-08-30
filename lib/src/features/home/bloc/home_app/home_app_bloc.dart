@@ -27,11 +27,12 @@ class HomeAppBloc extends Cubit<HomeAppState> {
       {'menu': 'Artikel', 'link': '/article', 'hover': false},
       {'menu': 'Checklist', 'link': '', 'hover': false},
       {'menu': 'Tips', 'link': '', 'hover': false},
-      {'menu': 'Login', 'link': 'login', 'hover': false},
+      {'menu': 'Logout', 'link': 'logout', 'hover': false},
     ])));
-
     scrollController.addListener(scrollListener);
     eventOnLoading();
+    // await Helper.addDelay(1);
+    // context.pop();
   }
 
   scrollListener() {

@@ -9,6 +9,9 @@ import '../../../../themes/themes.dart';
 class HomeAppSectionBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // TODO: implement build
+
+    // Home
     return Container(
       width: 1.sw,
       padding: EdgeInsets.only(
@@ -18,43 +21,43 @@ class HomeAppSectionBanner extends StatelessWidget {
           bottom: 30.w),
       color: '#CBC3E3'.toColor().withOpacity(0.2),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: 0.5.sw,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: 0.5.sw,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'home.content_title'.tr(),
+                    style: Theme.of(context).textTheme.headlineLarge,
+                  ),
+                  MySizedBox.normalVertical(),
+                  Text(
+                    'home.content_desc'.tr(),
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
+                ],
+              ),
+            ),
+            Row(
               children: [
-                Text(
-                  'home.content_title'.tr(),
-                  style: Theme.of(context).textTheme.headlineLarge,
+                Image.asset(
+                  MyAsset.food,
+                  fit: BoxFit.contain,
+                  width: 50.w,
                 ),
-                MySizedBox.normalVertical(),
-                Text(
-                  'home.content_desc'.tr(),
-                  style: Theme.of(context).textTheme.headlineSmall,
+                Image.asset(
+                  MyAsset.doctor,
+                  fit: BoxFit.contain,
+                  width: 50.w,
                 ),
               ],
             ),
-          ),
-          Row(
-            children: [
-              Image.asset(
-                MyAsset.food,
-                fit: BoxFit.contain,
-                width: 50.w,
-              ),
-              Image.asset(
-                MyAsset.doctor,
-                fit: BoxFit.contain,
-              ),
-            ],
-          ),
-        ],
-      ),
+          ]),
     );
   }
 }
