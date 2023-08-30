@@ -9,10 +9,9 @@ class MyTheme {
       primaryColor: MyColor.defaultPurple,
       focusColor: MyColor.primary,
       textTheme: TextTheme(
-        titleMedium: MyTextStyle.contentTitle,
-        headlineMedium: MyTextStyle.bigTitle
-      ),
-      colorScheme: ColorScheme.light(),
+          titleMedium: MyTextStyle.contentTitle,
+          headlineMedium: MyTextStyle.bigTitle),
+      colorScheme: const ColorScheme.light(),
     );
   }
 

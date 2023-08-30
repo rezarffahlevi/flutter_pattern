@@ -1,19 +1,16 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:temanbumil_web/src/features/auth/auth.dart';
-import 'package:temanbumil_web/src/helpers/helpers.dart';
+import 'package:temanbumil_web/src/features/features.dart';
 import 'package:temanbumil_web/src/themes/themes.dart';
-import 'dart:html' as html;
 
-class HomeAuthDialog extends StatefulWidget {
-  const HomeAuthDialog({super.key});
+class LoginDialog extends StatefulWidget {
+  const LoginDialog({super.key});
 
   @override
-  State<StatefulWidget> createState() => _HomeAuthDialogState();
+  State<StatefulWidget> createState() => _LoginDialogState();
 }
 
-class _HomeAuthDialogState extends State<HomeAuthDialog> {
+class _LoginDialogState extends State<LoginDialog> {
   late TextEditingController textControllerEmail;
   late FocusNode textFocusNodeEmail;
   bool _isEditingEmail = false;
@@ -92,7 +89,7 @@ class _HomeAuthDialogState extends State<HomeAuthDialog> {
                 Center(
                   child: Text(
                     'Masuk ke Teman Bumil',
-                    style: Theme.of(context).textTheme.headlineSmall,
+                    style: Theme.of(context).textTheme.headlineMedium,
                   ),
                 ),
                 const SizedBox(height: 30),
@@ -104,13 +101,7 @@ class _HomeAuthDialogState extends State<HomeAuthDialog> {
                   child: Text(
                     'Email address',
                     textAlign: TextAlign.left,
-                    style: TextStyle(
-                      color: Theme.of(context).textTheme.titleSmall!.color,
-                      fontSize: 18,
-                      // fontFamily: 'Montserrat',
-                      fontWeight: FontWeight.bold,
-                      // letterSpacing: 3,
-                    ),
+                    style: Theme.of(context).textTheme.labelSmall,
                   ),
                 ),
                 Padding(
@@ -169,12 +160,7 @@ class _HomeAuthDialogState extends State<HomeAuthDialog> {
                   child: Text(
                     'Password',
                     textAlign: TextAlign.left,
-                    style: TextStyle(
-                      color: Theme.of(context).textTheme.titleSmall!.color,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      // letterSpacing: 3,
-                    ),
+                    style: Theme.of(context).textTheme.labelSmall,
                   ),
                 ),
                 Padding(
@@ -246,8 +232,7 @@ class _HomeAuthDialogState extends State<HomeAuthDialog> {
                               final res =
                                   await authBloc.eventOnLoginEmail(context);
                               if (res) {
-                                Navigator.of(context).pop();
-                                if (kIsWeb) html.window.location.reload();
+                                Navigator.of(context).pop(true);
                               }
                             },
                             child: Padding(
@@ -371,12 +356,7 @@ class _HomeAuthDialogState extends State<HomeAuthDialog> {
                   child: Text(
                     'By proceeding, you agree to our Terms of Use and confirm you have read our Privacy Policy.',
                     maxLines: 2,
-                    style: TextStyle(
-                      color: Theme.of(context).textTheme.titleSmall!.color,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w300,
-                      // letterSpacing: 3,
-                    ),
+                    style: Theme.of(context).textTheme.displayMedium,
                   ),
                 ),
               ],

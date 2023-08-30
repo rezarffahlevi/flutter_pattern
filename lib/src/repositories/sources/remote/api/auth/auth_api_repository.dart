@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:dio/dio.dart';
 import 'package:temanbumil_web/src/helpers/helpers.dart';
 import 'package:temanbumil_web/src/repositories/repositories.dart';
-import 'package:temanbumil_web/src/repositories/sources/api/api.dart';
+import 'package:temanbumil_web/src/repositories/sources/remote/api/api.dart';
 
 class AuthApiRepositoryImpl implements AuthApiRepository {
   final Dio? dio;
@@ -20,7 +20,6 @@ class AuthApiRepositoryImpl implements AuthApiRepository {
           email: email, password: password);
       final res = await dio!.post(
         '/login/v2/',
-         
         data: request,
       );
       return AuthLoginResponseModel.fromJson(res.data);

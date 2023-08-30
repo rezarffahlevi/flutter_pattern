@@ -1,5 +1,5 @@
 enum AppEnvironmentEnum { STAGING, PRODUCTION }
 
-enum STATUS { INITIAL, LOADING, COMPLETED, ERROR }
+enum ViewState { INITIAL, LOADING, COMPLETED, ERROR, LOADED, HASDATA, NODATA }
 
 enum RegisterByTypeEnum { PHONE, EMAIL }
