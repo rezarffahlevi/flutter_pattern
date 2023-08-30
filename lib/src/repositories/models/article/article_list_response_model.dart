@@ -1,5 +1,3 @@
-
-
 import 'package:temanbumil_web/src/repositories/models/article/article_model.dart';
 import 'package:temanbumil_web/src/repositories/models/models.dart';
 
@@ -9,7 +7,8 @@ class ArticleListResponseModel {
   Data? data;
   InfoModel? info;
 
-  ArticleListResponseModel({this.status, this.acknowledge, this.data, this.info});
+  ArticleListResponseModel(
+      {this.status, this.acknowledge, this.data, this.info});
 
   ArticleListResponseModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
@@ -30,8 +29,8 @@ class ArticleListResponseModel {
     return data;
   }
 
-  static Map<String, dynamic> generateParams(
-      String? keyword, int? page, String? categoryId, bool? bookmark, String? subCategoryIds) {
+  static Map<String, dynamic> generateParams(String? keyword, int? page,
+      String? categoryId, bool? bookmark, String? subCategoryIds) {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['keyword'] = keyword;
     data['page'] = page;
@@ -49,7 +48,12 @@ class Data {
   List<ArticleModel>? article;
   bool? searchNotFound;
 
-  Data({this.queryTotal, this.currentPage, this.totalPage, this.article, this.searchNotFound});
+  Data(
+      {this.queryTotal,
+      this.currentPage,
+      this.totalPage,
+      this.article,
+      this.searchNotFound});
 
   Data.fromJson(Map<String, dynamic> json) {
     queryTotal = json['query_total'];

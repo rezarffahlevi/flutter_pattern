@@ -30,5 +30,6 @@ class HomeFeature {
     ///BLOC
     inject.registerFactory(() => HomeRootBloc());
     inject.registerFactory(() => HomeBloc());
+    inject.registerFactory(() => HomeAppBloc());
   }
 }

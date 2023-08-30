@@ -4,6 +4,9 @@ class MyAsset {
   static String get google => 'images/ic-google.png';
   static String get logoPurple => 'images/logo-purple.png';
   static String get logoWhite => 'images/logo-white.png';
+
+  static String get doctor => 'images/general/doctor.png';
+  static String get food => 'images/general/food.png';
 }
 
 class _Image {

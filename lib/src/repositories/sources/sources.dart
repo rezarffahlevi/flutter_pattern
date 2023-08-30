@@ -1,3 +1,2 @@
-export 'api/api.dart';
-export 'sqlite/sqlite.dart';
-export 'preference_base.dart';
+export 'remote/api/api.dart';
+export 'local/local.dart';
