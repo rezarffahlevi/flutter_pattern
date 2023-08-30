@@ -38,7 +38,7 @@ class HomeFeatureLarge extends StatelessWidget {
               children: [
                 //row 1
                 Padding(
-                  padding: const EdgeInsets.only(left: 200),
+                  padding: const EdgeInsets.only(left: 0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -228,7 +228,7 @@ class HomeFeatureLarge extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(right: 200),
+                      padding: const EdgeInsets.only(right: 0),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -428,296 +428,294 @@ class HomeFeatureSmall extends StatelessWidget {
       image: MyAsset.image.bg2,
       child: Container(
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        child: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                MySizedBox.extraLargeVertical(),
-                Text(
-                  'FITUR',
-                  style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+        // height: MediaQuery.of(context).size.height,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              MySizedBox.extraLargeVertical(),
+              Text(
+                'FITUR',
+                style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                      color: MyColor.white,
+                    ),
+                textAlign: TextAlign.center,
+              ),
+              MySizedBox.lessExtraSmallVertical(),
+              Text(
+                'Nikmati beragam fitur menarik ini di Teman Bumil, khusus untuk Ibu Milenial!',
+                style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                      color: MyColor.white,
+                    ),
+                textAlign: TextAlign.center,
+              ),
+              MySizedBox.extraLargeVertical(),
+
+              //HPMiles
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 35),
+                    child: Image.asset(
+                      MyAsset.image.tbProd,
+                      height: 50,
+                      width: 50,
+                    ),
+                  ),
+                  MySizedBox.extraSmallHorizontal(),
+                  Text(
+                    'Milestones',
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        color: MyColor.white, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.left,
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 65,
+                ),
+                child: Text(
+                  'Rangkuman perkembangan kehamilan Mums dan tumbuh kembang si Kecil dengan ilustrasi menarik dan lengkap.',
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         color: MyColor.white,
                       ),
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.left,
                 ),
-                MySizedBox.lessExtraSmallVertical(),
-                Text(
-                  'Nikmati beragam fitur menarik ini di Teman Bumil, khusus untuk Ibu Milenial!',
-                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
+              ),
+
+              //HpForum
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 35),
+                    child: Image.asset(
+                      MyAsset.image.tbFor,
+                      height: 50,
+                      width: 50,
+                    ),
+                  ),
+                  MySizedBox.extraSmallHorizontal(),
+                  Text(
+                    'Forum',
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        color: MyColor.white, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.left,
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 65,
+                ),
+                child: Text(
+                  'Wadah untuk saling bertukar informasi dengan sesama ibu di seluruh Indonesia.',
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         color: MyColor.white,
                       ),
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.left,
                 ),
-                MySizedBox.extraLargeVertical(),
+              ),
 
-                //HPMiles
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 35),
-                      child: Image.asset(
-                        MyAsset.image.tbProd,
-                        height: 50,
-                        width: 50,
-                      ),
+              //HpArtikel
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 35),
+                    child: Image.asset(
+                      MyAsset.image.icArc,
+                      height: 50,
+                      width: 50,
                     ),
-                    MySizedBox.extraSmallHorizontal(),
-                    Text(
-                      'Milestones',
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          color: MyColor.white, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.left,
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 65,
                   ),
-                  child: Text(
-                    'Rangkuman perkembangan kehamilan Mums dan tumbuh kembang si Kecil dengan ilustrasi menarik dan lengkap.',
+                  MySizedBox.extraSmallHorizontal(),
+                  Text(
+                    'Artikel',
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          color: MyColor.white,
-                        ),
+                        color: MyColor.white, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.left,
                   ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 65,
                 ),
-
-                //HpForum
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 35),
-                      child: Image.asset(
-                        MyAsset.image.tbFor,
-                        height: 50,
-                        width: 50,
+                child: Text(
+                  'Temukan beragam informasi seputar program kehamilan, masa kehamilan, dan tumbuh kembang anak.',
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        color: MyColor.white,
                       ),
-                    ),
-                    MySizedBox.extraSmallHorizontal(),
-                    Text(
-                      'Forum',
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          color: MyColor.white, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.left,
-                    ),
-                  ],
+                  textAlign: TextAlign.left,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 65,
+              ),
+
+              //HpJurnal
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 35),
+                    child: Image.asset(
+                      MyAsset.image.icAlb,
+                      height: 50,
+                      width: 50,
+                    ),
                   ),
-                  child: Text(
-                    'Wadah untuk saling bertukar informasi dengan sesama ibu di seluruh Indonesia.',
+                  MySizedBox.extraSmallHorizontal(),
+                  Text(
+                    'Jurnal',
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          color: MyColor.white,
-                        ),
+                        color: MyColor.white, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.left,
                   ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 65,
                 ),
-
-                //HpArtikel
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 35),
-                      child: Image.asset(
-                        MyAsset.image.icArc,
-                        height: 50,
-                        width: 50,
+                child: Text(
+                  'Abadikan foto-foto kehamilan Mums dan pertumbuhan si Kecil di Jurnal Teman Bumil.',
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        color: MyColor.white,
                       ),
-                    ),
-                    MySizedBox.extraSmallHorizontal(),
-                    Text(
-                      'Artikel',
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          color: MyColor.white, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.left,
-                    ),
-                  ],
+                  textAlign: TextAlign.left,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 65,
+              ),
+
+              //HpMedia
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 35),
+                    child: Image.asset(
+                      MyAsset.image.icMed,
+                      height: 50,
+                      width: 50,
+                    ),
                   ),
-                  child: Text(
-                    'Temukan beragam informasi seputar program kehamilan, masa kehamilan, dan tumbuh kembang anak.',
+                  MySizedBox.extraSmallHorizontal(),
+                  Text(
+                    'Media',
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          color: MyColor.white,
-                        ),
+                        color: MyColor.white, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.left,
                   ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 65,
                 ),
-
-                //HpJurnal
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 35),
-                      child: Image.asset(
-                        MyAsset.image.icAlb,
-                        height: 50,
-                        width: 50,
+                child: Text(
+                  'Tonton ratusan video edukatif seputar persiapan hamil, selama kehamilan, hingga perkembangan anak.',
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        color: MyColor.white,
                       ),
-                    ),
-                    MySizedBox.extraSmallHorizontal(),
-                    Text(
-                      'Jurnal',
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          color: MyColor.white, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.left,
-                    ),
-                  ],
+                  textAlign: TextAlign.left,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 65,
+              ),
+
+              //HpRekam
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 35),
+                    child: Image.asset(
+                      MyAsset.image.icRec,
+                      height: 50,
+                      width: 50,
+                    ),
                   ),
-                  child: Text(
-                    'Abadikan foto-foto kehamilan Mums dan pertumbuhan si Kecil di Jurnal Teman Bumil.',
+                  MySizedBox.extraSmallHorizontal(),
+                  Text(
+                    'Rekam Medis',
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          color: MyColor.white,
-                        ),
+                        color: MyColor.white, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.left,
                   ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 65,
                 ),
-
-                //HpMedia
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 35),
-                      child: Image.asset(
-                        MyAsset.image.icMed,
-                        height: 50,
-                        width: 50,
+                child: Text(
+                  'Pantau dan simpan perkembangan janin, Mums, dan tumbuh kembang si Kecil secara lebih mudah.',
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        color: MyColor.white,
                       ),
-                    ),
-                    MySizedBox.extraSmallHorizontal(),
-                    Text(
-                      'Media',
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          color: MyColor.white, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.left,
-                    ),
-                  ],
+                  textAlign: TextAlign.left,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 65,
+              ),
+
+              //HpTips
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 35),
+                    child: Image.asset(
+                      MyAsset.image.icTip,
+                      height: 50,
+                      width: 50,
+                    ),
                   ),
-                  child: Text(
-                    'Tonton ratusan video edukatif seputar persiapan hamil, selama kehamilan, hingga perkembangan anak.',
+                  MySizedBox.extraSmallHorizontal(),
+                  Text(
+                    'Rekam Medis',
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          color: MyColor.white,
-                        ),
+                        color: MyColor.white, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.left,
                   ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 65,
                 ),
-
-                //HpRekam
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 35),
-                      child: Image.asset(
-                        MyAsset.image.icRec,
-                        height: 50,
-                        width: 50,
+                child: Text(
+                  'Beragam tips ringan dan bermanfaat untuk menemani perjalanan program hamil, kehamilan, hingga tumbuh kembang anak.',
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        color: MyColor.white,
                       ),
-                    ),
-                    MySizedBox.extraSmallHorizontal(),
-                    Text(
-                      'Rekam Medis',
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          color: MyColor.white, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.left,
-                    ),
-                  ],
+                  textAlign: TextAlign.left,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 65,
+              ),
+
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 35),
+                    child: Image.asset(
+                      MyAsset.image.icProd,
+                      height: 50,
+                      width: 50,
+                    ),
                   ),
-                  child: Text(
-                    'Pantau dan simpan perkembangan janin, Mums, dan tumbuh kembang si Kecil secara lebih mudah.',
+                  MySizedBox.extraSmallHorizontal(),
+                  Text(
+                    'Produk',
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          color: MyColor.white,
-                        ),
+                        color: MyColor.white, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.left,
                   ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 65,
                 ),
-
-                //HpTips
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 35),
-                      child: Image.asset(
-                        MyAsset.image.icTip,
-                        height: 50,
-                        width: 50,
+                child: Text(
+                  'Temukan berbagai rekomendasi produk untuk Mums dan si Kecil.',
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        color: MyColor.white,
                       ),
-                    ),
-                    MySizedBox.extraSmallHorizontal(),
-                    Text(
-                      'Rekam Medis',
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          color: MyColor.white, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.left,
-                    ),
-                  ],
+                  textAlign: TextAlign.left,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 65,
-                  ),
-                  child: Text(
-                    'Beragam tips ringan dan bermanfaat untuk menemani perjalanan program hamil, kehamilan, hingga tumbuh kembang anak.',
-                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          color: MyColor.white,
-                        ),
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 35),
-                      child: Image.asset(
-                        MyAsset.image.icProd,
-                        height: 50,
-                        width: 50,
-                      ),
-                    ),
-                    MySizedBox.extraSmallHorizontal(),
-                    Text(
-                      'Produk',
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          color: MyColor.white, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.left,
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 65,
-                  ),
-                  child: Text(
-                    'Temukan berbagai rekomendasi produk untuk Mums dan si Kecil.',
-                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          color: MyColor.white,
-                        ),
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-                MySizedBox.extraLargeVertical()
-              ],
-            ),
+              ),
+              MySizedBox.extraLargeVertical()
+            ],
           ),
         ),
       ),

@@ -16,6 +16,12 @@ class HomeFeature {
         },
       ),
       GoRoute(
+        path: HomeAppScreen.routeName,
+        builder: (BuildContext context, GoRouterState state) {
+          return HomeAppScreen();
+        },
+      ),
+      GoRoute(
         path: HomeScreen.routeName,
         builder: (BuildContext context, GoRouterState state) {
           return const HomeScreen();

@@ -15,7 +15,7 @@ class _HomeTentangState extends State<HomeTentang>
   @override
   void initState() {
     _animationController =
-        AnimationController(vsync: this, duration: Duration(seconds: 2));
+        AnimationController(vsync: this, duration: Duration(seconds: 5))..repeat(reverse: true);
     _animationController.forward();
     super.initState();
   }
@@ -29,7 +29,9 @@ class _HomeTentangState extends State<HomeTentang>
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    throw UnimplementedError();
+    return HomeAbout(
+      animationController: _animationController,
+    );
   }
 }
 
@@ -37,6 +39,10 @@ class HomeAbout extends StatelessWidget {
   final AnimationController animationController;
 
   HomeAbout({required this.animationController});
+  late final Animation<double> _animation = CurvedAnimation(
+    parent: animationController,
+    curve: Curves.easeIn,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +53,7 @@ class HomeAbout extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             FadeTransition(
-              opacity: animationController,
+              opacity: _animation,
               child: Text(
                 'TENTANG TEMAN BUMIL ',
                 style: Theme.of(context)
