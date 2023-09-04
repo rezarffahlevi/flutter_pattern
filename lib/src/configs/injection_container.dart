@@ -10,6 +10,7 @@ Future<void> initInjection() async {
   AuthFeature.initInjection();
   HomeFeature.initInjection();
   ArticleFeature.initInjection();
+  TipsFeature.initInjection();
 
   // Repository
   ApiSources.initInjection();

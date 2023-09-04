@@ -8,8 +8,8 @@ import 'package:temanbumil_web/src/repositories/models/article/article_model.dar
 import 'package:temanbumil_web/src/repositories/repositories.dart';
 import 'package:temanbumil_web/src/repositories/sources/remote/api/api.dart';
 
-class HomeAppBloc extends Cubit<HomeAppState> {
-  HomeAppBloc() : super(HomeAppState());
+class TipsListBloc extends Cubit<TipsListState> {
+  TipsListBloc() : super(TipsListState());
 
   final repo = inject<AuthApiRepository>();
   final articleRepo = inject<ArticleApiRepository>();

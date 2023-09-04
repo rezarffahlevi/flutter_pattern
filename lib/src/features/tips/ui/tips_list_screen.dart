@@ -11,16 +11,16 @@ import 'package:temanbumil_web/src/helpers/helpers.dart';
 import 'package:temanbumil_web/src/repositories/models/article/article_model.dart';
 import 'package:temanbumil_web/src/repositories/repositories.dart';
 
-class HomeAppScreen extends StatefulWidget {
-  const HomeAppScreen({super.key});
-  static const String routeName = '/home-app';
+class TipsListScreen extends StatefulWidget {
+  const TipsListScreen({super.key});
+  static const String routeName = '/tips';
 
   @override
-  State<HomeAppScreen> createState() => _HomeAppScreenState();
+  State<TipsListScreen> createState() => _TipsListScreenState();
 }
 
-class _HomeAppScreenState extends State<HomeAppScreen> {
-  final bloc = inject<HomeAppBloc>();
+class _TipsListScreenState extends State<TipsListScreen> {
+  final bloc = inject<TipsListBloc>();
 
   @override
   void initState() {
@@ -38,7 +38,7 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(
               ResponsiveWidget.isSmallScreen(context) ? 60.h : 80.h),
-          child: BlocBuilder<HomeAppBloc, HomeAppState>(
+          child: BlocBuilder<TipsListBloc, TipsListState>(
               bloc: bloc,
               builder: (context, state) {
                 final opacity = state.scrollPosition < 1.sh * 0.40
@@ -57,7 +57,7 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                 );
               }),
         ),
-        drawer: BlocBuilder<HomeAppBloc, HomeAppState>(
+        drawer: BlocBuilder<TipsListBloc, TipsListState>(
             bloc: bloc,
             builder: (context, state) {
               return HomeDrawer(
@@ -73,7 +73,7 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
           physics: const ClampingScrollPhysics(),
           child: Column(children: [
             HomeAppSectionBanner(),
-            BlocBuilder<HomeAppBloc, HomeAppState>(
+            BlocBuilder<TipsListBloc, TipsListState>(
                 bloc: bloc,
                 builder: (context, state) {
                   switch (state.listArticle.status) {
@@ -94,12 +94,14 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                               for (ArticleModel item
                                   in state.listArticle.data ?? [])
                                 InkWell(
-                                  onTap: (){
+                                  onTap: () {
                                     bloc.eventOnTapArticle(context, item);
                                   },
                                   child: Container(
-                                    width: Helper.responsive(context, lg:  80.w, md: 140.w, sm: 0.94.sw),
-                                    height: Helper.responsive(context, lg:  50.w, md: 100.w, sm: 200.w),
+                                    width: Helper.responsive(context,
+                                        lg: 80.w, md: 140.w, sm: 0.94.sw),
+                                    height: Helper.responsive(context,
+                                        lg: 50.w, md: 100.w, sm: 200.w),
                                     margin: EdgeInsets.all(6.w),
                                     child: CardParallax(
                                       imageUrl: item.cover,
@@ -108,11 +110,12 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                                     ),
                                   ),
                                 ),
-                                for (TipsModel item
-                                  in state.listTips.data ?? [])
+                              for (TipsModel item in state.listTips.data ?? [])
                                 Container(
-                                  width: Helper.responsive(context, lg:  80.w, md: 140.w, sm: 0.94.sw),
-                                  height: Helper.responsive(context, lg:  50.w, md: 100.w, sm: 200.w),
+                                  width: Helper.responsive(context,
+                                      lg: 80.w, md: 140.w, sm: 0.94.sw),
+                                  height: Helper.responsive(context,
+                                      lg: 50.w, md: 100.w, sm: 200.w),
                                   margin: EdgeInsets.all(6.w),
                                   child: CardTips(
                                     cover: item.cover,

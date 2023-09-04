@@ -7,19 +7,19 @@ import 'package:go_router/go_router.dart';
 import 'package:temanbumil_web/src/features/features.dart';
 import 'package:temanbumil_web/src/repositories/models/article/article_model.dart';
 
-class ArticleFeature {
+class TipsFeature {
   static List appRoutes() {
     return [
       GoRoute(
-        path: ArticleListScreen.routeName,
+        path: TipsListScreen.routeName,
         builder: (BuildContext context, GoRouterState state) {
-          return const ArticleListScreen();
+          return const TipsListScreen();
         },
       ),
       GoRoute(
-        path: ArticleDetailScreen.routeName,
+        path: TipsDetailScreen.routeName,
         builder: (BuildContext context, GoRouterState state) {
-          return ArticleDetailScreen(detail: state.extra as ArticleModel?, id: state.queryParameters['id'] ?? '',);
+          return TipsDetailScreen(detail: state.extra as ArticleModel?, id: state.queryParameters['id'] ?? '',);
         },
       ),
     ];
@@ -29,7 +29,7 @@ class ArticleFeature {
     final inject = GetIt.instance;
 
     ///BLOC
-    inject.registerFactory(() => ArticleListBloc());
-    inject.registerFactory(() => ArticleDetailBloc());
+    inject.registerFactory(() => TipsListBloc());
+    inject.registerFactory(() => TipsDetailBloc());
   }
 }

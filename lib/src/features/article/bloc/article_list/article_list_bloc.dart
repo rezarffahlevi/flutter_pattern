@@ -8,12 +8,11 @@ import 'package:temanbumil_web/src/repositories/models/article/article_model.dar
 import 'package:temanbumil_web/src/repositories/repositories.dart';
 import 'package:temanbumil_web/src/repositories/sources/remote/api/api.dart';
 
-class HomeAppBloc extends Cubit<HomeAppState> {
-  HomeAppBloc() : super(HomeAppState());
+class ArticleListBloc extends Cubit<ArticleListState> {
+  ArticleListBloc() : super(ArticleListState());
 
   final repo = inject<AuthApiRepository>();
   final articleRepo = inject<ArticleApiRepository>();
-  final tipsRepo = inject<TipsApiRepository>();
 
   final ScrollController scrollController = ScrollController();
 
@@ -38,42 +37,50 @@ class HomeAppBloc extends Cubit<HomeAppState> {
 
   eventOnLoading() async {
     try {
+      await eventGetCategory();
       eventGetArticle();
-      eventGetTips();
     } catch (e, s) {}
   }
 
-  eventGetArticle() async {
+  eventGetArticle({int? page}) async {
     try {
-      emit(state.copyWith(listArticle: ViewData.loading()));
+      if ((page ?? 1) < 2)
+        emit(state.copyWith(listArticle: ViewData.loading()));
+
+      String? categoryId = state
+              .listCategory.data?[state.selectedCategory].categoryId
+              ?.toString() ??
+          '1';
+      String? subCategoryId = state.listCategory.data?[state.selectedCategory]
+              .subCategory?[state.selectedSubCategory].subCategoryId
+              ?.toString() ??
+          '1';
       final response = await articleRepo.getListArticle(
-        page: 1,
-        categoryId: '1',
-        arraySubCategoryId: '1',
+        page: page ?? state.page,
+        categoryId: categoryId,
+        arraySubCategoryId: subCategoryId + ', $categoryId',
         bookmark: false,
       );
 
-      final list = response.data?.article ?? [];
-      emit(state.copyWith(
-        listArticle: ViewData.loaded(list),
-      ));
+      List<ArticleModel> list = List.of(state.listArticle.data ?? []);
+      list.addAll(response.data?.article ?? []);
+      emit(state.copyWith(listArticle: ViewData.loaded(list), page: page));
     } catch (e, s) {
       emit(state.copyWith(listArticle: ViewData.error(e.toString())));
     }
   }
 
-  eventGetTips() async {
+  eventGetCategory() async {
     try {
-      emit(state.copyWith(listTips: ViewData.loading()));
-      final response = await tipsRepo.getTipsList(
-          page: 1, bookmark: false, subCategoryId: '1');
+      emit(state.copyWith(listCategory: ViewData.loading()));
+      final response = await articleRepo.getArticleCategory();
 
-      final list = response.data?.tips ?? [];
+      final list = response.data ?? [];
       emit(state.copyWith(
-        listTips: ViewData.loaded(list),
+        listCategory: ViewData.loaded(list),
       ));
     } catch (e, s) {
-      emit(state.copyWith(listTips: ViewData.error(e.toString())));
+      emit(state.copyWith(listCategory: ViewData.error(e.toString())));
     }
   }
 
@@ -99,10 +106,17 @@ class HomeAppBloc extends Cubit<HomeAppState> {
   }
 
   eventOnChangeCategory(category) {
-    emit(state.copyWith(selectedCategory: category));
+    emit(state.copyWith(selectedCategory: category, selectedSubCategory: 0, page: 1));
+    eventGetArticle();
+  }
+
+  eventOnChangeSubCategory(subCategory) {
+    emit(state.copyWith(selectedSubCategory: subCategory, page: 1));
+    eventGetArticle();
   }
 
   eventOnTapArticle(BuildContext context, ArticleModel item) {
-    context.go('${ArticleDetailScreen.routeName}?id=${item.articleId}', extra: item);
+    context.go('${ArticleDetailScreen.routeName}?id=${item.articleId}',
+        extra: item);
   }
 }
