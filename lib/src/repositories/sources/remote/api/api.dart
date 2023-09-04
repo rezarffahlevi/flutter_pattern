@@ -16,6 +16,9 @@ export 'article/article_api_repository_impl.dart';
 export 'tips/tips_api_repository.dart';
 export 'tips/tips_api_repository_impl.dart';
 
+export 'checklist/checklist_api_repository.dart';
+export 'checklist/checklist_api_repository_impl.dart';
+
 class ApiSources {
   static Future<void> initInjection() async {
     final inject = GetIt.instance;

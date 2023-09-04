@@ -2,7 +2,7 @@ import 'package:temanbumil_web/src/repositories/models/checklist/checklist_check
 import 'package:temanbumil_web/src/repositories/models/checklist/checklist_list_response_model.dart';
 import 'package:temanbumil_web/src/repositories/models/fetus/list_fetus_response_model.dart';
 
-abstract class ChecklistRepository {
+abstract class ChecklistApiRepository {
   Future<ChecklistListResponseModel> getChecklistList({
     int? fetusId,
     String? week,
