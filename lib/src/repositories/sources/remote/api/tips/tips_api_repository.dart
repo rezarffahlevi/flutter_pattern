@@ -20,11 +20,11 @@ abstract class TipsApiRepository {
   });
 
   Future<TipsDetailResponseModel> getTipsDetail({
-    String tipsId,
+    String? tipsId,
   });
 
   Future<TipsBookmarkResponseModel> getTipsBookmark({
-    String status,
-    String tipsId,
+    String? status,
+    String? tipsId,
   });
 }

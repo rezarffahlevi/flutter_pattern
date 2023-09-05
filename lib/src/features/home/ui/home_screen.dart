@@ -9,12 +9,14 @@ import 'package:temanbumil_web/src/components/atoms/atoms.dart';
 import 'package:temanbumil_web/src/components/components.dart';
 import 'package:temanbumil_web/src/configs/configs.dart';
 import 'package:temanbumil_web/src/features/features.dart';
-import 'package:temanbumil_web/src/features/home/ui/section/home_feature.dart';
+import 'package:temanbumil_web/src/features/home/ui/section/home_feature_large.dart';
 import 'package:temanbumil_web/src/features/home/ui/section/home_section_about_.dart';
 import 'package:temanbumil_web/src/features/home/ui/section/home_section_article_tips.dart';
 import 'package:temanbumil_web/src/features/home/ui/section/home_section_first.dart';
 import 'package:temanbumil_web/src/features/home/ui/section/home_tentang.dart';
 import 'package:temanbumil_web/src/helpers/helpers.dart';
+
+import 'section/home_feature_small.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -78,6 +80,11 @@ class _HomeScreenState extends State<HomeScreen> {
           physics: const ClampingScrollPhysics(),
           child: Column(children: [
             HomeSectionFirst(),
+            HomeTentang(),
+            ResponsiveWidget(
+              largeScreen: HomeFeatureLarge(),
+              smallScreen: HomeFeatureSmall(),
+            ),
             HomeSectionArticleTips(bloc),
             HomeSectionAbout(),
           ]),

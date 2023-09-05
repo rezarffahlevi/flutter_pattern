@@ -3,10 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:temanbumil_web/src/features/features.dart';
 
 import '../../../../components/components.dart';
 import '../../../../helpers/helpers.dart';
+import '../../../tips/bloc/ui/ui.dart';
 import '../../bloc/bloc.dart';
 import '../../widget/home_bg_section.dart';
 
@@ -39,7 +41,7 @@ class HomeSectionArticleTips extends StatelessWidget {
                     bloc: bloc,
                     builder: (contex, state) {
                       switch (state.listArticle.status) {
-                        case ViewState.LOADING:
+                        case ViewState.LOADED:
                           return Column(
                             children: [
                               MySizedBox.smallVertical(),
@@ -130,16 +132,26 @@ class HomeSectionArticleTips extends StatelessWidget {
                                         EdgeInsets.symmetric(horizontal: 20.w),
                                     itemBuilder: (context, index) {
                                       final item = state.listTips.data![index];
-                                      return Container(
-                                        width: ResponsiveWidget.isSmallScreen(
-                                                context)
-                                            ? 0.6.sw
-                                            : 100.w,
-                                        child: CardTips(
-                                          title: item.title,
-                                          cover: item.cover,
-                                        ),
-                                      );
+                                      return InkWell(
+                                          onTap: () {
+                                            context.go(
+                                              TipsDetailScreen.routeName +
+                                                  '?id=${item.tipsId}',
+                                            );
+                                          },
+                                          child: Container(
+                                            width:
+                                                ResponsiveWidget.isSmallScreen(
+                                                        context)
+                                                    ? 0.6.sw
+                                                    : 100.w,
+                                            child: CardParallax(
+                                              name: item.title,
+                                              imageUrl: item.cover,
+                                              category: item.weekCategory,
+                                              // createdAt: item.created,
+                                            ),
+                                          ));
                                     },
                                     separatorBuilder: (context, index) =>
                                         MySizedBox.extraSmallHorizontal(),

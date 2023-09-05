@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:temanbumil_web/src/features/article/ui/article_detail_screen.dart';
+import 'package:temanbumil_web/src/features/article/ui/article_list_screen.dart';
 import '../../../../repositories/models/article/article_model.dart';
 import '../../../../repositories/models/models.dart';
 import 'package:temanbumil_web/src/features/home/ui/home_screen.dart';
@@ -9,6 +10,7 @@ import 'package:temanbumil_web/src/features/home/ui/home_screen.dart';
 import '../../../../configs/configs.dart';
 import '../../../../helpers/helpers.dart';
 import '../../../../repositories/sources/remote/api/api.dart';
+import '../../../tips/bloc/ui/ui.dart';
 import '../bloc.dart';
 
 class HomeAppBloc extends Cubit<HomeAppState> {
@@ -24,9 +26,9 @@ class HomeAppBloc extends Cubit<HomeAppState> {
     emit(state.copyWith(
         menu: ViewData.loaded([
       {'menu': 'Home', 'link': 'home', 'hover': false},
-      {'menu': 'Artikel', 'link': '/article', 'hover': false},
+      {'menu': 'Artikel', 'link': '/article-list', 'hover': false},
       {'menu': 'Checklist', 'link': '', 'hover': false},
-      {'menu': 'Tips', 'link': '', 'hover': false},
+      {'menu': 'Tips', 'link': '/tips-list', 'hover': false},
       {'menu': 'Logout', 'link': 'logout', 'hover': false},
     ])));
     scrollController.addListener(scrollListener);
@@ -91,6 +93,12 @@ class HomeAppBloc extends Cubit<HomeAppState> {
     switch (menu['link']) {
       case 'home':
         context.go(HomeScreen.routeName);
+        break;
+      case '/article-list':
+        context.go(ArticleListScreen.routeName);
+        break;
+      case '/tips-list':
+        context.go(TipsListScreen.routeName);
         break;
       case 'logout':
         AuthHelper.logout(context);

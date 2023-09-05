@@ -1,17 +1,19 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../configs/configs.dart';
-import '../../../../helpers/helpers.dart';
-import '../../../../repositories/repositories.dart';
-import '../../../home/ui/ui.dart';
+import 'package:temanbumil_web/src/configs/configs.dart';
+
+import 'package:temanbumil_web/src/helpers/helpers.dart';
+import 'package:temanbumil_web/src/repositories/sources/remote/api/api.dart';
+
+import '../../../features.dart';
 import '../bloc.dart';
 
-class ArticleDetailBloc extends Cubit<ArticleDetailState> {
-  ArticleDetailBloc() : super(ArticleDetailState());
+class TipsDetailBloc extends Cubit<TipsDetailState> {
+  TipsDetailBloc() : super(TipsDetailState());
 
   final repo = inject<AuthApiRepository>();
-  final articleRepo = inject<ArticleApiRepository>();
+  final tipsRepo = inject<TipsApiRepository>();
 
   final ScrollController scrollController = ScrollController();
 
@@ -35,7 +37,7 @@ class ArticleDetailBloc extends Cubit<ArticleDetailState> {
   eventOnLoading(String? id) async {
     try {
       emit(state.copyWith(detail: ViewData.loading()));
-      final response = await articleRepo.getDetailArticle(articleId: id);
+      final response = await tipsRepo.getTipsDetail(tipsId: id);
 
       emit(state.copyWith(
         detail: ViewData.loaded(response),
@@ -52,7 +54,7 @@ class ArticleDetailBloc extends Cubit<ArticleDetailState> {
     emit(state.copyWith(menu: ViewData.loaded(menu)));
   }
 
-  eventOnTapMenu(BuildContext context, int index, dynamic menu) async {
+  eventOntapMenu(BuildContext context, int index, dynamic menu) async {
     switch (menu['link']) {
       case 'home':
         context.go(HomeScreen.routeName);

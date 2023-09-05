@@ -15,7 +15,8 @@ class _HomeTentangState extends State<HomeTentang>
   @override
   void initState() {
     _animationController =
-        AnimationController(vsync: this, duration: Duration(seconds: 5))..repeat(reverse: true);
+        AnimationController(vsync: this, duration: const Duration(seconds: 10))
+          ..repeat(reverse: true);
     _animationController.forward();
     super.initState();
   }

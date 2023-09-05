@@ -17,8 +17,8 @@ class HomeBgSection extends StatelessWidget {
                 child: Image.asset(
                   image!,
                   fit: BoxFit.cover,
-                  width: screenSize.width,
-                  // height: screenSize.height,
+                  //width: screenSize.width,
+                  height: screenSize.height,
                 ),
                 foregroundDecoration: BoxDecoration(
                     gradient: LinearGradient(

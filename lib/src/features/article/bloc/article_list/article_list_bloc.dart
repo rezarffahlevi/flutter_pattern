@@ -1,15 +1,16 @@
 import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:temanbumil_web/src/helpers/helpers.dart';
+import 'package:temanbumil_web/src/repositories/sources/remote/api/api.dart';
+
 import '../../../../configs/configs.dart';
-import '../../../../helpers/helpers.dart';
-import '../../../../repositories/repositories.dart';
 import '../../../home/ui/ui.dart';
-import '../bloc.dart';
+import 'article_list_state.dart';
 
-class ArticleDetailBloc extends Cubit<ArticleDetailState> {
-  ArticleDetailBloc() : super(ArticleDetailState());
-
+class ArticleListBloc extends Cubit<ArticleListState> {
+  ArticleListBloc() : super(ArticleListState());
   final repo = inject<AuthApiRepository>();
   final articleRepo = inject<ArticleApiRepository>();
 
@@ -34,14 +35,14 @@ class ArticleDetailBloc extends Cubit<ArticleDetailState> {
 
   eventOnLoading(String? id) async {
     try {
-      emit(state.copyWith(detail: ViewData.loading()));
-      final response = await articleRepo.getDetailArticle(articleId: id);
+      emit(state.copyWith(list: ViewData.loading()));
+      final response = await articleRepo.getListArticle(keyword: id);
 
       emit(state.copyWith(
-        detail: ViewData.loaded(response),
+        list: ViewData.loaded(response),
       ));
     } catch (e, s) {
-      emit(state.copyWith(detail: ViewData.error(e.toString())));
+      emit(state.copyWith(list: ViewData.error(e.toString())));
     }
   }
 
