@@ -1,6 +1,5 @@
-import 'dart:js_interop';
 
-import '../../repositories.dart';
+import 'package:temanbumil_web/src/repositories/repositories.dart';
 
 class ArticleBookmarkResponseModel {
   int? status;
@@ -8,14 +7,13 @@ class ArticleBookmarkResponseModel {
   Data? data;
   InfoModel? info;
 
-  ArticleBookmarkResponseModel(
-      {this.status, this.acknowledge, this.data, this.info});
+  ArticleBookmarkResponseModel({this.status, this.acknowledge, this.data, this.info});
 
   ArticleBookmarkResponseModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     acknowledge = json['acknowledge'];
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
-    info = json['info'] != null ? new InfoModel.fromJson(json['data']) : null;
+    info = json['info'] != null ? new InfoModel.fromJson(json['info']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -29,8 +27,7 @@ class ArticleBookmarkResponseModel {
     return data;
   }
 
-  static Map<String, dynamic> generateParams(
-      String? status, String? articleId) {
+  static Map<String, dynamic> generateParams(String? status, String? articleId) {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['status'] = status;
     data['article_id'] = articleId;
@@ -61,7 +58,7 @@ class Data {
   Data.fromJson(Map<String, dynamic> json) {
     fieldCount = json['fieldCount'];
     affectedRows = json['affectedRows'];
-    insertId = json['warningCount'];
+    insertId = json['insertId'];
     serverStatus = json['serverStatus'];
     warningCount = json['warningCount'];
     message = json['message'];
@@ -73,7 +70,7 @@ class Data {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['fieldCount'] = this.fieldCount;
     data['affectedRows'] = this.affectedRows;
-    data['InsertId'] = this.insertId;
+    data['insertId'] = this.insertId;
     data['serverStatus'] = this.serverStatus;
     data['warningCount'] = this.warningCount;
     data['message'] = this.message;

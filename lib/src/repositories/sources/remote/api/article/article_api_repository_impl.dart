@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:temanbumil_web/src/repositories/models/article/article_bookmark_response_model.dart';
 import 'package:temanbumil_web/src/repositories/models/article/article_category_response_model.dart';
-import 'package:temanbumil_web/src/repositories/models/article/detail_article_response.dart';
+import 'package:temanbumil_web/src/repositories/models/article/detail_article_response_model.dart';
 import 'package:temanbumil_web/src/repositories/repositories.dart';
 
 class ArticleApiRepositoryImpl implements ArticleApiRepository {
@@ -14,9 +14,9 @@ class ArticleApiRepositoryImpl implements ArticleApiRepository {
   @override
   Future<ArticleCategoryResponseModel> getArticleCategory() async {
     try {
-      final res = await dio!.get('article/article-category--v2');
+      final res = await dio!.get('article/article-category-v2');
       return ArticleCategoryResponseModel.fromJson(res.data);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw Exception(e.error);
     }
   }
@@ -30,8 +30,8 @@ class ArticleApiRepositoryImpl implements ArticleApiRepository {
     String? arraySubCategoryId,
   }) async {
     try {
+      // final res = await mocky!.post('/v3/b456bc2b-a325-4c2f-b172-262d97ec7a10',
       final res = await dio!.post('article/article-list-v2',
-          // final res = await dio!.post('article/article-list-v2',
           data: jsonEncode({
             'keyword': keyword,
             'page': page,
@@ -53,7 +53,6 @@ class ArticleApiRepositoryImpl implements ArticleApiRepository {
   }) async {
     try {
       final res = await dio!.post('article/article-detail',
-          // final res = await dio!.post('article/articlistle-list-v2',
           data: jsonEncode({
             'category_id': categoryId,
             'sub_category_id': subCategoryId,
@@ -72,7 +71,6 @@ class ArticleApiRepositoryImpl implements ArticleApiRepository {
   }) async {
     try {
       final res = await dio!.post('article/article-bookmark',
-          // final res = await dio!.post('article/article-list-v2',
           data: jsonEncode({
             'status': status,
             'article_id': articleId,

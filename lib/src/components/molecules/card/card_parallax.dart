@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../themes/themes.dart';
+import 'package:temanbumil_web/src/themes/themes.dart';
 
 class CardParallax extends StatelessWidget {
   CardParallax({

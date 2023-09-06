@@ -35,7 +35,6 @@ class ArticleCategoryModel {
     updated = json['updated'];
     createdBy = json['created_by'];
     updatedBy = json['updated_by'];
-
     if (json['sub_category'] != null) {
       subCategory = [];
       json['sub_category'].forEach((v) {

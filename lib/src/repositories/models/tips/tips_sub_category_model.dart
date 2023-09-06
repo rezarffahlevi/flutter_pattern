@@ -14,8 +14,8 @@ class TipsSubCategoryModel {
 
   TipsSubCategoryModel(
       {this.subCategoryId,
-      this.title,
       this.categoryId,
+      this.title,
       this.description,
       this.icon,
       this.published,

@@ -1,11 +1,16 @@
-import 'helpers.dart';
+import 'package:temanbumil_web/src/helpers/helpers.dart';
+
 
 extension ViewStateExtension on ViewState {
-  bool get isLoading => this == ViewState.LOADING;
-  bool get isInitial => this == ViewState.INITIAL;
-  bool get isError => this == ViewState.ERROR;
-  bool get isHasData => this == ViewState.HASDATA;
-  bool get isNoData => this == ViewState.NODATA;
+  bool get isLoading => this == ViewState.loading;
+
+  bool get isInitial => this == ViewState.initial;
+
+  bool get isError => this == ViewState.error;
+
+  bool get isHasData => this == ViewState.hasData;
+
+  bool get isNoData => this == ViewState.noData;
 }
 
 class ViewData<T> {
@@ -13,13 +18,14 @@ class ViewData<T> {
   final T? data;
   final String? message;
 
-  const ViewData({this.status = ViewState.INITIAL, this.message, this.data});
+  const ViewData({this.status = ViewState.initial, this.message, this.data});
 
-  ViewData.loading({this.status = ViewState.LOADING, this.data, this.message});
+  ViewData.loading({this.status = ViewState.loading, this.message, this.data});
 
-  ViewData.loaded(this.data, {this.status = ViewState.LOADED, this.message});
+  ViewData.loaded(this.data,
+      {this.status = ViewState.loaded, this.message});
 
-  ViewData.error(this.message, {this.status = ViewState.ERROR, this.data});
+  ViewData.error(this.message, {this.status = ViewState.error, this.data});
 
   @override
   String toString() {

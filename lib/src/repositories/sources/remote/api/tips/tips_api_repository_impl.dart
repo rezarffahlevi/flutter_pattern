@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:temanbumil_web/src/repositories/models/tips/tips_category_response_model.dart';
 import 'package:temanbumil_web/src/repositories/models/tips/tips_detail_response_model.dart';
 import 'package:temanbumil_web/src/repositories/models/tips/tips_list_response_model.dart';
 import 'package:temanbumil_web/src/repositories/repositories.dart';
@@ -9,6 +10,8 @@ class TipsApiRepositoryImpl implements TipsApiRepository {
 
   TipsApiRepositoryImpl({this.dio, this.mocky});
 
+  
+  @override
   Future<TipsCategoryResponseModel> getCategory() async {
     try {
       final response = await dio!.get('tips/tips-category');

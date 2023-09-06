@@ -1,21 +1,22 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../configs/configs.dart';
-import '../../../../helpers/helpers.dart';
-import '../../../../repositories/repositories.dart';
-import '../../../home/ui/ui.dart';
-import '../bloc.dart';
+import 'package:temanbumil_web/src/configs/configs.dart';
+import 'package:temanbumil_web/src/features/features.dart';
+import 'package:temanbumil_web/src/helpers/helpers.dart';
+import 'package:temanbumil_web/src/repositories/repositories.dart';
+import 'package:temanbumil_web/src/repositories/sources/remote/api/api.dart';
 
 class ArticleDetailBloc extends Cubit<ArticleDetailState> {
   ArticleDetailBloc() : super(ArticleDetailState());
 
   final repo = inject<AuthApiRepository>();
   final articleRepo = inject<ArticleApiRepository>();
+  final tipsRepo = inject<TipsApiRepository>();
 
   final ScrollController scrollController = ScrollController();
 
-  init(BuildContext, String? id) async {
+  init(BuildContext context, String? id) async {
     emit(state.copyWith(
         menu: ViewData.loaded([
       {'menu': 'Home', 'link': 'home', 'hover': false},

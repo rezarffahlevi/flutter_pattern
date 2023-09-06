@@ -1,6 +1,7 @@
-import 'package:temanbumil_web/src/repositories/models/tips/tips_category_model.dart';
 
-import '../../repositories.dart';
+
+import 'package:temanbumil_web/src/repositories/models/tips/tips_category_model.dart';
+import 'package:temanbumil_web/src/repositories/repositories.dart';
 
 class TipsCategoryResponseModel {
   int? status;
@@ -8,8 +9,7 @@ class TipsCategoryResponseModel {
   List<TipsCategoryModel>? data;
   InfoModel? info;
 
-  TipsCategoryResponseModel(
-      {this.status, this.acknowledge, this.data, this.info});
+  TipsCategoryResponseModel({this.status, this.acknowledge, this.data, this.info});
 
   TipsCategoryResponseModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];

@@ -1,4 +1,6 @@
-import '../../repositories.dart';
+
+import 'package:temanbumil_web/src/repositories/models/tips/tips_model.dart';
+import 'package:temanbumil_web/src/repositories/repositories.dart';
 
 class TipsListResponseModel {
   int? status;
@@ -26,8 +28,7 @@ class TipsListResponseModel {
     return data;
   }
 
-  static Map<String, dynamic> generateParams(
-      String? subCategoryId, String? keyword, bool? bookmark, int? page) {
+  static Map<String, dynamic> generateParams(String? subCategoryId, String? keyword, bool? bookmark, int? page) {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['sub_category_id'] = subCategoryId;
     data['keyword'] = keyword;
@@ -44,12 +45,7 @@ class Data {
   List<TipsModel>? tips;
   bool? searchNotFound;
 
-  Data(
-      {this.queryTotal,
-      this.currentPage,
-      this.totalPage,
-      this.tips,
-      this.searchNotFound});
+  Data({this.queryTotal, this.currentPage, this.totalPage, this.tips, this.searchNotFound});
 
   Data.fromJson(Map<String, dynamic> json) {
     queryTotal = json['query_total'];

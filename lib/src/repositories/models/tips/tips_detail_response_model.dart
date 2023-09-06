@@ -1,6 +1,5 @@
 import 'package:temanbumil_web/src/repositories/models/tips/tips_model.dart';
-
-import '../../repositories.dart';
+import 'package:temanbumil_web/src/repositories/repositories.dart';
 
 class TipsDetailResponseModel {
   int? status;
@@ -8,8 +7,7 @@ class TipsDetailResponseModel {
   Data? data;
   InfoModel? info;
 
-  TipsDetailResponseModel(
-      {this.status, this.acknowledge, this.data, this.info});
+  TipsDetailResponseModel({this.status, this.acknowledge, this.data, this.info});
 
   TipsDetailResponseModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
@@ -21,7 +19,7 @@ class TipsDetailResponseModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['status'] = this.status;
-    data['Acknowledge'] = this.acknowledge;
+    data['acknowledge'] = this.acknowledge;
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
@@ -58,6 +56,7 @@ class Data {
   Data(
       {this.tipsId,
       this.week,
+      this.title,
       this.description,
       this.cover,
       this.published,
@@ -89,7 +88,6 @@ class Data {
     updatedBy = json['updated_by'];
     temporaryTag = json['temporary_tag'];
     slotAdsId = json['slot_ads_id'];
-
     if (json['related_tips'] != null) {
       relatedTips = [];
       json['related_tips'].forEach((v) {

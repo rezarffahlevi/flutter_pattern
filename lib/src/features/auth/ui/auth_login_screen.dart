@@ -85,7 +85,7 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
                       shape: BoxShape.circle,
                       border: Border.all(color: MyColor.blue)),
                   child: Image.asset(
-                    MyAsset.image.google,
+                    MyAsset.icons.google,
                   ),
                 ),
               ),
@@ -105,7 +105,7 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
                     shape: BoxShape.circle,
                   ),
                   child: Image.asset(
-                    MyAsset.image.fb,
+                    MyAsset.icons.fb,
                     color: MyColor.white,
                   ),
                 ),
@@ -127,7 +127,7 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
                         shape: BoxShape.circle,
                       ),
                       child: Image.asset(
-                        MyAsset.image.apple,
+                        MyAsset.icons.apple,
                         color: MyColor.white,
                       ),
                     ),

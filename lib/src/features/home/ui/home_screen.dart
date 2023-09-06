@@ -3,17 +3,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:temanbumil_web/src/app.dart';
-import 'package:temanbumil_web/src/components/atoms/atoms.dart';
 import 'package:temanbumil_web/src/components/components.dart';
 import 'package:temanbumil_web/src/configs/configs.dart';
 import 'package:temanbumil_web/src/features/features.dart';
-import 'package:temanbumil_web/src/features/home/ui/section/home_feature_large.dart';
-import 'package:temanbumil_web/src/features/home/ui/section/home_section_about_.dart';
+import 'package:temanbumil_web/src/features/home/ui/section/home_section_about.dart';
 import 'package:temanbumil_web/src/features/home/ui/section/home_section_article_tips.dart';
 import 'package:temanbumil_web/src/features/home/ui/section/home_section_first.dart';
-import 'package:temanbumil_web/src/features/home/ui/section/home_tentang.dart';
+import 'package:temanbumil_web/src/features/home/widget/home_bg_section.dart';
 import 'package:temanbumil_web/src/helpers/helpers.dart';
 
 import 'section/home_feature_small.dart';
@@ -43,8 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: PreferredSize(
-          preferredSize:
-              Size.fromHeight(Helper.responsive(context, lg: 80.h, sm: 60.h)),
+          preferredSize: Size.fromHeight(Helper.responsive(context, lg: 80.h, sm: 60.h)),
           child: BlocBuilder<HomeBloc, HomeState>(
               bloc: bloc,
               builder: (context, state) {
@@ -80,11 +75,6 @@ class _HomeScreenState extends State<HomeScreen> {
           physics: const ClampingScrollPhysics(),
           child: Column(children: [
             HomeSectionFirst(),
-            HomeTentang(),
-            ResponsiveWidget(
-              largeScreen: HomeFeatureLarge(),
-              smallScreen: HomeFeatureSmall(),
-            ),
             HomeSectionArticleTips(bloc),
             HomeSectionAbout(),
           ]),

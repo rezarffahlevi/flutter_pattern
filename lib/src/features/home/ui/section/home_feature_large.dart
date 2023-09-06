@@ -9,7 +9,7 @@ class HomeFeatureLarge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return HomeBgSection(
-      image: MyAsset.image.bg2,
+      image: MyAsset.background.bg2,
       child: Container(
         // width: ResponsiveWidget.isSmallScreen(context) ? 1.5.sw : 2.sw,
         // height: 1.sh,
@@ -65,7 +65,7 @@ class HomeFeatureLarge extends StatelessWidget {
                               top: 30,
                             ),
                             child: Image.asset(
-                              MyAsset.image.tbProd,
+                              MyAsset.background.tbProd,
                               height: 50,
                               width: 50,
                             ),
@@ -105,7 +105,7 @@ class HomeFeatureLarge extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(top: 30),
                             child: Image.asset(
-                              MyAsset.image.tbFor,
+                              MyAsset.background.tbFor,
                               height: 50,
                               width: 50,
                             ),
@@ -145,7 +145,7 @@ class HomeFeatureLarge extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(top: 30),
                             child: Image.asset(
-                              MyAsset.image.icArc,
+                              MyAsset.background.icArc,
                               height: 50,
                               width: 50,
                             ),
@@ -185,7 +185,7 @@ class HomeFeatureLarge extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(top: 30),
                             child: Image.asset(
-                              MyAsset.image.icAlb,
+                              MyAsset.background.icAlb,
                               height: 50,
                               width: 50,
                             ),
@@ -215,7 +215,7 @@ class HomeFeatureLarge extends StatelessWidget {
                     bottom: 150,
                   ),
                   child: Image.asset(
-                    MyAsset.image.tbHome,
+                    MyAsset.background.tbHome,
                     width: 300,
                     height: 400,
                     alignment: Alignment.topCenter,
@@ -240,7 +240,7 @@ class HomeFeatureLarge extends StatelessWidget {
                                   top: 30,
                                 ),
                                 child: Image.asset(
-                                  MyAsset.image.icMed,
+                                  MyAsset.background.icMed,
                                   height: 50,
                                   width: 50,
                                 ),
@@ -284,7 +284,7 @@ class HomeFeatureLarge extends StatelessWidget {
                                   top: 30,
                                 ),
                                 child: Image.asset(
-                                  MyAsset.image.icRec,
+                                  MyAsset.background.icRec,
                                   height: 50,
                                   width: 50,
                                 ),
@@ -328,7 +328,7 @@ class HomeFeatureLarge extends StatelessWidget {
                                   top: 30,
                                 ),
                                 child: Image.asset(
-                                  MyAsset.image.icTip,
+                                  MyAsset.background.icTip,
                                   height: 50,
                                   width: 50,
                                 ),
@@ -372,7 +372,7 @@ class HomeFeatureLarge extends StatelessWidget {
                                   top: 30,
                                 ),
                                 child: Image.asset(
-                                  MyAsset.image.icProd,
+                                  MyAsset.background.icProd,
                                   height: 50,
                                   width: 50,
                                 ),

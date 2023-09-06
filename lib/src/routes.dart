@@ -5,11 +5,11 @@ import 'package:temanbumil_web/src/features/tips/tips.dart';
 class Routes {
   static List<RouteBase> appRoutes() {
     return [
-      ...CommonFeature.appRoutes(),
-      ...AuthFeature.appRoutes(),
-      ...HomeFeature.appRoutes(),
-      ...ArticleFeature.appRoutes(),
-      ...TipsFeature.appRoutes(),
-    ];
+        ...CommonFeature.appRoutes(),
+        ...AuthFeature.appRoutes(),
+        ...HomeFeature.appRoutes(),
+        ...ArticleFeature.appRoutes(),
+        ...TipsFeature.appRoutes(),
+      ];
   }
 }

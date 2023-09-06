@@ -81,7 +81,7 @@ class HomeAbout extends StatelessWidget {
                   children: [
                     MySizedBox.bloodyLargeVertical(),
                     Image.asset(
-                      MyAsset.image.ic1,
+                      MyAsset.background.ic1,
                       width: 150,
                       height: 150,
                     ),
@@ -113,7 +113,7 @@ class HomeAbout extends StatelessWidget {
                   children: [
                     MySizedBox.bloodyLargeVertical(),
                     Image.asset(
-                      MyAsset.image.ic2,
+                      MyAsset.background.ic2,
                       width: 150,
                       height: 150,
                     ),
@@ -145,7 +145,7 @@ class HomeAbout extends StatelessWidget {
                   children: [
                     MySizedBox.bloodyLargeVertical(),
                     Image.asset(
-                      MyAsset.image.ic3,
+                      MyAsset.background.ic3,
                       width: 150,
                       height: 150,
                     ),

@@ -3,14 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
+import 'package:temanbumil_web/src/components/components.dart';
 import 'package:temanbumil_web/src/features/features.dart';
-
-import '../../../../components/components.dart';
-import '../../../../helpers/helpers.dart';
-import '../../../tips/bloc/ui/ui.dart';
-import '../../bloc/bloc.dart';
-import '../../widget/home_bg_section.dart';
+import 'package:temanbumil_web/src/features/home/widget/home_bg_section.dart';
+import 'package:temanbumil_web/src/helpers/helpers.dart';
 
 class HomeSectionArticleTips extends StatelessWidget {
   final _articleScrollController = ScrollController();
@@ -41,7 +37,7 @@ class HomeSectionArticleTips extends StatelessWidget {
                     bloc: bloc,
                     builder: (contex, state) {
                       switch (state.listArticle.status) {
-                        case ViewState.LOADED:
+                        case ViewState.loaded:
                           return Column(
                             children: [
                               MySizedBox.smallVertical(),
@@ -82,10 +78,10 @@ class HomeSectionArticleTips extends StatelessWidget {
                             ],
                           );
                           break;
-                        case ViewState.LOADING:
+                        case ViewState.loading:
                           return MyLoading();
                           break;
-                        case ViewState.ERROR:
+                        case ViewState.error:
                           return MyErrorWidget(state.listArticle.message);
                           break;
                         default:
@@ -115,7 +111,7 @@ class HomeSectionArticleTips extends StatelessWidget {
                     bloc: bloc,
                     builder: (contex, state) {
                       switch (state.listTips.status) {
-                        case ViewState.LOADED:
+                        case ViewState.loaded:
                           return Column(
                             children: [
                               MySizedBox.smallVertical(),
@@ -126,32 +122,24 @@ class HomeSectionArticleTips extends StatelessWidget {
                                   padding: EdgeInsets.only(bottom: 40.h),
                                   child: ListView.separated(
                                     controller: _tipsScrollController,
-                                    itemCount: state.listTips.data?.length ?? 0,
+                                    itemCount:
+                                        state.listTips.data?.length ?? 0,
                                     scrollDirection: Axis.horizontal,
                                     padding:
                                         EdgeInsets.symmetric(horizontal: 20.w),
                                     itemBuilder: (context, index) {
-                                      final item = state.listTips.data![index];
-                                      return InkWell(
-                                          onTap: () {
-                                            context.go(
-                                              TipsDetailScreen.routeName +
-                                                  '?id=${item.tipsId}',
-                                            );
-                                          },
-                                          child: Container(
-                                            width:
-                                                ResponsiveWidget.isSmallScreen(
-                                                        context)
-                                                    ? 0.6.sw
-                                                    : 100.w,
-                                            child: CardParallax(
-                                              name: item.title,
-                                              imageUrl: item.cover,
-                                              category: item.weekCategory,
-                                              // createdAt: item.created,
-                                            ),
-                                          ));
+                                      final item =
+                                          state.listTips.data![index];
+                                      return Container(
+                                        width: ResponsiveWidget.isSmallScreen(
+                                                context)
+                                            ? 0.6.sw
+                                            : 100.w,
+                                        child: CardTips(
+                                          title: item.title,
+                                          cover: item.cover,
+                                        ),
+                                      );
                                     },
                                     separatorBuilder: (context, index) =>
                                         MySizedBox.extraSmallHorizontal(),
@@ -162,10 +150,10 @@ class HomeSectionArticleTips extends StatelessWidget {
                             ],
                           );
                           break;
-                        case ViewState.LOADING:
+                        case ViewState.loading:
                           return MyLoading();
                           break;
-                        case ViewState.ERROR:
+                        case ViewState.error:
                           return MyErrorWidget(state.listTips.message);
                           break;
                         default:

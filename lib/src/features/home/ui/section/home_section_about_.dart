@@ -14,7 +14,7 @@ class HomeSectionAbout extends StatelessWidget {
     // Home
     return CardParallax(
       aspectRatio: ResponsiveWidget.isSmallScreen(context) ? 16 / 16 : 16 / 8,
-      imageUrl: MyAsset.image.bg3,
+      imageUrl: MyAsset.background.bg3,
       customGradient: LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.topRight,

@@ -8,8 +8,7 @@ class ArticleCategoryResponseModel {
   List<ArticleCategoryModel>? data;
   InfoModel? info;
 
-  ArticleCategoryResponseModel(
-      {this.status, this.acknowledge, this.data, this.info});
+  ArticleCategoryResponseModel({this.status, this.acknowledge, this.data, this.info});
 
   ArticleCategoryResponseModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
@@ -26,7 +25,7 @@ class ArticleCategoryResponseModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['status'] = this.status;
-    data['acknowldge'] = this.acknowledge;
+    data['acknowledge'] = this.acknowledge;
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }

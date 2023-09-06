@@ -1,6 +1,16 @@
+import 'package:dio/dio.dart';
+import 'package:temanbumil_web/src/repositories/sources/remote/api/api.dart';
+import 'package:temanbumil_web/src/repositories/repositories.dart';
 
-abstract class UserApiRepository {
+class UserApiRepositoryImpl implements UserApiRepository {
+  final Dio? dio;
+
+  UserApiRepositoryImpl({required this.dio});
+
+  @override
   Future<String> test({
     String? title,
-  });
+  }) async {
+    return '';
+  }
 }

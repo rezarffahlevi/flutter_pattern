@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:temanbumil_web/src/app.dart';
 import 'package:temanbumil_web/src/components/atoms/atoms.dart';
-import 'package:temanbumil_web/src/components/atoms/header/my_app_bar_web.dart';
 import 'package:temanbumil_web/src/themes/my_text_style.dart';
 
 class MyAppbar extends StatelessWidget {
@@ -42,7 +41,7 @@ class MyAppbar extends StatelessWidget {
     } else {
       return PreferredSize(
         preferredSize: Size(1.sw, 80.h),
-        child: MyAppBarWeb(
+        child: MyAppbarWeb(
           opacity: opacity,
           menu: menu ?? [],
           onHover: onHover,

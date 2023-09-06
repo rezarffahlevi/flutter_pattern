@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:temanbumil_web/src/features/features.dart';
+import 'package:temanbumil_web/src/features/auth/auth.dart';
 import 'package:temanbumil_web/src/themes/themes.dart';
 
 class LoginDialog extends StatefulWidget {

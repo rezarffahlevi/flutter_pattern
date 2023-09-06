@@ -64,7 +64,7 @@ class _TipsDetailScreenState extends State<TipsDetailScreen> {
               builder: (context, state) {
                 final detail = state.detail.data?.data;
                 switch (state.detail.status) {
-                  case ViewState.LOADED:
+                  case ViewState.loaded:
                     return Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -98,9 +98,9 @@ class _TipsDetailScreenState extends State<TipsDetailScreen> {
                       ],
                     );
                     break;
-                  case ViewState.LOADING:
+                  case ViewState.loading:
                     return MyLoading();
-                  case ViewState.ERROR:
+                  case ViewState.error:
                     return MyErrorWidget(state.detail.message);
                   default:
                     return Container();

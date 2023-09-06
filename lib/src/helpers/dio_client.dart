@@ -91,7 +91,7 @@ class DioClient {
                         'Login terlebih dahulu untuk menikmati fitur ini' ??
                             responseData["info"]["message"],
                     requestOptions: response.requestOptions);
-                handler.reject(dioError);
+                return handler.reject(dioError);
                 // return Utilities.forceLogOut();
               } else {
                 DioException dioError = DioException(

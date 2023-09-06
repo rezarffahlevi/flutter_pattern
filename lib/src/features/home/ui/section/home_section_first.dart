@@ -1,10 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:temanbumil_web/src/components/components.dart';
+import 'package:temanbumil_web/src/components/atoms/atoms.dart';
+import 'package:temanbumil_web/src/components/molecules/card/card.dart';
+import 'package:temanbumil_web/src/features/home/widget/home_bg_section.dart';
 import 'package:temanbumil_web/src/helpers/helpers.dart';
-
-import '../../../../themes/themes.dart';
+import 'package:temanbumil_web/src/themes/themes.dart';
 
 class HomeSectionFirst extends StatelessWidget {
   @override
@@ -13,8 +14,9 @@ class HomeSectionFirst extends StatelessWidget {
 
     // Home
     return CardParallax(
-      aspectRatio: ResponsiveWidget.isSmallScreen(context) ? 16 / 16 : 16 / 9,
-      imageUrl: MyAsset.image.bg1,
+      aspectRatio:
+          ResponsiveWidget.isSmallScreen(context) ? 16 / 16 : 16 / 9,
+      imageUrl: MyAsset.background.bg1,
       customGradient: LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.topRight,

@@ -1,7 +1,8 @@
 import 'package:equatable/equatable.dart';
-import 'package:temanbumil_web/src/repositories/models/article/detail_article_response.dart';
-
-import '../../../../helpers/helpers.dart';
+import 'package:temanbumil_web/src/helpers/helpers.dart';
+import 'package:temanbumil_web/src/repositories/models/article/article_model.dart';
+import 'package:temanbumil_web/src/repositories/models/article/detail_article_response_model.dart';
+import 'package:temanbumil_web/src/repositories/repositories.dart';
 
 class ArticleDetailState extends Equatable {
   final double scrollPosition;
@@ -30,5 +31,6 @@ class ArticleDetailState extends Equatable {
   }
 
   @override
-  List get props => [scrollPosition, detail, menu, selectedCategory];
+  List get props =>
+      [scrollPosition, detail, menu, selectedCategory];
 }

@@ -12,15 +12,19 @@ class MyTheme {
         headlineLarge: MyTextStyle.h1.bold.copyWith(color: MyColor.black),
         headlineMedium: MyTextStyle.h3.bold.copyWith(color: MyColor.black),
         headlineSmall: MyTextStyle.h5.bold.copyWith(color: MyColor.black),
+
         labelLarge: MyTextStyle.h1.semiBold.copyWith(color: MyColor.black),
         labelMedium: MyTextStyle.h3.semiBold.copyWith(color: MyColor.black),
         labelSmall: MyTextStyle.h5.semiBold.copyWith(color: MyColor.black),
+
         displayLarge: MyTextStyle.defaultStyle,
         displayMedium: MyTextStyle.defaultStyle,
         displaySmall: MyTextStyle.defaultStyle,
+
         titleLarge: MyTextStyle.bigTitle,
         titleMedium: MyTextStyle.contentTitle,
         titleSmall: MyTextStyle.defaultTitle,
+
       ),
       colorScheme: ColorScheme.light().copyWith(
         primary: MyColor.defaultPurple,
@@ -42,12 +46,15 @@ class MyTheme {
         headlineLarge: MyTextStyle.h1.bold.copyWith(color: MyColor.white),
         headlineMedium: MyTextStyle.h3.bold.copyWith(color: MyColor.white),
         headlineSmall: MyTextStyle.h5.bold.copyWith(color: MyColor.white),
+
         labelLarge: MyTextStyle.h1.semiBold.copyWith(color: MyColor.white),
         labelMedium: MyTextStyle.h3.semiBold.copyWith(color: MyColor.white),
         labelSmall: MyTextStyle.h5.semiBold.copyWith(color: MyColor.white),
+
         displayLarge: MyTextStyle.defaultStyle.copyWith(color: MyColor.white),
         displayMedium: MyTextStyle.defaultStyle.copyWith(color: MyColor.white),
         displaySmall: MyTextStyle.defaultStyle.copyWith(color: MyColor.white),
+
         titleLarge: MyTextStyle.bigTitle.copyWith(color: MyColor.white),
         titleMedium: MyTextStyle.contentTitle.copyWith(color: MyColor.white),
         titleSmall: MyTextStyle.defaultTitle.copyWith(color: MyColor.white),

@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
-import '../../../../helpers/helpers.dart';
-import '../../../../repositories/models/article/article_model.dart';
-import '../../../../repositories/models/models.dart';
+import 'package:temanbumil_web/src/helpers/helpers.dart';
+import 'package:temanbumil_web/src/repositories/models/article/article_model.dart';
+import 'package:temanbumil_web/src/repositories/repositories.dart';
 
 class HomeAppState extends Equatable {
   final double scrollPosition;

@@ -1,7 +1,7 @@
 class ArticleFilterModel {
   String? title;
-  String? subCategoryId;
-  bool? isChecked;
+  String subCategoryId;
+  bool isChecked;
 
-  ArticleFilterModel(this.title, this.subCategoryId, this.isChecked);
+  ArticleFilterModel(this.title, this.isChecked, this.subCategoryId);
 }

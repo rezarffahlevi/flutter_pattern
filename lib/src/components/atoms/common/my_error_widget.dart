@@ -19,7 +19,7 @@ class MyErrorWidget extends StatelessWidget {
         MySizedBox.extraSmallVertical(),
         Text(
           '${Helper.getErrorMessage(message)}',
-          style: MyTextStyle.h3,
+          style: Theme.of(context).textTheme.labelSmall,
         ),
         MySizedBox.smallVertical(),
       ],

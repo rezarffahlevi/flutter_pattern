@@ -1,16 +1,11 @@
-import 'dart:async';
-
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:temanbumil_web/src/components/components.dart';
+import 'package:temanbumil_web/src/components/molecules/dialog/login_dialog.dart';
 import 'package:temanbumil_web/src/configs/configs.dart';
 import 'package:temanbumil_web/src/features/features.dart';
 import 'package:temanbumil_web/src/helpers/helpers.dart';
-import 'package:temanbumil_web/src/repositories/sources/remote/api/api.dart';
-
-import '../../../../repositories/sources/sources.dart';
+import 'package:temanbumil_web/src/repositories/repositories.dart';
 
 class HomeBloc extends Cubit<HomeState> {
   HomeBloc() : super(HomeState());
@@ -80,7 +75,10 @@ class HomeBloc extends Cubit<HomeState> {
     try {
       emit(state.copyWith(listTips: ViewData.loading()));
       final response = await tipsRepo.getTipsList(
-          page: 1, bookmark: false, subCategoryId: '1');
+        page: 1,
+        bookmark: false,
+        subCategoryId: '1'
+      );
 
       final list = response.data?.tips ?? [];
       emit(state.copyWith(

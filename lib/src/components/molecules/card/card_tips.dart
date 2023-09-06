@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:temanbumil_web/src/components/components.dart';
-import 'package:temanbumil_web/src/themes/my_color.dart';
-import 'package:temanbumil_web/src/themes/my_text_style.dart';
+import 'package:temanbumil_web/src/components/atoms/atoms.dart';
+import 'package:temanbumil_web/src/themes/themes.dart';
 
 class CardTips extends StatelessWidget {
   final Function? onClick;
@@ -20,8 +19,9 @@ class CardTips extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         decoration: BoxDecoration(
-            color: Theme.of(context).cardColor,
-            borderRadius: BorderRadius.circular(9.w)),
+          color: Theme.of(context).cardColor,
+          borderRadius: BorderRadius.circular(8.w),
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,

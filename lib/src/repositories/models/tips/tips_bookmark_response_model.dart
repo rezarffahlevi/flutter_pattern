@@ -4,12 +4,12 @@ class TipsBookmarkResponseModel {
   Data? data;
   Null info;
 
-  TipsBookmarkResponseModel(
-      {this.status, this.acknowledge, this.data, this.info});
+  TipsBookmarkResponseModel({this.status, this.acknowledge, this.data, this.info});
+
   TipsBookmarkResponseModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
-    acknowledge = json['acknowledege'];
-    data = json['data'] != null ? Data.fromJson(json['data']) : null;
+    acknowledge = json['acknowledge'];
+    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
     info = json['info'];
   }
 
@@ -25,7 +25,7 @@ class TipsBookmarkResponseModel {
   }
 
   static Map<String, dynamic> generateParams(String? status, String? tipsId) {
-    Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
     data['status'] = status;
     data['tips_id'] = tipsId;
     return data;
@@ -47,12 +47,13 @@ class Data {
       this.affectedRows,
       this.insertId,
       this.serverStatus,
+      this.warningCount,
       this.message,
       this.protocol41,
       this.changedRows});
 
   Data.fromJson(Map<String, dynamic> json) {
-    fieldCount = json['FieldCount'];
+    fieldCount = json['fieldCount'];
     affectedRows = json['affectedRows'];
     insertId = json['insertId'];
     serverStatus = json['serverStatus'];
@@ -66,6 +67,7 @@ class Data {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['fieldCount'] = this.fieldCount;
     data['affectedRows'] = this.affectedRows;
+    data['insertId'] = this.insertId;
     data['serverStatus'] = this.serverStatus;
     data['warningCount'] = this.warningCount;
     data['message'] = this.message;

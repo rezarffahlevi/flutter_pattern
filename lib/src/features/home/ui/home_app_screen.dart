@@ -1,16 +1,15 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:temanbumil_web/src/components/atoms/atoms.dart';
 import 'package:temanbumil_web/src/components/components.dart';
+import 'package:temanbumil_web/src/configs/configs.dart';
+import 'package:temanbumil_web/src/features/features.dart';
 import 'package:temanbumil_web/src/features/home/ui/section/home_app_section_banner.dart';
 import 'package:temanbumil_web/src/features/home/widget/home_category_horizontal_widget.dart';
 import 'package:temanbumil_web/src/helpers/helpers.dart';
 import 'package:temanbumil_web/src/repositories/models/article/article_model.dart';
-
-import '../../../configs/configs.dart';
-import '../../../repositories/repositories.dart';
-import '../bloc/bloc.dart';
+import 'package:temanbumil_web/src/repositories/repositories.dart';
 
 class HomeAppScreen extends StatefulWidget {
   const HomeAppScreen({super.key});
@@ -78,12 +77,12 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                 bloc: bloc,
                 builder: (context, state) {
                   switch (state.listArticle.status) {
-                    case ViewState.LOADED:
+                    case ViewState.loaded:
                       return Column(
                         children: [
                           HomeCategoryHorizontalWidget(
                             categories: ['Promil', 'Kehamilan', 'Ga tau'],
-                            selected: state.selectedCategory,
+                            selected: 0,
                             onTap: (value) {
                               bloc.eventOnChangeCategory(value);
                             },
@@ -95,14 +94,12 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                               for (ArticleModel item
                                   in state.listArticle.data ?? [])
                                 InkWell(
-                                  onTap: () {
+                                  onTap: (){
                                     bloc.eventOnTapArticle(context, item);
                                   },
                                   child: Container(
-                                    width: Helper.responsive(context,
-                                        lg: 80.w, md: 140.w, sm: 0.94.sw),
-                                    height: Helper.responsive(context,
-                                        lg: 50.w, md: 100.w, sm: 200.w),
+                                    width: Helper.responsive(context, lg:  80.w, md: 140.w, sm: 0.94.sw),
+                                    height: Helper.responsive(context, lg:  50.w, md: 100.w, sm: 200.w),
                                     margin: EdgeInsets.all(6.w),
                                     child: CardParallax(
                                       imageUrl: item.cover,
@@ -111,12 +108,11 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                                     ),
                                   ),
                                 ),
-                              for (TipsModel item in state.listTips.data ?? [])
+                                for (TipsModel item
+                                  in state.listTips.data ?? [])
                                 Container(
-                                  width: Helper.responsive(context,
-                                      lg: 80.w, md: 140.w, sm: 0.94.sw),
-                                  height: Helper.responsive(context,
-                                      lg: 50.w, md: 100.w, sm: 200.w),
+                                  width: Helper.responsive(context, lg:  80.w, md: 140.w, sm: 0.94.sw),
+                                  height: Helper.responsive(context, lg:  50.w, md: 100.w, sm: 200.w),
                                   margin: EdgeInsets.all(6.w),
                                   child: CardTips(
                                     cover: item.cover,
@@ -128,9 +124,9 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                         ],
                       );
                       break;
-                    case ViewState.LOADING:
+                    case ViewState.loading:
                       return MyLoading();
-                    case ViewState.ERROR:
+                    case ViewState.error:
                       return MyErrorWidget(state.listArticle.message);
                     default:
                       return Container();

@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:temanbumil_web/src/helpers/helpers.dart';
 import 'package:temanbumil_web/src/repositories/models/article/article_model.dart';
+import 'package:temanbumil_web/src/repositories/repositories.dart';
 
 import '../../../../repositories/models/tips/tips.dart';
 
@@ -17,11 +18,12 @@ class HomeState extends Equatable {
     this.menu = const ViewData(),
   });
 
-  HomeState copyWith(
-      {double? scrollPosition,
-      ViewData<List<ArticleModel>>? listArticle,
-      ViewData<List<TipsModel>>? listTips,
-      ViewData<List<Map<String, dynamic>>>? menu}) {
+  HomeState copyWith({
+    double? scrollPosition,
+    ViewData<List<ArticleModel>>? listArticle,
+    ViewData<List<TipsModel>>? listTips,
+    ViewData<List<Map<String, dynamic>>>? menu,
+  }) {
     return HomeState(
       scrollPosition: scrollPosition ?? this.scrollPosition,
       listArticle: listArticle ?? this.listArticle,

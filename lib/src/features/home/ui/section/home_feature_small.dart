@@ -9,7 +9,7 @@ class HomeFeatureSmall extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: HomeBgSection(
-        image: MyAsset.image.bg2,
+        image: MyAsset.background.bg2,
         child: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height * 5,
@@ -42,7 +42,7 @@ class HomeFeatureSmall extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 35),
                       child: Image.asset(
-                        MyAsset.image.tbProd,
+                        MyAsset.background.tbProd,
                         height: 50,
                         width: 50,
                       ),
@@ -75,7 +75,7 @@ class HomeFeatureSmall extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 35),
                       child: Image.asset(
-                        MyAsset.image.tbFor,
+                        MyAsset.background.tbFor,
                         height: 50,
                         width: 50,
                       ),
@@ -108,7 +108,7 @@ class HomeFeatureSmall extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 35),
                       child: Image.asset(
-                        MyAsset.image.icArc,
+                        MyAsset.background.icArc,
                         height: 50,
                         width: 50,
                       ),
@@ -141,7 +141,7 @@ class HomeFeatureSmall extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 35),
                       child: Image.asset(
-                        MyAsset.image.icAlb,
+                        MyAsset.background.icAlb,
                         height: 50,
                         width: 50,
                       ),
@@ -174,7 +174,7 @@ class HomeFeatureSmall extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 35),
                       child: Image.asset(
-                        MyAsset.image.icMed,
+                        MyAsset.background.icMed,
                         height: 50,
                         width: 50,
                       ),
@@ -207,7 +207,7 @@ class HomeFeatureSmall extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 35),
                       child: Image.asset(
-                        MyAsset.image.icRec,
+                        MyAsset.background.icRec,
                         height: 50,
                         width: 50,
                       ),
@@ -240,7 +240,7 @@ class HomeFeatureSmall extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 35),
                       child: Image.asset(
-                        MyAsset.image.icTip,
+                        MyAsset.background.icTip,
                         height: 50,
                         width: 50,
                       ),
@@ -272,7 +272,7 @@ class HomeFeatureSmall extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 35),
                       child: Image.asset(
-                        MyAsset.image.icProd,
+                        MyAsset.background.icProd,
                         height: 50,
                         width: 50,
                       ),
