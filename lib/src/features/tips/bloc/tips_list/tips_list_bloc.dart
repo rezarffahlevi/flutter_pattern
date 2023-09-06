@@ -38,40 +38,41 @@ class TipsListBloc extends Cubit<TipsListState> {
 
   eventOnLoading() async {
     try {
-      eventGetArticle();
+      await eventGetCategory();
       eventGetTips();
     } catch (e, s) {}
   }
 
-  eventGetArticle() async {
+  eventGetCategory() async {
     try {
-      emit(state.copyWith(listArticle: ViewData.loading()));
-      final response = await articleRepo.getListArticle(
-        page: 1,
-        categoryId: '1',
-        arraySubCategoryId: '1',
-        bookmark: false,
-      );
+      emit(state.copyWith(listCategory: ViewData.loading()));
+      final response = await tipsRepo.getCategory();
 
-      final list = response.data?.article ?? [];
+      final list = response.data ?? [];
       emit(state.copyWith(
-        listArticle: ViewData.loaded(list),
+        listCategory: ViewData.loaded(list),
       ));
     } catch (e, s) {
-      emit(state.copyWith(listArticle: ViewData.error(e.toString())));
+      emit(state.copyWith(listCategory: ViewData.error(e.toString())));
     }
   }
 
-  eventGetTips() async {
+  eventGetTips({int? page}) async {
     try {
-      emit(state.copyWith(listTips: ViewData.loading()));
-      final response = await tipsRepo.getTipsList(
-          page: 1, bookmark: false, subCategoryId: '1');
+      if ((page ?? 1) < 2) emit(state.copyWith(listTips: ViewData.loading()));
 
-      final list = response.data?.tips ?? [];
-      emit(state.copyWith(
-        listTips: ViewData.loaded(list),
-      ));
+      
+      List<TipsSubCategoryModel>? subCategory = state
+              .listCategory.data?[state.selectedCategory].subCategory;
+
+      String? subCategoryId = subCategory?[state.selectedSubCategory]?.subCategoryId?.toString() ?? '1';
+
+      final response = await tipsRepo.getTipsList(
+          page: page ?? state.page, bookmark: false, subCategoryId: subCategoryId);
+
+      List<TipsModel> list = List.of(state.listTips.data ?? []);
+      list.addAll(response.data?.tips ?? []);
+      emit(state.copyWith(listTips: ViewData.loaded(list), page: page));
     } catch (e, s) {
       emit(state.copyWith(listTips: ViewData.error(e.toString())));
     }
@@ -98,11 +99,18 @@ class TipsListBloc extends Cubit<TipsListState> {
     }
   }
 
+
   eventOnChangeCategory(category) {
-    emit(state.copyWith(selectedCategory: category));
+    emit(state.copyWith(selectedCategory: category, selectedSubCategory: 0, page: 1));
+    eventGetTips();
   }
 
+  eventOnChangeSubCategory(subCategory) {
+    emit(state.copyWith(selectedSubCategory: subCategory, page: 1));
+    eventGetTips();
+  }
   eventOnTapArticle(BuildContext context, ArticleModel item) {
-    context.go('${ArticleDetailScreen.routeName}?id=${item.articleId}', extra: item);
+    context.go('${ArticleDetailScreen.routeName}?id=${item.articleId}',
+        extra: item);
   }
 }

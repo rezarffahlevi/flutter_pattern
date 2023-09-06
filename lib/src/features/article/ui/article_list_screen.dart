@@ -108,6 +108,10 @@ class _ArticleListScreenState extends State<ArticleListScreen> {
                           _refreshController.loadComplete();
                         },
                         builder: (context, state) {
+                          if(state.listCategory.status == ViewState.loading){
+                              return MyLoading();
+                          }
+                          
                           switch (state.listArticle.status) {
                             case ViewState.loaded:
                               return Column(
