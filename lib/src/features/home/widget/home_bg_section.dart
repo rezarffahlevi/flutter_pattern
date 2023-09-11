@@ -17,22 +17,25 @@ class HomeBgSection extends StatelessWidget {
       children: [
         image != null
             ? Container(
-                child: Image.asset(
-                  image!,
-                  fit: BoxFit.cover,
-                  width: screenSize.width,
-                  // height: screenSize.height,
+                child: Opacity(opacity: 0, child: child),
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage(
+                        image ?? '',
+                      ),
+                      fit: BoxFit.cover),
                 ),
                 foregroundDecoration: BoxDecoration(
-                    gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.topRight,
-                  // stops: [0.4, 0.2],
-                  colors: [
-                    '#a50082'.toColor().withOpacity(0.8),
-                    '#cc900a'.toColor().withOpacity(0.6),
-                  ],
-                )),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.topRight,
+                    // stops: [0.4, 0.2],
+                    colors: [
+                      '#a50082'.toColor().withOpacity(0.8),
+                      '#cc900a'.toColor().withOpacity(0.6),
+                    ],
+                  ),
+                ),
               )
             : Container(),
         child ?? Container()

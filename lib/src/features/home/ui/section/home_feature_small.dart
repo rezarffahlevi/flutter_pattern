@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../components/components.dart';
 import '../../../../themes/themes.dart';
@@ -12,7 +13,8 @@ class HomeFeatureSmall extends StatelessWidget {
         image: MyAsset.background.bg2,
         child: Container(
           width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height * 5,
+          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          // height: MediaQuery.of(context).size.height * 5,
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

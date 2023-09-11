@@ -5,31 +5,44 @@ import 'package:temanbumil_web/src/themes/themes.dart';
 /// [MyTextStyle] like css
 /// easier when giving TextStyle and high custom
 class MyTextStyle {
-  static MyTextStyleFontWeight get h1 => MyTextStyleFontWeight.custom(fontSize: 24.sp);
+  static MyTextStyleFontWeight get h1 =>
+      MyTextStyleFontWeight.custom(fontSize: 24.sp);
 
-  static MyTextStyleFontWeight get h2 => MyTextStyleFontWeight.custom(fontSize: 22.sp);
+  static MyTextStyleFontWeight get h2 =>
+      MyTextStyleFontWeight.custom(fontSize: 22.sp);
 
-  static MyTextStyleFontWeight get h3 => MyTextStyleFontWeight.custom(fontSize: 20.sp);
+  static MyTextStyleFontWeight get h3 =>
+      MyTextStyleFontWeight.custom(fontSize: 20.sp);
 
-  static MyTextStyleFontWeight get h4 => MyTextStyleFontWeight.custom(fontSize: 18.sp);
+  static MyTextStyleFontWeight get h4 =>
+      MyTextStyleFontWeight.custom(fontSize: 18.sp);
 
-  static MyTextStyleFontWeight get h5 => MyTextStyleFontWeight.custom(fontSize: 16.sp);
+  static MyTextStyleFontWeight get h5 =>
+      MyTextStyleFontWeight.custom(fontSize: 16.sp);
 
-  static MyTextStyleFontWeight get h6 => MyTextStyleFontWeight.custom(fontSize: 14.sp);
+  static MyTextStyleFontWeight get h6 =>
+      MyTextStyleFontWeight.custom(fontSize: 14.sp);
 
-  static MyTextStyleFontWeight get h7 => MyTextStyleFontWeight.custom(fontSize: 12.sp);
+  static MyTextStyleFontWeight get h7 =>
+      MyTextStyleFontWeight.custom(fontSize: 12.sp);
 
-  static MyTextStyleFontWeight get h8 => MyTextStyleFontWeight.custom(fontSize: 10.sp);
+  static MyTextStyleFontWeight get h8 =>
+      MyTextStyleFontWeight.custom(fontSize: 10.sp);
 
-  static MyTextStyleFontWeight get h9 => MyTextStyleFontWeight.custom(fontSize: 8.sp);
+  static MyTextStyleFontWeight get h9 =>
+      MyTextStyleFontWeight.custom(fontSize: 8.sp);
 
-  static TextStyle get defaultStyle => TextStyle(fontSize: 14.sp, fontFamily: 'Nunito');
+  static TextStyle get defaultStyle =>
+      TextStyle(fontSize: 14.sp, fontFamily: 'Nunito');
 
-  static TextStyle get defaultStyleBold => defaultStyle.copyWith(fontWeight: MyFontWeight.bold);
+  static TextStyle get defaultStyleBold =>
+      defaultStyle.copyWith(fontWeight: MyFontWeight.bold);
 
-  static TextStyle get defaultTitle => MyTextStyle.h5.bold.copyWith(color: MyColor.black, fontSize: 16.sp);
+  static TextStyle get defaultTitle =>
+      MyTextStyle.h5.bold.copyWith(color: MyColor.black, fontSize: 16.sp);
 
-  static TextStyle get defaultSubTitle => MyTextStyle.h7.normal.copyWith(color: MyColor.black);
+  static TextStyle get defaultSubTitle =>
+      MyTextStyle.h7.normal.copyWith(color: MyColor.black);
 
   static TextStyle get errorTitle => MyTextStyle.h1.bold;
 
@@ -37,15 +50,18 @@ class MyTextStyle {
 
   static TextStyle get noDataTitle => defaultStyle;
 
-  static TextStyle get errorDescription => MyTextStyle.h4.copyWith(color: MyColor.grey);
+  static TextStyle get errorDescription =>
+      MyTextStyle.h4.copyWith(color: MyColor.grey);
 
   static TextStyle get eulaTitle => MyTextStyle.h3.bold;
 
-  static TextStyle get eulaDesc => MyTextStyle.h6.normal.copyWith(color: MyColor.grey600);
+  static TextStyle get eulaDesc =>
+      MyTextStyle.h6.normal.copyWith(color: MyColor.grey600);
 
   static TextStyle get eulaTitleSmall => MyTextStyle.h5.bold;
 
-  static TextStyle get eulaDescSmall => MyTextStyle.h7.normal.copyWith(color: MyColor.grey600);
+  static TextStyle get eulaDescSmall =>
+      MyTextStyle.h7.normal.copyWith(color: MyColor.grey600);
 
   static TextStyle get contentTitle => MyTextStyle.h4.bold;
 
@@ -55,76 +71,104 @@ class MyTextStyle {
 
   static TextStyle get mediaSubTitle => MyTextStyle.h7;
 
-  static TextStyle get contentTitleWhite => contentTitle.copyWith(color: MyColor.white);
+  static TextStyle get contentTitleWhite =>
+      contentTitle.copyWith(color: MyColor.white);
 
-  static TextStyle get recordTableTitle => MyTextStyle.h6.semiBold.copyWith(color: MyColor.grey);
+  static TextStyle get recordTableTitle =>
+      MyTextStyle.h6.semiBold.copyWith(color: MyColor.grey);
 
   static TextStyle get recordTableContent => MyTextStyle.h6;
 
-  static TextStyle get recordTabTitle => MyTextStyle.h6.bold.copyWith(color: MyColor.grey);
+  static TextStyle get recordTabTitle =>
+      MyTextStyle.h6.bold.copyWith(color: MyColor.grey);
 
   static TextStyle get recordNumberTitle => MyTextStyle.h5.bold;
 
-  static TextStyle get recordNumberSubTitle => MyTextStyle.h7.copyWith(color: MyColor.grey);
+  static TextStyle get recordNumberSubTitle =>
+      MyTextStyle.h7.copyWith(color: MyColor.grey);
 
-  static TextStyle get recordDescriptionTitle => MyTextStyle.h6.bold.copyWith(color: MyColor.grey);
+  static TextStyle get recordDescriptionTitle =>
+      MyTextStyle.h6.bold.copyWith(color: MyColor.grey);
 
-  static TextStyle get recordDescriptionSubTitle => MyTextStyle.h6.copyWith(color: MyColor.grey);
+  static TextStyle get recordDescriptionSubTitle =>
+      MyTextStyle.h6.copyWith(color: MyColor.grey);
 
   static TextStyle get bigTitle => MyTextStyle.h2.bold;
 
-  static TextStyle get fetusTitle => MyTextStyle.h5.bold.copyWith(color: MyColor.white);
+  static TextStyle get fetusTitle =>
+      MyTextStyle.h5.bold.copyWith(color: MyColor.white);
 
-  static TextStyle get fetusSubTitle => MyTextStyle.h7.normal.copyWith(color: MyColor.white);
+  static TextStyle get fetusSubTitle =>
+      MyTextStyle.h7.normal.copyWith(color: MyColor.white);
 
-  static TextStyle get contentDescription => MyTextStyle.h5.normal.copyWith(color: MyColor.grey600, fontSize: 14.sp);
+  static TextStyle get contentDescription =>
+      MyTextStyle.h5.normal.copyWith(color: MyColor.grey600, fontSize: 14.sp);
 
-  static TextStyle get contentDescriptionSmall => MyTextStyle.h7.normal.copyWith(color: MyColor.grey600);
+  static TextStyle get contentDescriptionSmall =>
+      MyTextStyle.h7.normal.copyWith(color: MyColor.grey600);
 
-  static TextStyle get contentDescriptionMedium => MyTextStyle.h6.normal.copyWith(color: MyColor.grey600);
+  static TextStyle get contentDescriptionMedium =>
+      MyTextStyle.h6.normal.copyWith(color: MyColor.grey600);
 
-  static TextStyle get contentDescriptionSmallWhite => contentDescriptionSmall.copyWith(color: MyColor.white);
+  static TextStyle get contentDescriptionSmallWhite =>
+      contentDescriptionSmall.copyWith(color: MyColor.white);
 
-  static TextStyle get contentDate => MyTextStyle.h7.copyWith(color: MyColor.black);
+  static TextStyle get contentDate =>
+      MyTextStyle.h7.copyWith(color: MyColor.black);
 
-  static TextStyle get appBarTitle => MyTextStyle.h5.normal.copyWith(fontSize: 16.sp, color: MyColor.defaultPurple);
+  static TextStyle get appBarTitle => MyTextStyle.h5.normal
+      .copyWith(fontSize: 16.sp, color: MyColor.defaultPurple);
 
-  static TextStyle get searchSectionHeader =>
-      MyTextStyle.h6.semiBold.copyWith(color: MyColor.grey, fontFamily: 'Nunito');
+  static TextStyle get searchSectionHeader => MyTextStyle.h6.semiBold
+      .copyWith(color: MyColor.grey, fontFamily: 'Nunito');
 
-  static TextStyle get searchSectionHeaderBold => MyTextStyle.h6.extraBold.copyWith(color: MyColor.grey);
+  static TextStyle get searchSectionHeaderBold =>
+      MyTextStyle.h6.extraBold.copyWith(color: MyColor.grey);
 
   static TextStyle get searchSectionDetail => MyTextStyle.h6.semiBold;
 
-  static TextStyle get textFieldTitle => MyTextStyle.h6.semiBold.copyWith(color: MyColor.grey);
+  static TextStyle get textFieldTitle =>
+      MyTextStyle.h6.semiBold.copyWith(color: MyColor.grey);
 
-  static TextStyle get textFieldText => MyTextStyle.h6.normal.copyWith(fontSize: 14.sp);
+  static TextStyle get textFieldText =>
+      MyTextStyle.h6.normal.copyWith(fontSize: 14.sp);
 
-  static TextStyle get tabTitle => MyTextStyle.h5.semiBold.copyWith(color: MyColor.black);
+  static TextStyle get tabTitle =>
+      MyTextStyle.h5.semiBold.copyWith(color: MyColor.black);
 
-  static TextStyle get textFieldPlaceholder => MyTextStyle.h6.semiBold.copyWith(color: MyColor.grey400);
+  static TextStyle get textFieldPlaceholder =>
+      MyTextStyle.h6.semiBold.copyWith(color: MyColor.grey400);
 
   //Journal
-  static TextStyle get journalTitle => MyTextStyle.h6.semiBold.copyWith(color: MyColor.grey);
+  static TextStyle get journalTitle =>
+      MyTextStyle.h6.semiBold.copyWith(color: MyColor.grey);
 
   //
-  static TextStyle get articleTitle => MyTextStyle.h5.bold.copyWith(color: MyColor.black);
+  static TextStyle get articleTitle =>
+      MyTextStyle.h5.bold.copyWith(color: MyColor.black);
 
-  static TextStyle get articleContentSmall => MyTextStyle.h6.copyWith(color: MyColor.black);
+  static TextStyle get articleContentSmall =>
+      MyTextStyle.h6.copyWith(color: MyColor.black);
 
-  static TextStyle get popupTitle => MyTextStyle.h4.bold.copyWith(color: MyColor.black);
+  static TextStyle get popupTitle =>
+      MyTextStyle.h4.bold.copyWith(color: MyColor.black);
 
-  static TextStyle get articleCategoryBig => MyTextStyle.h6.normal.copyWith(color: MyColor.black);
+  static TextStyle get articleCategoryBig =>
+      MyTextStyle.h6.normal.copyWith(color: MyColor.black);
 
   //
-  static TextStyle get articleCategory => MyTextStyle.h7.normal.copyWith(color: MyColor.black);
+  static TextStyle get articleCategory =>
+      MyTextStyle.h7.normal.copyWith(color: MyColor.black);
 
-  static TextStyle get sectionTitleBold => MyTextStyle.h5.bold.copyWith(color: MyColor.black);
+  static TextStyle get sectionTitleBold =>
+      MyTextStyle.h5.bold.copyWith(color: MyColor.black);
 
-  static TextStyle get sponsoredText => MyTextStyle.h7.light.copyWith(color: MyColor.defaultPurple);
+  static TextStyle get sponsoredText =>
+      MyTextStyle.h7.light.copyWith(color: MyColor.defaultPurple);
 
   //In App Purchase
-  static TextStyle get inAppPurchaseTitle => MyTextStyle.h5.bold.copyWith(color: MyColor.colorFromHex('#707A89'));
+  static TextStyle get inAppPurchaseTitle =>
+      MyTextStyle.h5.bold.copyWith(color: MyColor.colorFromHex('#707A89'));
 
   static TextStyle get inAppPurchaseTitleSemiBold =>
       MyTextStyle.h5.semiBold.copyWith(color: MyColor.colorFromHex('#707A89'));
@@ -141,7 +185,8 @@ class MyTextStyle {
   static TextStyle get inAppPurchaseItemTitleSemiBold =>
       MyTextStyle.h6.bold.copyWith(color: MyColor.colorFromHex('#37474F'));
 
-  static TextStyle get inAppPurchaseErrorSmall => MyTextStyle.h7.bold.copyWith(color: MyColor.red);
+  static TextStyle get inAppPurchaseErrorSmall =>
+      MyTextStyle.h7.bold.copyWith(color: MyColor.red);
 
   static TextStyle get inAppPurchaseItemTitleBold24 =>
       MyTextStyle.h1.bold.copyWith(color: MyColor.colorFromHex('#11243D'));
@@ -167,11 +212,14 @@ class MyTextStyle {
   static TextStyle get inAppPurchaseItemDescriptionKuponNormal16 =>
       MyTextStyle.h5.normal.copyWith(color: MyColor.colorFromHex('#95A0AE'));
 
-  static TextStyle get inAppPurchaseTextButton => MyTextStyle.h6.bold.copyWith(color: MyColor.white);
+  static TextStyle get inAppPurchaseTextButton =>
+      MyTextStyle.h6.bold.copyWith(color: MyColor.white);
 
-  static TextStyle get filterTitle => MyTextStyle.h5.semiBold.copyWith(color: MyColor.colorFromHex('#11243D'));
+  static TextStyle get filterTitle =>
+      MyTextStyle.h5.semiBold.copyWith(color: MyColor.colorFromHex('#11243D'));
 
-  static TextStyle get bottomSheetTitle => MyTextStyle.h3.bold.copyWith(color: MyColor.black);
+  static TextStyle get bottomSheetTitle =>
+      MyTextStyle.h3.bold.copyWith(color: MyColor.black);
 
   static TextStyle get bottomSheetContent => MyTextStyle.h5.copyWith(
         color: MyColor.black,
@@ -183,14 +231,18 @@ class MyTextStyle {
         decoration: TextDecoration.none,
       );
 
-  static TextStyle get sessionTitle => MyTextStyle.h5.semiBold.copyWith(color: MyColor.black);
+  static TextStyle get sessionTitle =>
+      MyTextStyle.h5.semiBold.copyWith(color: MyColor.black);
 
-  static TextStyle get milestoneTitle =>
-      TextStyle(fontSize: 32.sp, fontWeight: MyFontWeight.ultraBold, color: MyColor.white);
+  static TextStyle get milestoneTitle => TextStyle(
+      fontSize: 32.sp,
+      fontWeight: MyFontWeight.ultraBold,
+      color: MyColor.white);
 
   static TextStyle get buttonTitle => h4.normal.copyWith(color: MyColor.black);
 
-  static TextStyle get smallButtonTitle => h6.semiBold.copyWith(color: MyColor.grey600);
+  static TextStyle get smallButtonTitle =>
+      h6.semiBold.copyWith(color: MyColor.grey600);
 
   static TextStyle get newSectionHeader => MyTextStyle.h5.bold;
 

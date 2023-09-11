@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:temanbumil_web/src/app.dart';
 import 'package:temanbumil_web/src/components/atoms/atoms.dart';
 import 'package:temanbumil_web/src/themes/themes.dart';
 
@@ -65,7 +66,9 @@ class _MyAppbarWebState extends State<MyAppbarWeb> {
                                       fontSize: 16,
                                       color: widget.menu[index]['hover']
                                           ? Theme.of(context).hoverColor
-                                          : Theme.of(context).colorScheme.inversePrimary,
+                                          : Theme.of(context)
+                                              .colorScheme
+                                              .inversePrimary,
                                       fontWeight: FontWeight.w900,
                                       letterSpacing: 3,
                                     ),
@@ -91,6 +94,15 @@ class _MyAppbarWebState extends State<MyAppbarWeb> {
                         );
                       },
                     ),
+                  IconButton(
+                    icon: const Icon(Icons.brightness_6),
+                    splashColor: Theme.of(context).primaryColor,
+                    highlightColor: Theme.of(context).primaryColor,
+                    color: MyColor.white,
+                    onPressed: () {
+                      App.of(context).toggleTheme();
+                    },
+                  ),
                 ],
               ),
             ),

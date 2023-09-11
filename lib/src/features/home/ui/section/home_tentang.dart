@@ -69,9 +69,7 @@ class HomeAbout extends StatelessWidget {
             MySizedBox.normalVertical(),
             Text(
               'Teman Bumil hadir untuk Mums dengan berbagai fitur',
-              style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    color: MyColor.black,
-                  ),
+              style: Theme.of(context).textTheme.titleSmall,
               textAlign: TextAlign.center,
             ),
             MySizedBox.largeVertical(),
@@ -93,9 +91,7 @@ class HomeAbout extends StatelessWidget {
                       MySizedBox.normalVertical(),
                       Text(
                         'Program Hamil',
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                              color: MyColor.black,
-                            ),
+                        style: Theme.of(context).textTheme.titleMedium,
                       ),
                       MySizedBox.normalVertical(),
                       SizedBox(
@@ -103,10 +99,7 @@ class HomeAbout extends StatelessWidget {
                         width: 250,
                         child: Text(
                           'sedang berusaha memiliki momongan? Anda akan terbantu dengan fitur ini!',
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleSmall
-                              ?.copyWith(color: MyColor.black),
+                          style: Theme.of(context).textTheme.titleSmall,
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -126,9 +119,7 @@ class HomeAbout extends StatelessWidget {
                     MySizedBox.normalVertical(),
                     Text(
                       'Kehamilan',
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: MyColor.black,
-                          ),
+                      style: Theme.of(context).textTheme.titleMedium,
                     ),
                     MySizedBox.normalVertical(),
                     SizedBox(
@@ -136,10 +127,7 @@ class HomeAbout extends StatelessWidget {
                       width: 250,
                       child: Text(
                         'Kehamilan Mums jadi lebih menyenangkan dengan berbagai fitur menarik!',
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleSmall
-                            ?.copyWith(color: MyColor.black),
+                        style: Theme.of(context).textTheme.titleSmall,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -158,9 +146,7 @@ class HomeAbout extends StatelessWidget {
                     MySizedBox.normalVertical(),
                     Text(
                       'Tumbuh Kembang Anak',
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: MyColor.black,
-                          ),
+                      style: Theme.of(context).textTheme.titleMedium,
                     ),
                     MySizedBox.normalVertical(),
                     SizedBox(
@@ -168,10 +154,7 @@ class HomeAbout extends StatelessWidget {
                       width: 280,
                       child: Text(
                         'Memantau tumbuh-kembang si Kecil sangat penting untuk memaksimalkan 1000 hari pertamanya.',
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleSmall
-                            ?.copyWith(color: MyColor.black),
+                        style: Theme.of(context).textTheme.titleSmall,
                         textAlign: TextAlign.center,
                       ),
                     ),
