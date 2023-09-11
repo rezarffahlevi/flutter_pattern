@@ -83,7 +83,7 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                         children: [
                           HomeCategoryHorizontalWidget(
                             categories: ['Promil', 'Kehamilan', 'Ga tau'],
-                            selected: state.selectedCategory,
+                            selected: 0,
                             onTap: (value) {
                               bloc.eventOnChangeCategory(value);
                             },

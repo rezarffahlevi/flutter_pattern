@@ -14,7 +14,7 @@ class ArticleApiRepositoryImpl implements ArticleApiRepository {
   @override
   Future<ArticleCategoryResponseModel> getArticleCategory() async {
     try {
-      final res = await dio!.get('article/article-category--v2');
+      final res = await dio!.get('article/article-category-v2');
       return ArticleCategoryResponseModel.fromJson(res.data);
     } on DioError catch (e) {
       throw Exception(e.error);
@@ -78,7 +78,7 @@ class ArticleApiRepositoryImpl implements ArticleApiRepository {
             'article_id': articleId,
           }));
       return ArticleBookmarkResponseModel.fromJson(res.data);
-    } on DioException catch (e) {
+    } on DioError catch (e) {
       throw Exception(e.error);
     }
   }

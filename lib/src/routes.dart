@@ -10,6 +10,7 @@ class Routes {
       ...HomeFeature.appRoutes(),
       ...ArticleFeature.appRoutes(),
       ...TipsFeature.appRoutes(),
+      ...ChecklistFeature.appRoutes(),
     ];
   }
 }

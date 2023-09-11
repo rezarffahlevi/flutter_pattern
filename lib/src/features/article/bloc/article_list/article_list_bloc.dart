@@ -2,7 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:temanbumil_web/src/features/features.dart';
 import 'package:temanbumil_web/src/helpers/helpers.dart';
+import 'package:temanbumil_web/src/repositories/models/article/article_model.dart';
 import 'package:temanbumil_web/src/repositories/sources/remote/api/api.dart';
 
 import '../../../../configs/configs.dart';
@@ -11,38 +13,77 @@ import 'article_list_state.dart';
 
 class ArticleListBloc extends Cubit<ArticleListState> {
   ArticleListBloc() : super(ArticleListState());
+
   final repo = inject<AuthApiRepository>();
   final articleRepo = inject<ArticleApiRepository>();
 
   final ScrollController scrollController = ScrollController();
 
-  init(BuildContext, String? id) async {
+  init(BuildContext context) async {
     emit(state.copyWith(
         menu: ViewData.loaded([
-      {'menu': 'Home', 'link': 'home', 'hover': false},
-      {'menu': 'Artikel', 'link': '', 'hover': false},
-      {'menu': 'Checklist', 'link': '', 'hover': false},
-      {'menu': 'Tips', 'link': '', 'hover': false},
+      {'menu': 'Home', 'link': '/home-app', 'hover': false},
+      {'menu': 'Artikel', 'link': '/article', 'hover': false},
+      {'menu': 'Checklist', 'link': '/checklist', 'hover': false},
+      {'menu': 'Tips', 'link': '/tips', 'hover': false},
       {'menu': 'Logout', 'link': 'logout', 'hover': false},
     ])));
     scrollController.addListener(scrollListener);
-    eventOnLoading(id);
+    eventOnLoading();
+    // await Helper.addDelay(1);
+    // context.pop();
   }
 
   scrollListener() {
     emit(state.copyWith(scrollPosition: scrollController.position.pixels));
   }
 
-  eventOnLoading(String? id) async {
+  eventOnLoading() async {
     try {
-      emit(state.copyWith(list: ViewData.loading()));
-      final response = await articleRepo.getListArticle(keyword: id);
+      await eventGetCategory();
+      eventGetArticle();
+    } catch (e, s) {}
+  }
 
+  eventGetArticle({int? page}) async {
+    try {
+      if ((page ?? 1) < 2)
+        emit(state.copyWith(listArticle: ViewData.loading()));
+
+      String? categoryId = state
+              .listCategory.data?[state.selectedCategory].categoryId
+              ?.toString() ??
+          '1';
+      String? subCategoryId = state.listCategory.data?[state.selectedCategory]
+              .subCategory?[state.selectedSubCategory].subCategoryId
+              ?.toString() ??
+          '1';
+      final response = await articleRepo.getListArticle(
+        page: page ?? state.page,
+        categoryId: categoryId,
+        arraySubCategoryId: subCategoryId + ', $categoryId',
+        bookmark: false,
+      );
+
+      List<ArticleModel> list = List.of(state.listArticle.data ?? []);
+      list.addAll(response.data?.article ?? []);
+      emit(state.copyWith(listArticle: ViewData.loaded(list), page: page));
+    } catch (e, s) {
+      emit(state.copyWith(listArticle: ViewData.error(e.toString())));
+    }
+  }
+
+  eventGetCategory() async {
+    try {
+      emit(state.copyWith(listCategory: ViewData.loading()));
+      final response = await articleRepo.getArticleCategory();
+
+      final list = response.data ?? [];
       emit(state.copyWith(
-        list: ViewData.loaded(response),
+        listCategory: ViewData.loaded(list),
       ));
     } catch (e, s) {
-      emit(state.copyWith(list: ViewData.error(e.toString())));
+      emit(state.copyWith(listCategory: ViewData.error(e.toString())));
     }
   }
 
@@ -62,6 +103,24 @@ class ArticleListBloc extends Cubit<ArticleListState> {
         AuthHelper.logout(context);
         break;
       default:
+        context.go(menu['link']);
+        break;
     }
+  }
+
+  eventOnChangeCategory(category) {
+    emit(state.copyWith(
+        selectedCategory: category, selectedSubCategory: 0, page: 1));
+    eventGetArticle();
+  }
+
+  eventOnChangeSubCategory(subCategory) {
+    emit(state.copyWith(selectedSubCategory: subCategory, page: 1));
+    eventGetArticle();
+  }
+
+  eventOnTapArticle(BuildContext context, ArticleModel item) {
+    context.go('${ArticleDetailScreen.routeName}?id=${item.articleId}',
+        extra: item);
   }
 }

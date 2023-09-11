@@ -5,10 +5,14 @@ import 'package:temanbumil_web/src/repositories/models/article/article_bookmark_
 import 'package:temanbumil_web/src/repositories/models/article/detail_article_response.dart';
 import 'package:temanbumil_web/src/repositories/repositories.dart';
 
+import '../../../../models/article/article_category_response_model.dart';
+
 abstract class ArticleApiRepository {
   final Dio? dio;
 
   ArticleApiRepository({required this.dio});
+
+  Future<ArticleCategoryResponseModel> getArticleCategory();
 
   Future<ArticleListResponseModel> getListArticle({
     String? keyword,

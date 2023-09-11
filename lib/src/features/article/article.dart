@@ -25,10 +25,7 @@ class ArticleFeature {
       GoRoute(
         path: ArticleListScreen.routeName,
         builder: (BuildContext context, GoRouterState state) {
-          return ArticleListScreen(
-            list: state.extra as ArticleModel?,
-            id: state.queryParameters['id'] ?? '',
-          );
+          return const ArticleListScreen();
         },
       )
     ];

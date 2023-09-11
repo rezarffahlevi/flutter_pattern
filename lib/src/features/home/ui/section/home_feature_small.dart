@@ -7,13 +7,14 @@ import '../../widget/home_bg_section.dart';
 class HomeFeatureSmall extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: HomeBgSection(
-        image: MyAsset.image.bg2,
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height * 5,
-          child: Center(
+    return HomeBgSection(
+      image: MyAsset.image.bg2,
+      child: Container(
+        //width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        child: Center(
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,

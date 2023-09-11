@@ -3,6 +3,8 @@ import 'package:temanbumil_web/src/features/features.dart';
 import 'package:temanbumil_web/src/helpers/helpers.dart';
 import 'package:temanbumil_web/src/repositories/sources/remote/api/api.dart';
 
+import '../features/tips/tips.dart';
+
 final inject = GetIt.instance;
 Future<void> initInjection() async {
   // BLoC
@@ -10,6 +12,8 @@ Future<void> initInjection() async {
   AuthFeature.initInjection();
   HomeFeature.initInjection();
   ArticleFeature.initInjection();
+  TipsFeature.initInjection();
+  ChecklistFeature.initInjection();
 
   // Repository
   ApiSources.initInjection();

@@ -132,26 +132,18 @@ class HomeSectionArticleTips extends StatelessWidget {
                                         EdgeInsets.symmetric(horizontal: 20.w),
                                     itemBuilder: (context, index) {
                                       final item = state.listTips.data![index];
-                                      return InkWell(
-                                          onTap: () {
-                                            context.go(
-                                              TipsDetailScreen.routeName +
-                                                  '?id=${item.tipsId}',
-                                            );
-                                          },
-                                          child: Container(
-                                            width:
-                                                ResponsiveWidget.isSmallScreen(
-                                                        context)
-                                                    ? 0.6.sw
-                                                    : 100.w,
-                                            child: CardParallax(
-                                              name: item.title,
-                                              imageUrl: item.cover,
-                                              category: item.weekCategory,
-                                              // createdAt: item.created,
-                                            ),
-                                          ));
+                                      return Container(
+                                        width: ResponsiveWidget.isSmallScreen(
+                                                context)
+                                            ? 0.6.sw
+                                            : 100.w,
+                                        child: CardParallax(
+                                          name: item.title,
+                                          imageUrl: item.cover,
+                                          category: item.weekCategory,
+                                          // createdAt: item.created,
+                                        ),
+                                      );
                                     },
                                     separatorBuilder: (context, index) =>
                                         MySizedBox.extraSmallHorizontal(),

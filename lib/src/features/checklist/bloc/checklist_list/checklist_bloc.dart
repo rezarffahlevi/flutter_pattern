@@ -1,31 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:temanbumil_web/src/features/article/ui/article_detail_screen.dart';
-import 'package:temanbumil_web/src/features/article/ui/article_list_screen.dart';
-import '../../../../repositories/models/article/article_model.dart';
-import '../../../../repositories/models/models.dart';
-import 'package:temanbumil_web/src/features/home/ui/home_screen.dart';
-
 import '../../../../configs/configs.dart';
 import '../../../../helpers/helpers.dart';
-import '../../../../repositories/sources/remote/api/api.dart';
-import '../../../tips/bloc/ui/ui.dart';
-import '../bloc.dart';
+import '../../../../repositories/models/article/article_model.dart';
+import '../../../../repositories/repositories.dart';
+import '../../../features.dart';
+import 'checklist_state.dart';
 
-class HomeAppBloc extends Cubit<HomeAppState> {
-  HomeAppBloc() : super(HomeAppState());
+class ChecklistListBloc extends Cubit<ChecklistListState> {
+  ChecklistListBloc() : super(ChecklistListState());
 
   final repo = inject<AuthApiRepository>();
-  final articleRepo = inject<ArticleApiRepository>();
-  final tipsRepo = inject<TipsApiRepository>();
+  final checklistRepo = inject<ChecklistApiRepository>();
 
   final ScrollController scrollController = ScrollController();
 
-  init(BuildContext context) async {
+  init(BuildContext context, String id) async {
     emit(state.copyWith(
         menu: ViewData.loaded([
-      {'menu': 'Home', 'link': 'home', 'hover': false},
+      {'menu': 'Home', 'link': '/home-app', 'hover': false},
       {'menu': 'Artikel', 'link': '/article', 'hover': false},
       {'menu': 'Checklist', 'link': '/checklist', 'hover': false},
       {'menu': 'Tips', 'link': '/tips', 'hover': false},
@@ -43,42 +37,36 @@ class HomeAppBloc extends Cubit<HomeAppState> {
 
   eventOnLoading() async {
     try {
-      eventGetArticle();
-      eventGetTips();
+      await eventGetChecklistList();
+      eventGetFetus();
     } catch (e, s) {}
   }
 
-  eventGetArticle() async {
+  eventGetChecklistList({int? fetusId}) async {
     try {
-      emit(state.copyWith(listArticle: ViewData.loading()));
-      final response = await articleRepo.getListArticle(
-        page: 1,
-        categoryId: '1',
-        arraySubCategoryId: '1',
-        bookmark: false,
-      );
+      emit(state.copyWith(listChecklist: ViewData.loading()));
+      final response = await checklistRepo.getChecklistList(fetusId: fetusId);
 
-      final list = response.data?.article ?? [];
+      final list = response.data ?? [];
       emit(state.copyWith(
-        listArticle: ViewData.loaded(list),
+        listChecklist: ViewData.loaded(response),
       ));
     } catch (e, s) {
-      emit(state.copyWith(listArticle: ViewData.error(e.toString())));
+      emit(state.copyWith(listChecklist: ViewData.error(e.toString())));
     }
   }
 
-  eventGetTips() async {
+  eventGetFetus() async {
     try {
-      emit(state.copyWith(listTips: ViewData.loading()));
-      final response = await tipsRepo.getTipsList(
-          page: 1, bookmark: false, subCategoryId: '1');
+      emit(state.copyWith(listChecklist: ViewData.loading()));
+      final response = await checklistRepo.getListFetus();
 
-      final list = response.data?.tips ?? [];
+      final list = response.data ?? [];
       emit(state.copyWith(
-        listTips: ViewData.loaded(list),
+        listFetus: ViewData.loaded(response),
       ));
     } catch (e, s) {
-      emit(state.copyWith(listTips: ViewData.error(e.toString())));
+      emit(state.copyWith(listChecklist: ViewData.error(e.toString())));
     }
   }
 
@@ -94,12 +82,6 @@ class HomeAppBloc extends Cubit<HomeAppState> {
       case 'home':
         context.go(HomeScreen.routeName);
         break;
-      case '/article':
-        context.go(ArticleListScreen.routeName);
-        break;
-      case '/tips':
-        context.go(TipsListScreen.routeName);
-        break;
       case 'logout':
         AuthHelper.logout(context);
         break;
@@ -110,7 +92,9 @@ class HomeAppBloc extends Cubit<HomeAppState> {
   }
 
   eventOnChangeCategory(category) {
-    emit(state.copyWith(selectedCategory: category));
+    emit(state.copyWith(
+        selectedCategory: category, selectedSubCategory: 0, page: 1));
+    eventGetFetus();
   }
 
   eventOnTapArticle(BuildContext context, ArticleModel item) {
