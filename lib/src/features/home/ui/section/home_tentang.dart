@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../components/atoms/atoms.dart';
 import '../../../../themes/themes.dart';
 import '../../widget/home_bg_section.dart';
@@ -15,7 +16,7 @@ class _HomeTentangState extends State<HomeTentang>
   @override
   void initState() {
     _animationController =
-        AnimationController(vsync: this, duration: const Duration(seconds: 10))
+        AnimationController(vsync: this, duration: const Duration(seconds: 5))
           ..repeat(reverse: true);
     _animationController.forward();
     super.initState();
@@ -53,6 +54,7 @@ class HomeAbout extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            MySizedBox.normalVertical(),
             FadeTransition(
               opacity: _animation,
               child: Text(
@@ -75,38 +77,42 @@ class HomeAbout extends StatelessWidget {
             MySizedBox.largeVertical(),
             Wrap(
               direction: Axis.horizontal,
+              alignment: WrapAlignment.center,
               children: <Widget>[
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    MySizedBox.bloodyLargeVertical(),
-                    Image.asset(
-                      MyAsset.background.ic1,
-                      width: 150,
-                      height: 150,
-                    ),
-                    MySizedBox.normalVertical(),
-                    Text(
-                      'Program Hamil',
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: MyColor.black,
-                          ),
-                    ),
-                    MySizedBox.normalVertical(),
-                    SizedBox(
-                      height: 40,
-                      width: 250,
-                      child: Text(
-                        'sedang berusaha memiliki momongan? Anda akan terbantu dengan fitur ini!',
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleSmall
-                            ?.copyWith(color: MyColor.black),
-                        textAlign: TextAlign.center,
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10.w),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      MySizedBox.bloodyLargeVertical(),
+                      Image.asset(
+                        MyAsset.background.ic1,
+                        width: 150,
+                        height: 150,
                       ),
-                    ),
-                    MySizedBox.bloodyLargeVertical(),
-                  ],
+                      MySizedBox.normalVertical(),
+                      Text(
+                        'Program Hamil',
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                              color: MyColor.black,
+                            ),
+                      ),
+                      MySizedBox.normalVertical(),
+                      SizedBox(
+                        height: 40,
+                        width: 250,
+                        child: Text(
+                          'sedang berusaha memiliki momongan? Anda akan terbantu dengan fitur ini!',
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleSmall
+                              ?.copyWith(color: MyColor.black),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      MySizedBox.bloodyLargeVertical(),
+                    ],
+                  ),
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,

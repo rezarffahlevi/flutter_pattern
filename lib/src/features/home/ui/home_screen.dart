@@ -6,9 +6,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:temanbumil_web/src/components/components.dart';
 import 'package:temanbumil_web/src/configs/configs.dart';
 import 'package:temanbumil_web/src/features/features.dart';
+import 'package:temanbumil_web/src/features/home/ui/section/home_feature_large.dart';
 import 'package:temanbumil_web/src/features/home/ui/section/home_section_about.dart';
 import 'package:temanbumil_web/src/features/home/ui/section/home_section_article_tips.dart';
 import 'package:temanbumil_web/src/features/home/ui/section/home_section_first.dart';
+import 'package:temanbumil_web/src/features/home/ui/section/home_tentang.dart';
 import 'package:temanbumil_web/src/features/home/widget/home_bg_section.dart';
 import 'package:temanbumil_web/src/helpers/helpers.dart';
 
@@ -75,6 +77,11 @@ class _HomeScreenState extends State<HomeScreen> {
           physics: const ClampingScrollPhysics(),
           child: Column(children: [
             HomeSectionFirst(),
+            HomeTentang(),
+            ResponsiveWidget(
+              largeScreen: HomeFeatureLarge(),
+              smallScreen: HomeFeatureSmall(),
+            ),
             HomeSectionArticleTips(bloc),
             HomeSectionAbout(),
           ]),
