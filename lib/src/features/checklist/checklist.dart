@@ -5,8 +5,6 @@ import 'package:temanbumil_web/src/features/checklist/bloc/checklist_list/checkl
 import 'package:temanbumil_web/src/features/checklist/ui/checklist_screen.dart';
 import 'package:temanbumil_web/src/repositories/models/fetus/fetus_model.dart';
 
-import '../tips/bloc/bloc.dart';
-
 class ChecklistFeature {
   static List appRoutes() {
     return [
