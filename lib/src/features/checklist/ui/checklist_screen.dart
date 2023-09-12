@@ -35,6 +35,7 @@ class _ChecklistScreenState extends State<ChecklistScreen> {
   @override
   void initState() {
     super.initState();
+    bloc.init(context);
     Helper.fToast.init(context);
   }
 
@@ -119,41 +120,49 @@ class _ChecklistScreenState extends State<ChecklistScreen> {
                             children: [
                               MySizedBox.smallVertical(),
                               HomeCategoryHorizontalWidget(
-                                categories: (state.listItem.data ?? [])
-                                    .map((e) => e.title)
+                                categories: (state.listFetus.data?.data ?? [])
+                                    .map((e) => e.fullname)
                                     .toList(),
-                                selected: state.selectedCategory,
+                                selected: state.selectedFetus,
                                 onTap: (value) {
                                   logger.e(value);
                                   bloc.eventOnChangeCategory(value);
                                 },
                               ),
                               Divider(),
-                              HomeCategoryHorizontalWidget(
-                                categories: (state
-                                            .listItem
-                                            .data?[state.selectedCategory]
-                                            .checklistNode ??
-                                        [])
-                                    .map((e) => e.checkId)
-                                    .toList(),
-                                selected: state.selectedSubCategory,
-                                onTap: (value) {
-                                  bloc.eventOnChangeCategory(value);
-                                },
-                              ),
+                              // HomeCategoryHorizontalWidget(
+                              //   categories: (state
+                              //               .listItem
+                              //               .data?[state.selectedFetus]
+                              //               .checklistNode ??
+                              //           [])
+                              //       .map((e) => e.checkId)
+                              //       .toList(),
+                              //   selected: state.selectedSubCategory,
+                              //   onTap: (value) {
+                              //     bloc.eventOnChangeCategory(value);
+                              //   },
+                              // ),
                               Wrap(
                                 direction: Axis.horizontal,
                                 // alignment: WrapAlignment.center,
                                 children: [
-                                  for (ChecklistItemModel item
-                                      in state.listItem.data ?? [])
+                                  for (ChecklistItemModel item in state
+                                          .listChecklist
+                                          .data
+                                          ?.data
+                                          ?.checklist ??
+                                      [])
                                     Container(
                                       width: Helper.responsive(context,
                                           lg: 80.w, md: 140.w, sm: 0.94.sw),
-                                      height: Helper.responsive(context,
-                                          lg: 50.w, md: 100.w, sm: 200.w),
                                       margin: EdgeInsets.all(6.w),
+                                      child: Column(children: [
+                                        Text('${item.title}'),
+                                        for (ChecklistNode checklist
+                                            in item.checklistNode ?? [])
+                                          Text('${checklist.description}')
+                                      ]),
                                     ),
                                 ],
                               ),

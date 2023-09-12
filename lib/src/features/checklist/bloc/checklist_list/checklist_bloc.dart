@@ -16,7 +16,7 @@ class ChecklistListBloc extends Cubit<ChecklistListState> {
 
   final ScrollController scrollController = ScrollController();
 
-  init(BuildContext context, String id) async {
+  init(BuildContext context) async {
     emit(state.copyWith(
         menu: ViewData.loaded([
       {'menu': 'Home', 'link': '/home-app', 'hover': false},
@@ -27,8 +27,6 @@ class ChecklistListBloc extends Cubit<ChecklistListState> {
     ])));
     scrollController.addListener(scrollListener);
     eventOnLoading();
-    // await Helper.addDelay(1);
-    // context.pop();
   }
 
   scrollListener() {
@@ -37,15 +35,16 @@ class ChecklistListBloc extends Cubit<ChecklistListState> {
 
   eventOnLoading() async {
     try {
-      await eventGetChecklistList();
-      eventGetFetus();
+      await eventGetFetus();
+      eventGetChecklistList();
     } catch (e, s) {}
   }
 
   eventGetChecklistList({int? fetusId}) async {
     try {
       emit(state.copyWith(listChecklist: ViewData.loading()));
-      final response = await checklistRepo.getChecklistList(fetusId: fetusId);
+      final response = await checklistRepo.getChecklistList(
+          fetusId: fetusId ?? state.listFetus.data?.data?[0].fetusId ?? 1);
 
       final list = response.data ?? [];
       emit(state.copyWith(
@@ -62,9 +61,7 @@ class ChecklistListBloc extends Cubit<ChecklistListState> {
       final response = await checklistRepo.getListFetus();
 
       final list = response.data ?? [];
-      emit(state.copyWith(
-        listFetus: ViewData.loaded(response),
-      ));
+      emit(state.copyWith(listFetus: ViewData.loaded(response)));
     } catch (e, s) {
       emit(state.copyWith(listChecklist: ViewData.error(e.toString())));
     }
@@ -93,7 +90,7 @@ class ChecklistListBloc extends Cubit<ChecklistListState> {
 
   eventOnChangeCategory(category) {
     emit(state.copyWith(
-        selectedCategory: category, selectedSubCategory: 0, page: 1));
+        selectedFetus: category, selectedSubCategory: 0, page: 1));
     eventGetFetus();
   }
 

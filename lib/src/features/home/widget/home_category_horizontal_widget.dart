@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:temanbumil_web/src/helpers/helpers.dart';
 
 class HomeCategoryHorizontalWidget extends StatelessWidget {
   final List? categories;
@@ -9,6 +10,7 @@ class HomeCategoryHorizontalWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    logger.i(categories);
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 20.w),
       child: Scrollbar(
@@ -18,14 +20,14 @@ class HomeCategoryHorizontalWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: categories
                     ?.map((e) => InkWell(
-                          onTap: () => onTap!(
-                              categories?.indexWhere((element) => element == e) ??
-                                  0),
+                          onTap: () => onTap!(categories
+                                  ?.indexWhere((element) => element == e) ??
+                              0),
                           child: Container(
                             padding: EdgeInsets.symmetric(
                                 horizontal: 10.w, vertical: 4.w),
                             child: Text(
-                              e,
+                              '$e',
                               style: e == categories?[selected ?? 0]
                                   ? Theme.of(context)
                                       .textTheme

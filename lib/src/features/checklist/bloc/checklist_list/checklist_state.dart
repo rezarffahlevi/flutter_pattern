@@ -11,7 +11,7 @@ class ChecklistListState extends Equatable {
   final ViewData<List<ChecklistItemModel>> listItem;
   final ViewData<ListFetusResponseModel> listFetus;
   final ViewData<List<Map<String, dynamic>>> menu;
-  final int selectedCategory;
+  final int selectedFetus;
   final int selectedSubCategory;
   final int page;
 
@@ -21,7 +21,7 @@ class ChecklistListState extends Equatable {
     this.listItem = const ViewData(),
     this.listFetus = const ViewData(),
     this.menu = const ViewData(),
-    this.selectedCategory = 0,
+    this.selectedFetus = 0,
     this.selectedSubCategory = 0,
     this.page = 1,
   });
@@ -32,7 +32,7 @@ class ChecklistListState extends Equatable {
       ViewData<List<ChecklistItemModel>>? listItem,
       ViewData<ListFetusResponseModel>? listFetus,
       ViewData<List<Map<String, dynamic>>>? menu,
-      int? selectedCategory,
+      int? selectedFetus,
       int? selectedSubCategory,
       int? page}) {
     return ChecklistListState(
@@ -41,7 +41,7 @@ class ChecklistListState extends Equatable {
       listItem: listItem ?? this.listItem,
       listFetus: listFetus ?? this.listFetus,
       menu: menu ?? this.menu,
-      selectedCategory: selectedCategory ?? this.selectedCategory,
+      selectedFetus: selectedFetus ?? this.selectedFetus,
       selectedSubCategory: selectedSubCategory ?? this.selectedSubCategory,
       page: page ?? this.page,
     );
@@ -54,7 +54,7 @@ class ChecklistListState extends Equatable {
         listItem,
         listFetus,
         menu,
-        selectedCategory,
+        selectedFetus,
         selectedSubCategory
       ];
 }
