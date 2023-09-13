@@ -78,14 +78,15 @@ class _HomeScreenState extends State<HomeScreen> {
           physics: const ClampingScrollPhysics(),
           child: Column(children: [
             HomeSectionFirst(),
-            HomeTentang(),
+            Container(key: bloc.keyAbout, child: HomeTentang()),
             ResponsiveWidget(
+              key: bloc.keyFeature,
               largeScreen: HomeFeatureLarge(),
               mediumScreen: HomeFeatureSmall(),
               smallScreen: HomeFeatureSmall(),
             ),
-            HomeSectionArticleTips(bloc),
-            HomeSectionAbout(),
+            Container(
+                key: bloc.keyArticle, child: HomeSectionArticleTips(bloc)),
           ]),
         ),
       ),

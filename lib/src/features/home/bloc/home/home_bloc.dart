@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:temanbumil_web/src/components/molecules/dialog/login_dialog.dart';
 import 'package:temanbumil_web/src/configs/configs.dart';
@@ -14,26 +15,28 @@ class HomeBloc extends Cubit<HomeState> {
   final articleRepo = inject<ArticleApiRepository>();
   final tipsRepo = inject<TipsApiRepository>();
 
+  final keyAbout = GlobalKey();
+  final keyFeature = GlobalKey();
+  final keyArticle = GlobalKey();
+
   final ScrollController scrollController = ScrollController();
 
   init(BuildContext context) async {
     emit(state.copyWith(
         menu: ViewData.loaded([
-      {'menu': 'Home', 'link': '', 'hover': false},
-      {'menu': 'Tentang', 'link': '', 'hover': false},
-      {'menu': 'Fitur', 'link': '', 'hover': false},
-      {'menu': 'Testimoni', 'link': '', 'hover': false},
-      {'menu': 'Screen', 'link': '', 'hover': false},
+      {'menu': 'Home', 'link': 'home', 'hover': false},
+      {'menu': 'Tentang', 'link': 'about', 'hover': false},
+      {'menu': 'Fitur', 'link': 'feature', 'hover': false},
+      {'menu': 'Artikel', 'link': 'article', 'hover': false},
       {'menu': 'Login', 'link': 'login', 'hover': false},
     ])));
     if (await Prefs.loggedIn) {
       emit(state.copyWith(
           menu: ViewData.loaded([
         {'menu': 'App', 'link': 'app', 'hover': false},
-        {'menu': 'Tentang', 'link': '', 'hover': false},
-        {'menu': 'Fitur', 'link': '', 'hover': false},
-        {'menu': 'Testimoni', 'link': '', 'hover': false},
-        {'menu': 'Screen', 'link': '', 'hover': false},
+        {'menu': 'Tentang', 'link': 'about', 'hover': false},
+        {'menu': 'Fitur', 'link': 'feature', 'hover': false},
+        {'menu': 'Artikel', 'link': 'article', 'hover': false},
         {'menu': 'Logout', 'link': 'logout', 'hover': false},
       ])));
     }
@@ -75,10 +78,7 @@ class HomeBloc extends Cubit<HomeState> {
     try {
       emit(state.copyWith(listTips: ViewData.loading()));
       final response = await tipsRepo.getTipsList(
-        page: 1,
-        bookmark: false,
-        subCategoryId: '1'
-      );
+          page: 1, bookmark: false, subCategoryId: '1');
 
       final list = response.data?.tips ?? [];
       emit(state.copyWith(
@@ -106,10 +106,9 @@ class HomeBloc extends Cubit<HomeState> {
             emit(state.copyWith(
                 menu: ViewData.loaded([
               {'menu': 'App', 'link': 'app', 'hover': false},
-              {'menu': 'Tentang', 'link': '', 'hover': false},
-              {'menu': 'Fitur', 'link': '', 'hover': false},
-              {'menu': 'Testimoni', 'link': '', 'hover': false},
-              {'menu': 'Screen', 'link': '', 'hover': false},
+              {'menu': 'Tentang', 'link': 'about', 'hover': false},
+              {'menu': 'Fitur', 'link': 'feature', 'hover': false},
+              {'menu': 'Artikel', 'link': 'article', 'hover': false},
               {'menu': 'Logout', 'link': 'logout', 'hover': false},
             ])));
             eventOnLoading();
@@ -119,15 +118,30 @@ class HomeBloc extends Cubit<HomeState> {
       case 'app':
         context.go(HomeAppScreen.routeName);
         break;
+      case 'home':
+        scrollController.animateTo(0,
+            duration: Duration(milliseconds: 600), curve: Curves.easeIn);
+        break;
+      case 'about':
+        Scrollable.ensureVisible(keyAbout.currentContext!,
+            duration: Duration(milliseconds: 600), curve: Curves.easeIn);
+        break;
+      case 'feature':
+        Scrollable.ensureVisible(keyFeature.currentContext!,
+            duration: Duration(milliseconds: 600), curve: Curves.easeIn);
+        break;
+      case 'article':
+        Scrollable.ensureVisible(keyArticle.currentContext!,
+            duration: Duration(milliseconds: 600), curve: Curves.easeIn);
+        break;
       case 'logout':
         AuthHelper.logout(context);
         emit(state.copyWith(
             menu: ViewData.loaded([
-          {'menu': 'Home', 'link': '', 'hover': false},
-          {'menu': 'Tentang', 'link': '', 'hover': false},
-          {'menu': 'Fitur', 'link': '', 'hover': false},
-          {'menu': 'Testimoni', 'link': '', 'hover': false},
-          {'menu': 'Screen', 'link': '', 'hover': false},
+          {'menu': 'Home', 'link': 'home', 'hover': false},
+          {'menu': 'Tentang', 'link': 'about', 'hover': false},
+          {'menu': 'Fitur', 'link': 'feature', 'hover': false},
+          {'menu': 'Artikel', 'link': 'article', 'hover': false},
           {'menu': 'Login', 'link': 'login', 'hover': false},
         ])));
         // eventOnLoading();

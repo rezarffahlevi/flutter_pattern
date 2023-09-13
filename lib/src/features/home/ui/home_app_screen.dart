@@ -80,13 +80,6 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                     case ViewState.loaded:
                       return Column(
                         children: [
-                          HomeCategoryHorizontalWidget(
-                            categories: ['Promil', 'Kehamilan', 'Ga tau'],
-                            selected: 0,
-                            onTap: (value) {
-                              bloc.eventOnChangeCategory(value);
-                            },
-                          ),
                           Wrap(
                             direction: Axis.horizontal,
                             // alignment: WrapAlignment.center,
@@ -94,12 +87,14 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                               for (ArticleModel item
                                   in state.listArticle.data ?? [])
                                 InkWell(
-                                  onTap: (){
+                                  onTap: () {
                                     bloc.eventOnTapArticle(context, item);
                                   },
                                   child: Container(
-                                    width: Helper.responsive(context, lg:  80.w, md: 140.w, sm: 0.94.sw),
-                                    height: Helper.responsive(context, lg:  50.w, md: 100.w, sm: 200.w),
+                                    width: Helper.responsive(context,
+                                        lg: 80.w, md: 140.w, sm: 0.94.sw),
+                                    height: Helper.responsive(context,
+                                        lg: 50.w, md: 100.w, sm: 200.w),
                                     margin: EdgeInsets.all(6.w),
                                     child: CardParallax(
                                       imageUrl: item.cover,
@@ -108,11 +103,12 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                                     ),
                                   ),
                                 ),
-                                for (TipsModel item
-                                  in state.listTips.data ?? [])
+                              for (TipsModel item in state.listTips.data ?? [])
                                 Container(
-                                  width: Helper.responsive(context, lg:  80.w, md: 140.w, sm: 0.94.sw),
-                                  height: Helper.responsive(context, lg:  50.w, md: 100.w, sm: 200.w),
+                                  width: Helper.responsive(context,
+                                      lg: 80.w, md: 140.w, sm: 0.94.sw),
+                                  height: Helper.responsive(context,
+                                      lg: 50.w, md: 100.w, sm: 200.w),
                                   margin: EdgeInsets.all(6.w),
                                   child: CardTips(
                                     cover: item.cover,
