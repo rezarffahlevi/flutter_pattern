@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:temanbumil_web/src/components/components.dart';
+import 'package:temanbumil_web/src/widgets/widgets.dart';
 import 'package:temanbumil_web/src/helpers/helpers.dart';
 
 import '../../../../themes/themes.dart';
@@ -35,14 +35,18 @@ class HomeSectionAbout extends StatelessWidget {
             children: [
               Text(
                 'home.content_title'.tr(),
-                style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                    color: Theme.of(context).colorScheme.inversePrimary),
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineLarge
+                    ?.copyWith(color: Theme.of(context).colorScheme.inversePrimary),
               ),
               MySizedBox.normalVertical(),
               Text(
                 'home.content_desc'.tr(),
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: Theme.of(context).colorScheme.inversePrimary),
+                style: Theme.of(context)
+                    .textTheme
+                    .titleMedium
+                    ?.copyWith(color: Theme.of(context).colorScheme.inversePrimary),
               ),
             ],
           ),

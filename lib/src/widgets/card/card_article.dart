@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:temanbumil_web/src/components/atoms/atoms.dart';
 import 'package:temanbumil_web/src/helpers/helper.dart';
 import 'package:temanbumil_web/src/themes/themes.dart';
+import 'package:temanbumil_web/src/widgets/widgets.dart';
 
 class CardArticleWidget extends StatelessWidget {
   final String? title;
@@ -60,13 +60,11 @@ class CardArticleWidget extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     category ?? '',
-                    style: MyTextStyle.articleCategory
-                        .copyWith(color: MyColor.defaultPurple),
+                    style: MyTextStyle.articleCategory.copyWith(color: MyColor.defaultPurple),
                   ),
                   Text(
                     Helper.formatDate(createdAt ?? ''),
-                    style: MyTextStyle.articleCategory
-                        .copyWith(color: MyColor.black),
+                    style: MyTextStyle.articleCategory.copyWith(color: MyColor.black),
                   ),
                 ],
               ),

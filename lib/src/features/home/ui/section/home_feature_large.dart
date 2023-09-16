@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:temanbumil_web/src/widgets/widgets.dart';
 
-import '../../../../components/atoms/atoms.dart';
 import '../../../../themes/themes.dart';
 import '../../widget/home_bg_section.dart';
 
@@ -53,9 +53,7 @@ class HomeFeatureLarge extends StatelessWidget {
                               style: Theme.of(context)
                                   .textTheme
                                   .titleSmall
-                                  ?.copyWith(
-                                      color: MyColor.white,
-                                      fontWeight: FontWeight.bold),
+                                  ?.copyWith(color: MyColor.white, fontWeight: FontWeight.bold),
                               textAlign: TextAlign.right,
                             ),
                           ),
@@ -77,10 +75,9 @@ class HomeFeatureLarge extends StatelessWidget {
                         width: 250,
                         child: Text(
                           'Rangkuman perkembangan kehamilan Mums dan tumbuh kembang si Kecil dengan ilustrasi menarik dan lengkap',
-                          style:
-                              Theme.of(context).textTheme.titleSmall?.copyWith(
-                                    color: MyColor.white,
-                                  ),
+                          style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                                color: MyColor.white,
+                              ),
                           textAlign: TextAlign.right,
                         ),
                       ),
@@ -95,9 +92,7 @@ class HomeFeatureLarge extends StatelessWidget {
                               style: Theme.of(context)
                                   .textTheme
                                   .titleSmall
-                                  ?.copyWith(
-                                      color: MyColor.white,
-                                      fontWeight: FontWeight.bold),
+                                  ?.copyWith(color: MyColor.white, fontWeight: FontWeight.bold),
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -117,10 +112,9 @@ class HomeFeatureLarge extends StatelessWidget {
                         width: 250,
                         child: Text(
                           'Wadah untuk saling bertukar informasi dengan sesama ibu di seluruh Indonesia.',
-                          style:
-                              Theme.of(context).textTheme.titleSmall?.copyWith(
-                                    color: MyColor.white,
-                                  ),
+                          style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                                color: MyColor.white,
+                              ),
                           textAlign: TextAlign.right,
                         ),
                       ),
@@ -135,9 +129,7 @@ class HomeFeatureLarge extends StatelessWidget {
                               style: Theme.of(context)
                                   .textTheme
                                   .titleSmall
-                                  ?.copyWith(
-                                      color: MyColor.white,
-                                      fontWeight: FontWeight.bold),
+                                  ?.copyWith(color: MyColor.white, fontWeight: FontWeight.bold),
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -157,10 +149,9 @@ class HomeFeatureLarge extends StatelessWidget {
                         width: 250,
                         child: Text(
                           'Temukan beragam informasi seputar program kehamilan, masa kehamilan, dan tumbuh kembang anak.',
-                          style:
-                              Theme.of(context).textTheme.titleSmall?.copyWith(
-                                    color: MyColor.white,
-                                  ),
+                          style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                                color: MyColor.white,
+                              ),
                           textAlign: TextAlign.right,
                         ),
                       ),
@@ -175,9 +166,7 @@ class HomeFeatureLarge extends StatelessWidget {
                               style: Theme.of(context)
                                   .textTheme
                                   .titleSmall
-                                  ?.copyWith(
-                                      color: MyColor.white,
-                                      fontWeight: FontWeight.bold),
+                                  ?.copyWith(color: MyColor.white, fontWeight: FontWeight.bold),
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -197,10 +186,9 @@ class HomeFeatureLarge extends StatelessWidget {
                         width: 250,
                         child: Text(
                           'Temukan beragam informasi seputar program kehamilan, masa kehamilan, dan tumbuh kembang anak.',
-                          style:
-                              Theme.of(context).textTheme.titleSmall?.copyWith(
-                                    color: MyColor.white,
-                                  ),
+                          style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                                color: MyColor.white,
+                              ),
                           textAlign: TextAlign.right,
                         ),
                       ),
@@ -253,9 +241,7 @@ class HomeFeatureLarge extends StatelessWidget {
                                   style: Theme.of(context)
                                       .textTheme
                                       .titleSmall
-                                      ?.copyWith(
-                                          color: MyColor.white,
-                                          fontWeight: FontWeight.bold),
+                                      ?.copyWith(color: MyColor.white, fontWeight: FontWeight.bold),
                                   textAlign: TextAlign.left,
                                 ),
                               ),
@@ -266,10 +252,7 @@ class HomeFeatureLarge extends StatelessWidget {
                             width: 250,
                             child: Text(
                               'Tonton ratusan video edukatif seputar persiapan hamil, selama kehamilan, hingga perkembangan anak.',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleSmall
-                                  ?.copyWith(
+                              style: Theme.of(context).textTheme.titleSmall?.copyWith(
                                     color: MyColor.white,
                                   ),
                               textAlign: TextAlign.left,
@@ -297,9 +280,7 @@ class HomeFeatureLarge extends StatelessWidget {
                                   style: Theme.of(context)
                                       .textTheme
                                       .titleSmall
-                                      ?.copyWith(
-                                          color: MyColor.white,
-                                          fontWeight: FontWeight.bold),
+                                      ?.copyWith(color: MyColor.white, fontWeight: FontWeight.bold),
                                   textAlign: TextAlign.left,
                                 ),
                               ),
@@ -310,10 +291,7 @@ class HomeFeatureLarge extends StatelessWidget {
                             width: 250,
                             child: Text(
                               'Pantau dan simpan perkembangan janin, Mums, dan tumbuh kembang si Kecil secara lebih mudah.',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleSmall
-                                  ?.copyWith(
+                              style: Theme.of(context).textTheme.titleSmall?.copyWith(
                                     color: MyColor.white,
                                   ),
                               textAlign: TextAlign.left,
@@ -341,9 +319,7 @@ class HomeFeatureLarge extends StatelessWidget {
                                   style: Theme.of(context)
                                       .textTheme
                                       .titleSmall
-                                      ?.copyWith(
-                                          color: MyColor.white,
-                                          fontWeight: FontWeight.bold),
+                                      ?.copyWith(color: MyColor.white, fontWeight: FontWeight.bold),
                                   textAlign: TextAlign.left,
                                 ),
                               ),
@@ -354,10 +330,7 @@ class HomeFeatureLarge extends StatelessWidget {
                             width: 250,
                             child: Text(
                               'Beragam tips ringan dan bermanfaat untuk menemani perjalanan program hamil, kehamilan, hingga tumbuh kembang anak.',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleSmall
-                                  ?.copyWith(
+                              style: Theme.of(context).textTheme.titleSmall?.copyWith(
                                     color: MyColor.white,
                                   ),
                               textAlign: TextAlign.left,
@@ -385,9 +358,7 @@ class HomeFeatureLarge extends StatelessWidget {
                                   style: Theme.of(context)
                                       .textTheme
                                       .titleSmall
-                                      ?.copyWith(
-                                          color: MyColor.white,
-                                          fontWeight: FontWeight.bold),
+                                      ?.copyWith(color: MyColor.white, fontWeight: FontWeight.bold),
                                   textAlign: TextAlign.left,
                                 ),
                               ),
@@ -398,10 +369,7 @@ class HomeFeatureLarge extends StatelessWidget {
                             width: 250,
                             child: Text(
                               'Temukan berbagai rekomendasi produk untuk Mums dan si Kecil.',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleSmall
-                                  ?.copyWith(
+                              style: Theme.of(context).textTheme.titleSmall?.copyWith(
                                     color: MyColor.white,
                                   ),
                               textAlign: TextAlign.left,

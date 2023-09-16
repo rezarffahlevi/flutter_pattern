@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
-import 'package:temanbumil_web/src/components/atoms/atoms.dart';
 import 'package:temanbumil_web/src/features/features.dart';
 import 'package:temanbumil_web/src/themes/themes.dart';
+import 'package:temanbumil_web/src/widgets/widgets.dart';
 import '../../../../configs/configs.dart';
 import '../../../../helpers/helpers.dart';
 import '../../../../repositories/repositories.dart';
@@ -57,8 +57,7 @@ class _TipsDetailScreenState extends State<TipsDetailScreen> {
           physics: const ClampingScrollPhysics(),
           child: Container(
             alignment: Alignment.center,
-            padding: EdgeInsets.symmetric(
-                horizontal: Helper.responsive(context, lg: 40.w, sm: 0)),
+            padding: EdgeInsets.symmetric(horizontal: Helper.responsive(context, lg: 40.w, sm: 0)),
             child: BlocBuilder<TipsDetailBloc, TipsDetailState>(
               bloc: bloc,
               builder: (context, state) {
@@ -83,15 +82,11 @@ class _TipsDetailScreenState extends State<TipsDetailScreen> {
                             children: [
                               Text(
                                 '${detail?.title}',
-                                style:
-                                    Theme.of(context).textTheme.headlineMedium,
+                                style: Theme.of(context).textTheme.headlineMedium,
                               ),
                               MySizedBox.normalVertical(),
                               HtmlWidget(detail?.description ?? '',
-                                  textStyle: TextStyle(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .surface)),
+                                  textStyle: TextStyle(color: Theme.of(context).colorScheme.surface)),
                             ],
                           ),
                         )

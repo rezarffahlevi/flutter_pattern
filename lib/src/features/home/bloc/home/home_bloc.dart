@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:temanbumil_web/src/components/molecules/dialog/login_dialog.dart';
+import 'package:temanbumil_web/src/widgets/dialog/login_dialog.dart';
 import 'package:temanbumil_web/src/configs/configs.dart';
 import 'package:temanbumil_web/src/features/features.dart';
 import 'package:temanbumil_web/src/helpers/helpers.dart';
@@ -77,8 +77,7 @@ class HomeBloc extends Cubit<HomeState> {
   eventGetTips() async {
     try {
       emit(state.copyWith(listTips: ViewData.loading()));
-      final response = await tipsRepo.getTipsList(
-          page: 1, bookmark: false, subCategoryId: '1');
+      final response = await tipsRepo.getTipsList(page: 1, bookmark: false, subCategoryId: '1');
 
       final list = response.data?.tips ?? [];
       emit(state.copyWith(
@@ -99,8 +98,7 @@ class HomeBloc extends Cubit<HomeState> {
   eventOnTapMenu(BuildContext context, int index, dynamic menu) async {
     switch (menu['link']) {
       case 'login':
-        final successLogin = await showDialog(
-            context: context, builder: (context) => const LoginDialog());
+        final successLogin = await showDialog(context: context, builder: (context) => const LoginDialog());
         if (successLogin) {
           if (await Prefs.loggedIn) {
             emit(state.copyWith(
@@ -119,12 +117,10 @@ class HomeBloc extends Cubit<HomeState> {
         context.go(HomeAppScreen.routeName);
         break;
       case 'home':
-        scrollController.animateTo(0,
-            duration: Duration(milliseconds: 600), curve: Curves.easeIn);
+        scrollController.animateTo(0, duration: Duration(milliseconds: 600), curve: Curves.easeIn);
         break;
       case 'about':
-        Scrollable.ensureVisible(keyAbout.currentContext!,
-            duration: Duration(milliseconds: 600), curve: Curves.easeIn);
+        Scrollable.ensureVisible(keyAbout.currentContext!, duration: Duration(milliseconds: 600), curve: Curves.easeIn);
         break;
       case 'feature':
         Scrollable.ensureVisible(keyFeature.currentContext!,

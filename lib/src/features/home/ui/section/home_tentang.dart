@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../components/atoms/atoms.dart';
+import 'package:temanbumil_web/src/widgets/widgets.dart';
 import '../../../../themes/themes.dart';
 import '../../widget/home_bg_section.dart';
 
@@ -9,15 +9,13 @@ class HomeTentang extends StatefulWidget {
   _HomeTentangState createState() => _HomeTentangState();
 }
 
-class _HomeTentangState extends State<HomeTentang>
-    with SingleTickerProviderStateMixin {
+class _HomeTentangState extends State<HomeTentang> with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
 
   @override
   void initState() {
-    _animationController =
-        AnimationController(vsync: this, duration: const Duration(seconds: 5))
-          ..repeat(reverse: true);
+    _animationController = AnimationController(vsync: this, duration: const Duration(seconds: 5))
+      ..repeat(reverse: true);
     _animationController.forward();
     super.initState();
   }
@@ -59,10 +57,7 @@ class HomeAbout extends StatelessWidget {
               opacity: _animation,
               child: Text(
                 'TENTANG TEMAN BUMIL ',
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineLarge
-                    ?.copyWith(color: MyColor.blueHome),
+                style: Theme.of(context).textTheme.headlineLarge?.copyWith(color: MyColor.blueHome),
                 textAlign: TextAlign.center,
               ),
             ),

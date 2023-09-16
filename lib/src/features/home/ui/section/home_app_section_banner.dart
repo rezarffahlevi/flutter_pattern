@@ -1,11 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:temanbumil_web/src/components/atoms/atoms.dart';
-import 'package:temanbumil_web/src/components/molecules/card/card.dart';
+import 'package:temanbumil_web/src/widgets/card/card.dart';
 import 'package:temanbumil_web/src/features/home/widget/home_bg_section.dart';
 import 'package:temanbumil_web/src/helpers/helpers.dart';
 import 'package:temanbumil_web/src/themes/themes.dart';
+import 'package:temanbumil_web/src/widgets/widgets.dart';
 
 class HomeAppSectionBanner extends StatelessWidget {
   @override
@@ -16,10 +16,7 @@ class HomeAppSectionBanner extends StatelessWidget {
     return Container(
       width: 1.sw,
       padding: EdgeInsets.only(
-          left: 20.w,
-          right: 20.w,
-          top: (ResponsiveWidget.isSmallScreen(context) ? 60.h : 80.h) + 30.w,
-          bottom: 30.w),
+          left: 20.w, right: 20.w, top: (ResponsiveWidget.isSmallScreen(context) ? 60.h : 80.h) + 30.w, bottom: 30.w),
       color: '#CBC3E3'.toColor().withOpacity(0.2),
       child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

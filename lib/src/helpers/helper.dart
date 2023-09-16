@@ -5,19 +5,16 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:logger/logger.dart';
-import 'package:temanbumil_web/src/components/atoms/atoms.dart';
 import 'package:temanbumil_web/src/themes/themes.dart';
+import 'package:temanbumil_web/src/widgets/widgets.dart';
 
 class Helper {
-  static final GlobalKey<NavigatorState> navigatorKey =
-      new GlobalKey<NavigatorState>();
+  static final GlobalKey<NavigatorState> navigatorKey = new GlobalKey<NavigatorState>();
   static final FToast fToast = FToast();
 
-  static double responsive(BuildContext context,
-      {double? sm, double? md, required double lg}) {
+  static double responsive(BuildContext context, {double? sm, double? md, required double lg}) {
     bool small = MediaQuery.of(context).size.width < 800;
-    bool medium = MediaQuery.of(context).size.width >= 800 &&
-        MediaQuery.of(context).size.width <= 1200;
+    bool medium = MediaQuery.of(context).size.width >= 800 && MediaQuery.of(context).size.width <= 1200;
     bool large = MediaQuery.of(context).size.width > 1200;
 
     if (large)
@@ -68,8 +65,7 @@ class Helper {
   }
 
   static String getErrorMessage(e) {
-    String rawResult =
-        removeAllHtmlTags(e.toString().replaceAll('Exception: ', ''));
+    String rawResult = removeAllHtmlTags(e.toString().replaceAll('Exception: ', ''));
     final list = rawResult.split('\nErrorCode=');
     return list.first;
   }
@@ -214,8 +210,7 @@ class Helper {
       builder: (_) => WillPopScope(
         onWillPop: () async => isDismissible,
         child: Padding(
-          padding:
-              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           child: Wrap(
             alignment: WrapAlignment.center,
             children: <Widget>[
@@ -275,8 +270,7 @@ class Helper {
     }
   }
 
-  static String formatDateWithDay(String date,
-      {String format = 'EEEE, dd MMMM yyyy'}) {
+  static String formatDateWithDay(String date, {String format = 'EEEE, dd MMMM yyyy'}) {
     try {
       initializeDateFormatting();
       return intl.DateFormat(format, 'id').format(DateTime.parse(date));
@@ -286,8 +280,7 @@ class Helper {
     }
   }
 
-  static String formatDateTime(String date,
-      {String format = 'dd MMMM yyyy HH:mm'}) {
+  static String formatDateTime(String date, {String format = 'dd MMMM yyyy HH:mm'}) {
     try {
       initializeDateFormatting();
       return intl.DateFormat(format, 'id').format(DateTime.parse(date));
@@ -297,13 +290,11 @@ class Helper {
     }
   }
 
-  static String formatDateTimeFromInt(int date,
-      {String format = 'dd MMMM yyyy HH:mm'}) {
+  static String formatDateTimeFromInt(int date, {String format = 'dd MMMM yyyy HH:mm'}) {
     print('formatDateTimeFromInt $date');
     try {
       initializeDateFormatting();
-      return intl.DateFormat(format, 'id')
-          .format(DateTime.fromMillisecondsSinceEpoch(date));
+      return intl.DateFormat(format, 'id').format(DateTime.fromMillisecondsSinceEpoch(date));
     } catch (e) {
       print(e.toString());
       return '-';

@@ -1,11 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:temanbumil_web/src/components/atoms/atoms.dart';
-import 'package:temanbumil_web/src/components/molecules/card/card.dart';
+import 'package:temanbumil_web/src/widgets/card/card.dart';
 import 'package:temanbumil_web/src/features/home/widget/home_bg_section.dart';
 import 'package:temanbumil_web/src/helpers/helpers.dart';
 import 'package:temanbumil_web/src/themes/themes.dart';
+import 'package:temanbumil_web/src/widgets/widgets.dart';
 
 class HomeSectionFirst extends StatelessWidget {
   @override
@@ -14,8 +14,7 @@ class HomeSectionFirst extends StatelessWidget {
 
     // Home
     return CardParallax(
-      aspectRatio:
-          ResponsiveWidget.isSmallScreen(context) ? 16 / 16 : 16 / 9,
+      aspectRatio: ResponsiveWidget.isSmallScreen(context) ? 16 / 16 : 16 / 9,
       imageUrl: MyAsset.background.bg1,
       customGradient: LinearGradient(
         begin: Alignment.topLeft,
@@ -37,14 +36,18 @@ class HomeSectionFirst extends StatelessWidget {
             children: [
               Text(
                 'home.content_title'.tr(),
-                style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                    color: Theme.of(context).colorScheme.inversePrimary),
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineLarge
+                    ?.copyWith(color: Theme.of(context).colorScheme.inversePrimary),
               ),
               MySizedBox.normalVertical(),
               Text(
                 'home.content_desc'.tr(),
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: Theme.of(context).colorScheme.inversePrimary),
+                style: Theme.of(context)
+                    .textTheme
+                    .titleMedium
+                    ?.copyWith(color: Theme.of(context).colorScheme.inversePrimary),
               ),
             ],
           ),

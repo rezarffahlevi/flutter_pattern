@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:go_router/go_router.dart';
-import 'package:temanbumil_web/src/components/components.dart';
+import 'package:temanbumil_web/src/widgets/widgets.dart';
 import 'package:temanbumil_web/src/configs/configs.dart';
 import 'package:temanbumil_web/src/features/features.dart';
 import 'package:temanbumil_web/src/features/home/ui/section/home_app_section_banner.dart';
@@ -49,7 +49,10 @@ class _ArticleDetailScreenState extends State<ArticleDetailScreen> {
             onPressed: () {
               context.go(HomeAppScreen.routeName);
             },
-            child: Icon(Icons.arrow_back_ios, color: MyColor.white,),
+            child: Icon(
+              Icons.arrow_back_ios,
+              color: MyColor.white,
+            ),
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
@@ -58,8 +61,7 @@ class _ArticleDetailScreenState extends State<ArticleDetailScreen> {
           physics: const ClampingScrollPhysics(),
           child: Container(
             alignment: Alignment.center,
-            padding: EdgeInsets.symmetric(
-                horizontal: Helper.responsive(context, lg: 40.w, sm: 0)),
+            padding: EdgeInsets.symmetric(horizontal: Helper.responsive(context, lg: 40.w, sm: 0)),
             child: BlocBuilder<ArticleDetailBloc, ArticleDetailState>(
                 bloc: bloc,
                 builder: (context, state) {
@@ -84,12 +86,11 @@ class _ArticleDetailScreenState extends State<ArticleDetailScreen> {
                               children: [
                                 Text(
                                   '${detail?.title}',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headlineMedium,
+                                  style: Theme.of(context).textTheme.headlineMedium,
                                 ),
                                 MySizedBox.normalVertical(),
-                                HtmlWidget(detail?.description ?? '', textStyle: TextStyle(color: Theme.of(context).colorScheme.surface)),
+                                HtmlWidget(detail?.description ?? '',
+                                    textStyle: TextStyle(color: Theme.of(context).colorScheme.surface)),
                               ],
                             ),
                           ),

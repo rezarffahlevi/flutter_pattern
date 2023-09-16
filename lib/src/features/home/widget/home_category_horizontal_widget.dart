@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:temanbumil_web/src/components/components.dart';
+import 'package:temanbumil_web/src/widgets/widgets.dart';
 import 'package:temanbumil_web/src/configs/configs.dart';
 import 'package:temanbumil_web/src/features/features.dart';
 import 'package:temanbumil_web/src/features/home/ui/section/home_app_section_banner.dart';
@@ -28,13 +28,15 @@ class HomeCategoryHorizontalWidget extends StatelessWidget {
                     ?.map((e) => InkWell(
                           onTap: () => onTap!(categories?.indexWhere((element) => element == e) ?? 0),
                           child: Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 10.w, vertical: 4.w),
+                            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.w),
                             child: Text(
                               e,
-                              style: e == categories?[selected ?? 0] ? Theme.of(context).textTheme.titleSmall?.copyWith(color: Theme.of(context).primaryColor, fontWeight: FontWeight.bold) : Theme.of(context)
-                                  .textTheme
-                                  .titleSmall,
+                              style: e == categories?[selected ?? 0]
+                                  ? Theme.of(context)
+                                      .textTheme
+                                      .titleSmall
+                                      ?.copyWith(color: Theme.of(context).primaryColor, fontWeight: FontWeight.bold)
+                                  : Theme.of(context).textTheme.titleSmall,
                             ),
                           ),
                         ))

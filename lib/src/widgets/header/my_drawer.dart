@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:temanbumil_web/src/components/molecules/dialog/login_dialog.dart';
+import 'package:temanbumil_web/src/widgets/dialog/login_dialog.dart';
 import 'package:temanbumil_web/src/themes/my_color.dart';
 
 class HomeDrawer extends StatefulWidget {
@@ -51,8 +51,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
               const SizedBox(height: 20),
               if (widget.menu.isNotEmpty)
                 ...widget.menu.map((e) {
-                  final index = widget.menu
-                      .indexWhere((element) => element['menu'] == e['menu']);
+                  final index = widget.menu.indexWhere((element) => element['menu'] == e['menu']);
                   return Padding(
                     padding: EdgeInsets.symmetric(vertical: 3.w, horizontal: 10.w),
                     child: InkWell(
@@ -73,10 +72,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                   alignment: Alignment.bottomCenter,
                   child: Text(
                     'Copyright © 2023 | Teman Bumil',
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleSmall
-                        ?.copyWith(color: Theme.of(context).cardColor),
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(color: Theme.of(context).cardColor),
                   ),
                 ),
               )

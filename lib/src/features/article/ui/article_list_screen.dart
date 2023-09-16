@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:temanbumil_web/src/components/components.dart';
+import 'package:temanbumil_web/src/widgets/widgets.dart';
 import 'package:temanbumil_web/src/configs/configs.dart';
 import 'package:temanbumil_web/src/features/features.dart';
 import 'package:temanbumil_web/src/features/home/ui/section/home_app_section_banner.dart';
@@ -41,14 +41,11 @@ class _ArticleListScreenState extends State<ArticleListScreen> {
       child: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(
-              ResponsiveWidget.isSmallScreen(context) ? 60.h : 80.h),
+          preferredSize: Size.fromHeight(ResponsiveWidget.isSmallScreen(context) ? 60.h : 80.h),
           child: BlocBuilder<ArticleListBloc, ArticleListState>(
               bloc: bloc,
               builder: (context, state) {
-                final opacity = state.scrollPosition < 1.sh * 0.40
-                    ? state.scrollPosition / (1.sh * 0.40)
-                    : 0.90;
+                final opacity = state.scrollPosition < 1.sh * 0.40 ? state.scrollPosition / (1.sh * 0.40) : 0.90;
 
                 return MyAppbar(
                   opacity: 0.90,
@@ -76,11 +73,7 @@ class _ArticleListScreenState extends State<ArticleListScreen> {
         body: ScrollConfiguration(
           behavior: ScrollConfiguration.of(context).copyWith(
             physics: const BouncingScrollPhysics(),
-            dragDevices: {
-              PointerDeviceKind.touch,
-              PointerDeviceKind.mouse,
-              PointerDeviceKind.trackpad
-            },
+            dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse, PointerDeviceKind.trackpad},
           ),
           child: SmartRefresher(
             controller: _refreshController,
@@ -96,93 +89,78 @@ class _ArticleListScreenState extends State<ArticleListScreen> {
             child: SingleChildScrollView(
               controller: bloc.scrollController,
               physics: const AlwaysScrollableScrollPhysics(),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    HomeAppSectionBanner(),
-                    BlocConsumer<ArticleListBloc, ArticleListState>(
-                        bloc: bloc,
-                        listener: (context, state) {
-                          _refreshController.refreshCompleted();
-                          _refreshController.loadComplete();
-                        },
-                        builder: (context, state) {
-                          if(state.listCategory.status == ViewState.loading){
-                              return MyLoading();
-                          }
-                          
-                          switch (state.listArticle.status) {
-                            case ViewState.loaded:
-                              return Column(
+              child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, mainAxisSize: MainAxisSize.min, children: [
+                HomeAppSectionBanner(),
+                BlocConsumer<ArticleListBloc, ArticleListState>(
+                    bloc: bloc,
+                    listener: (context, state) {
+                      _refreshController.refreshCompleted();
+                      _refreshController.loadComplete();
+                    },
+                    builder: (context, state) {
+                      if (state.listCategory.status == ViewState.loading) {
+                        return MyLoading();
+                      }
+
+                      switch (state.listArticle.status) {
+                        case ViewState.loaded:
+                          return Column(
+                            children: [
+                              MySizedBox.smallVertical(),
+                              HomeCategoryHorizontalWidget(
+                                categories: (state.listCategory.data ?? []).map((e) => e.title).toList(),
+                                selected: state.selectedCategory,
+                                onTap: (value) {
+                                  logger.e(value);
+                                  bloc.eventOnChangeCategory(value);
+                                },
+                              ),
+                              Divider(),
+                              HomeCategoryHorizontalWidget(
+                                categories: (state.listCategory.data?[state.selectedCategory].subCategory ?? [])
+                                    .map((e) => e.title)
+                                    .toList(),
+                                selected: state.selectedSubCategory,
+                                onTap: (value) {
+                                  bloc.eventOnChangeSubCategory(value);
+                                },
+                              ),
+                              MySizedBox.smallVertical(),
+                              Wrap(
+                                direction: Axis.horizontal,
+                                // alignment: WrapAlignment.center,
                                 children: [
-                                  MySizedBox.smallVertical(),
-                                  HomeCategoryHorizontalWidget(
-                                    categories: (state.listCategory.data ?? [])
-                                        .map((e) => e.title)
-                                        .toList(),
-                                    selected: state.selectedCategory,
-                                    onTap: (value) {
-                                      logger.e(value);
-                                      bloc.eventOnChangeCategory(value);
-                                    },
-                                  ),
-                                  Divider(),
-                                  HomeCategoryHorizontalWidget(
-                                    categories: (state
-                                                .listCategory
-                                                .data?[state.selectedCategory]
-                                                .subCategory ??
-                                            [])
-                                        .map((e) => e.title)
-                                        .toList(),
-                                    selected: state.selectedSubCategory,
-                                    onTap: (value) {
-                                      bloc.eventOnChangeSubCategory(value);
-                                    },
-                                  ),
-                                  MySizedBox.smallVertical(),
-                                  Wrap(
-                                    direction: Axis.horizontal,
-                                    // alignment: WrapAlignment.center,
-                                    children: [
-                                      for (ArticleModel item
-                                          in state.listArticle.data ?? [])
-                                        InkWell(
-                                          onTap: () {
-                                            bloc.eventOnTapArticle(
-                                                context, item);
-                                          },
-                                          child: Container(
-                                            width: Helper.responsive(context,
-                                                lg: 80.w,
-                                                md: 140.w,
-                                                sm: 0.94.sw),
-                                            height: Helper.responsive(context,
-                                                lg: 50.w, md: 100.w, sm: 200.w),
-                                            margin: EdgeInsets.all(6.w),
-                                            child: CardParallax(
-                                              imageUrl: item.cover,
-                                              name: item.title,
-                                              category: item.categoryTitle,
-                                            ),
-                                          ),
+                                  for (ArticleModel item in state.listArticle.data ?? [])
+                                    InkWell(
+                                      onTap: () {
+                                        bloc.eventOnTapArticle(context, item);
+                                      },
+                                      child: Container(
+                                        width: Helper.responsive(context, lg: 80.w, md: 140.w, sm: 0.94.sw),
+                                        height: Helper.responsive(context, lg: 50.w, md: 100.w, sm: 200.w),
+                                        margin: EdgeInsets.all(6.w),
+                                        child: CardParallax(
+                                          imageUrl: item.cover,
+                                          name: item.title,
+                                          category: item.categoryTitle,
                                         ),
-                                    ],
-                                  ),
+                                      ),
+                                    ),
                                 ],
-                              );
-                              break;
-                            case ViewState.loading:
-                              return MyLoading();
-                            case ViewState.error:
-                              return MyErrorWidget(state.listArticle.message);
-                            default:
-                              return Container();
-                              break;
-                          }
-                        })
-                  ]),
+                              ),
+                            ],
+                          );
+                          break;
+                        case ViewState.loading:
+                          return MyLoading();
+                        case ViewState.error:
+                          return MyErrorWidget(state.listArticle.message);
+                        default:
+                          return Container();
+                          break;
+                      }
+                    })
+              ]),
             ),
           ),
         ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../components/components.dart';
+import '../../../../widgets/widgets.dart';
 import '../../../../themes/themes.dart';
 import '../../widget/home_bg_section.dart';
 
@@ -52,8 +52,10 @@ class HomeFeatureSmall extends StatelessWidget {
                     MySizedBox.extraSmallHorizontal(),
                     Text(
                       'Milestones',
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          color: MyColor.white, fontWeight: FontWeight.bold),
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleSmall
+                          ?.copyWith(color: MyColor.white, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.left,
                     ),
                   ],
@@ -85,8 +87,10 @@ class HomeFeatureSmall extends StatelessWidget {
                     MySizedBox.extraSmallHorizontal(),
                     Text(
                       'Forum',
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          color: MyColor.white, fontWeight: FontWeight.bold),
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleSmall
+                          ?.copyWith(color: MyColor.white, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.left,
                     ),
                   ],
@@ -118,8 +122,10 @@ class HomeFeatureSmall extends StatelessWidget {
                     MySizedBox.extraSmallHorizontal(),
                     Text(
                       'Artikel',
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          color: MyColor.white, fontWeight: FontWeight.bold),
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleSmall
+                          ?.copyWith(color: MyColor.white, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.left,
                     ),
                   ],
@@ -151,8 +157,10 @@ class HomeFeatureSmall extends StatelessWidget {
                     MySizedBox.extraSmallHorizontal(),
                     Text(
                       'Jurnal',
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          color: MyColor.white, fontWeight: FontWeight.bold),
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleSmall
+                          ?.copyWith(color: MyColor.white, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.left,
                     ),
                   ],
@@ -184,8 +192,10 @@ class HomeFeatureSmall extends StatelessWidget {
                     MySizedBox.extraSmallHorizontal(),
                     Text(
                       'Media',
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          color: MyColor.white, fontWeight: FontWeight.bold),
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleSmall
+                          ?.copyWith(color: MyColor.white, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.left,
                     ),
                   ],
@@ -217,8 +227,10 @@ class HomeFeatureSmall extends StatelessWidget {
                     MySizedBox.extraSmallHorizontal(),
                     Text(
                       'Rekam Medis',
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          color: MyColor.white, fontWeight: FontWeight.bold),
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleSmall
+                          ?.copyWith(color: MyColor.white, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.left,
                     ),
                   ],
@@ -250,8 +262,10 @@ class HomeFeatureSmall extends StatelessWidget {
                     MySizedBox.extraSmallHorizontal(),
                     Text(
                       'Rekam Medis',
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          color: MyColor.white, fontWeight: FontWeight.bold),
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleSmall
+                          ?.copyWith(color: MyColor.white, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.left,
                     ),
                   ],
@@ -282,8 +296,10 @@ class HomeFeatureSmall extends StatelessWidget {
                     MySizedBox.extraSmallHorizontal(),
                     Text(
                       'Produk',
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          color: MyColor.white, fontWeight: FontWeight.bold),
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleSmall
+                          ?.copyWith(color: MyColor.white, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.left,
                     ),
                   ],

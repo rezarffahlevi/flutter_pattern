@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:temanbumil_web/src/components/components.dart';
+import 'package:temanbumil_web/src/widgets/widgets.dart';
 import 'package:temanbumil_web/src/features/features.dart';
 import 'package:temanbumil_web/src/features/home/widget/home_bg_section.dart';
 import 'package:temanbumil_web/src/helpers/helpers.dart';
@@ -48,19 +48,13 @@ class HomeSectionArticleTips extends StatelessWidget {
                                   padding: EdgeInsets.only(bottom: 40.h),
                                   child: ListView.separated(
                                     controller: _articleScrollController,
-                                    itemCount:
-                                        state.listArticle.data?.length ?? 0,
+                                    itemCount: state.listArticle.data?.length ?? 0,
                                     scrollDirection: Axis.horizontal,
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 20.w),
+                                    padding: EdgeInsets.symmetric(horizontal: 20.w),
                                     itemBuilder: (context, index) {
-                                      final item =
-                                          state.listArticle.data![index];
+                                      final item = state.listArticle.data![index];
                                       return Container(
-                                        width: ResponsiveWidget.isSmallScreen(
-                                                context)
-                                            ? 0.6.sw
-                                            : 100.w,
+                                        width: ResponsiveWidget.isSmallScreen(context) ? 0.6.sw : 100.w,
                                         child: CardParallax(
                                           name: item.title,
                                           imageUrl: item.cover,
@@ -69,8 +63,7 @@ class HomeSectionArticleTips extends StatelessWidget {
                                         ),
                                       );
                                     },
-                                    separatorBuilder: (context, index) =>
-                                        MySizedBox.extraSmallHorizontal(),
+                                    separatorBuilder: (context, index) => MySizedBox.extraSmallHorizontal(),
                                   ),
                                 ),
                               ),
@@ -122,27 +115,20 @@ class HomeSectionArticleTips extends StatelessWidget {
                                   padding: EdgeInsets.only(bottom: 40.h),
                                   child: ListView.separated(
                                     controller: _tipsScrollController,
-                                    itemCount:
-                                        state.listTips.data?.length ?? 0,
+                                    itemCount: state.listTips.data?.length ?? 0,
                                     scrollDirection: Axis.horizontal,
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 20.w),
+                                    padding: EdgeInsets.symmetric(horizontal: 20.w),
                                     itemBuilder: (context, index) {
-                                      final item =
-                                          state.listTips.data![index];
+                                      final item = state.listTips.data![index];
                                       return Container(
-                                        width: ResponsiveWidget.isSmallScreen(
-                                                context)
-                                            ? 0.6.sw
-                                            : 100.w,
+                                        width: ResponsiveWidget.isSmallScreen(context) ? 0.6.sw : 100.w,
                                         child: CardTips(
                                           title: item.title,
                                           cover: item.cover,
                                         ),
                                       );
                                     },
-                                    separatorBuilder: (context, index) =>
-                                        MySizedBox.extraSmallHorizontal(),
+                                    separatorBuilder: (context, index) => MySizedBox.extraSmallHorizontal(),
                                   ),
                                 ),
                               ),

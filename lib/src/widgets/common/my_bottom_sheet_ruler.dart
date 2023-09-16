@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:temanbumil_web/src/components/atoms/atoms.dart';
 import 'package:temanbumil_web/src/themes/themes.dart';
+import 'package:temanbumil_web/src/widgets/widgets.dart';
 
 class MyBottomSheetRuler extends StatelessWidget {
   Widget ruler(double width) {

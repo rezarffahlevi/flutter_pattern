@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:temanbumil_web/src/app.dart';
-import 'package:temanbumil_web/src/components/atoms/atoms.dart';
 import 'package:temanbumil_web/src/configs/configs.dart';
 import 'package:temanbumil_web/src/features/auth/auth.dart';
 import 'package:temanbumil_web/src/helpers/helpers.dart';
 import 'package:temanbumil_web/src/themes/themes.dart';
+import 'package:temanbumil_web/src/widgets/widgets.dart';
 
 class AuthLoginScreen extends StatefulWidget {
   const AuthLoginScreen({super.key});
@@ -38,16 +38,13 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          StatefulBuilder(
-              builder: (BuildContext context, StateSetter setState) =>
-                  statefulCarousel(context, setState)),
+          StatefulBuilder(builder: (BuildContext context, StateSetter setState) => statefulCarousel(context, setState)),
           MySizedBox.smallVertical(),
           _buildTabWidget(bloc),
           MySizedBox.smallVertical(),
           BlocBuilder<AuthLoginBloc, AuthLoginState>(
             bloc: bloc,
-            buildWhen: (previous, current) =>
-                previous.registerType != current.registerType,
+            buildWhen: (previous, current) => previous.registerType != current.registerType,
             builder: (context, state) {
               switch (state.registerType) {
                 case RegisterByTypeEnum.PHONE:
@@ -63,9 +60,7 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
             },
           ),
           MySizedBox.normalVertical(),
-          Text('Atau Masuk Dengan',
-              textAlign: TextAlign.center,
-              style: MyTextStyle.contentDescriptionMedium),
+          Text('Atau Masuk Dengan', textAlign: TextAlign.center, style: MyTextStyle.contentDescriptionMedium),
           MySizedBox.smallVertical(),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -81,9 +76,7 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
                   width: 50,
                   padding: EdgeInsets.all(5),
                   decoration: BoxDecoration(
-                      color: MyColor.white,
-                      shape: BoxShape.circle,
-                      border: Border.all(color: MyColor.blue)),
+                      color: MyColor.white, shape: BoxShape.circle, border: Border.all(color: MyColor.blue)),
                   child: Image.asset(
                     MyAsset.icons.google,
                   ),
@@ -162,16 +155,12 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
                     },
                     child: Container(
                       alignment: Alignment.center,
-                      color: state.registerType == RegisterByTypeEnum.PHONE
-                          ? MyColor.white
-                          : MyColor.transparent,
+                      color: state.registerType == RegisterByTypeEnum.PHONE ? MyColor.white : MyColor.transparent,
                       child: Text(
                         key: Key('InnerTabRegisterPhone'),
                         'Phone',
                         style: MyTextStyle.tabTitle.copyWith(
-                          color: state.registerType == RegisterByTypeEnum.PHONE
-                              ? MyColor.black
-                              : MyColor.grey,
+                          color: state.registerType == RegisterByTypeEnum.PHONE ? MyColor.black : MyColor.grey,
                         ),
                       ),
                     ),
@@ -185,16 +174,12 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
                     },
                     child: Container(
                       alignment: Alignment.center,
-                      color: state.registerType == RegisterByTypeEnum.EMAIL
-                          ? MyColor.white
-                          : MyColor.transparent,
+                      color: state.registerType == RegisterByTypeEnum.EMAIL ? MyColor.white : MyColor.transparent,
                       child: Text(
                         key: Key('InnerTabRegisterEmail'),
                         'Email',
                         style: MyTextStyle.tabTitle.copyWith(
-                          color: state.registerType == RegisterByTypeEnum.EMAIL
-                              ? MyColor.black
-                              : MyColor.grey,
+                          color: state.registerType == RegisterByTypeEnum.EMAIL ? MyColor.black : MyColor.grey,
                         ),
                       ),
                     ),
@@ -251,8 +236,7 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
                 _buildReferralCodeButton(parentContext, bloc),
                 BlocBuilder<AuthLoginBloc, AuthLoginState>(
                     bloc: bloc,
-                    buildWhen: (previous, current) =>
-                        previous.phoneNumber != current.phoneNumber,
+                    buildWhen: (previous, current) => previous.phoneNumber != current.phoneNumber,
                     builder: (context, state) {
                       return MyButtonRounded(
                         keyButton: Key('ButtonMasukRegisterPhone'),
@@ -276,14 +260,11 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
       alignment: Alignment.centerRight,
       child: BlocBuilder<AuthLoginBloc, AuthLoginState>(
           bloc: bloc,
-          buildWhen: (previous, current) =>
-              previous.referralCode != current.referralCode,
+          buildWhen: (previous, current) => previous.referralCode != current.referralCode,
           builder: (context, state) {
             return MyButtonText(
               keyButton: Key('ButtonTextKodeReferal'),
-              keyText: ((state.referralCode ?? '') == '')
-                  ? Key('InnerKodeReferal')
-                  : Key('InnerKodeReferalFilled'),
+              keyText: ((state.referralCode ?? '') == '') ? Key('InnerKodeReferal') : Key('InnerKodeReferalFilled'),
               padding: EdgeInsets.only(top: 10, bottom: 16),
               title: ((state.referralCode ?? '') == '')
                   ? 'Punya Kode Referral?'
@@ -293,8 +274,7 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
                 // decoration: TextDecoration.underline,
               ),
               onTap: () {
-                textReferralCode.text =
-                    '${state.referralCode?.toUpperCase() ?? ''}';
+                textReferralCode.text = '${state.referralCode?.toUpperCase() ?? ''}';
 
                 Widget widget = Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -320,8 +300,7 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
                       keyText: Key('InnerSimpanKodeReferral'),
                       title: 'SIMPAN',
                       onClicked: () {
-                        if (textReferralCode.text != '' &&
-                            textReferralCode.text.length != 8) {
+                        if (textReferralCode.text != '' && textReferralCode.text.length != 8) {
                           // Utilities.showToast('Kode referral harus 8 karakter');
                         } else {
                           // bloc.eventOnTextChange(
@@ -387,8 +366,7 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
                 _buildReferralCodeButton(parentContext, bloc),
                 BlocBuilder<AuthLoginBloc, AuthLoginState>(
                   bloc: bloc,
-                  buildWhen: (previous, current) =>
-                      previous.email != current.email,
+                  buildWhen: (previous, current) => previous.email != current.email,
                   builder: (context, state) {
                     return MyButtonRounded(
                       keyButton: Key('ButtonMasukRegisterEmail'),
@@ -410,10 +388,7 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
   }
 
   Widget carouselItem(
-      {required BuildContext context,
-      required String pic,
-      required String title,
-      required String description}) {
+      {required BuildContext context, required String pic, required String title, required String description}) {
     return Column(
       children: <Widget>[
         Stack(

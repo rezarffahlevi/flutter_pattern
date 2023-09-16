@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:temanbumil_web/src/components/components.dart';
+import 'package:temanbumil_web/src/widgets/widgets.dart';
 import 'package:temanbumil_web/src/configs/configs.dart';
 import 'package:temanbumil_web/src/features/features.dart';
 import 'package:temanbumil_web/src/features/home/ui/section/home_feature_large.dart';
@@ -41,14 +41,11 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: PreferredSize(
-          preferredSize:
-              Size.fromHeight(Helper.responsive(context, lg: 80.h, sm: 60.h)),
+          preferredSize: Size.fromHeight(Helper.responsive(context, lg: 80.h, sm: 60.h)),
           child: BlocBuilder<HomeBloc, HomeState>(
               bloc: bloc,
               builder: (context, state) {
-                final opacity = state.scrollPosition < 1.sh * 0.40
-                    ? state.scrollPosition / (1.sh * 0.40)
-                    : 0.90;
+                final opacity = state.scrollPosition < 1.sh * 0.40 ? state.scrollPosition / (1.sh * 0.40) : 0.90;
 
                 return MyAppbar(
                   opacity: opacity,
@@ -85,8 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
               mediumScreen: HomeFeatureSmall(),
               smallScreen: HomeFeatureSmall(),
             ),
-            Container(
-                key: bloc.keyArticle, child: HomeSectionArticleTips(bloc)),
+            Container(key: bloc.keyArticle, child: HomeSectionArticleTips(bloc)),
           ]),
         ),
       ),

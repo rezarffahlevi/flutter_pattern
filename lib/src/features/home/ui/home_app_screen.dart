@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:temanbumil_web/src/components/components.dart';
+import 'package:temanbumil_web/src/widgets/widgets.dart';
 import 'package:temanbumil_web/src/configs/configs.dart';
 import 'package:temanbumil_web/src/features/features.dart';
 import 'package:temanbumil_web/src/features/home/ui/section/home_app_section_banner.dart';
@@ -36,14 +36,11 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
       child: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(
-              ResponsiveWidget.isSmallScreen(context) ? 60.h : 80.h),
+          preferredSize: Size.fromHeight(ResponsiveWidget.isSmallScreen(context) ? 60.h : 80.h),
           child: BlocBuilder<HomeAppBloc, HomeAppState>(
               bloc: bloc,
               builder: (context, state) {
-                final opacity = state.scrollPosition < 1.sh * 0.40
-                    ? state.scrollPosition / (1.sh * 0.40)
-                    : 0.90;
+                final opacity = state.scrollPosition < 1.sh * 0.40 ? state.scrollPosition / (1.sh * 0.40) : 0.90;
 
                 return MyAppbar(
                   opacity: 0.90,
@@ -84,17 +81,14 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                             direction: Axis.horizontal,
                             // alignment: WrapAlignment.center,
                             children: [
-                              for (ArticleModel item
-                                  in state.listArticle.data ?? [])
+                              for (ArticleModel item in state.listArticle.data ?? [])
                                 InkWell(
                                   onTap: () {
                                     bloc.eventOnTapArticle(context, item);
                                   },
                                   child: Container(
-                                    width: Helper.responsive(context,
-                                        lg: 80.w, md: 140.w, sm: 0.94.sw),
-                                    height: Helper.responsive(context,
-                                        lg: 50.w, md: 100.w, sm: 200.w),
+                                    width: Helper.responsive(context, lg: 80.w, md: 140.w, sm: 0.94.sw),
+                                    height: Helper.responsive(context, lg: 50.w, md: 100.w, sm: 200.w),
                                     margin: EdgeInsets.all(6.w),
                                     child: CardParallax(
                                       imageUrl: item.cover,
@@ -105,10 +99,8 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                                 ),
                               for (TipsModel item in state.listTips.data ?? [])
                                 Container(
-                                  width: Helper.responsive(context,
-                                      lg: 80.w, md: 140.w, sm: 0.94.sw),
-                                  height: Helper.responsive(context,
-                                      lg: 50.w, md: 100.w, sm: 200.w),
+                                  width: Helper.responsive(context, lg: 80.w, md: 140.w, sm: 0.94.sw),
+                                  height: Helper.responsive(context, lg: 50.w, md: 100.w, sm: 200.w),
                                   margin: EdgeInsets.all(6.w),
                                   child: CardTips(
                                     cover: item.cover,
