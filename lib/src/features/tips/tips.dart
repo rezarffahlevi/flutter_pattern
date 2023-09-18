@@ -19,7 +19,7 @@ class TipsFeature {
       GoRoute(
         path: TipsDetailScreen.routeName,
         builder: (BuildContext context, GoRouterState state) {
-          return TipsDetailScreen(detail: state.extra as ArticleModel?, id: state.queryParameters['id'] ?? '',);
+          return TipsDetailScreen(id: state.queryParameters['id'] ?? '', back: state.queryParameters['back']);
         },
       ),
     ];

@@ -19,7 +19,7 @@ class ArticleFeature {
       GoRoute(
         path: ArticleDetailScreen.routeName,
         builder: (BuildContext context, GoRouterState state) {
-          return ArticleDetailScreen(detail: state.extra as ArticleModel?, id: state.queryParameters['id'] ?? '',);
+          return ArticleDetailScreen(id: state.queryParameters['id'] ?? '', back: state.queryParameters['back']);
         },
       ),
     ];

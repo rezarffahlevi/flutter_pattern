@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:temanbumil_web/src/widgets/widgets.dart';
 import 'package:temanbumil_web/src/features/features.dart';
 import 'package:temanbumil_web/src/features/home/widget/home_bg_section.dart';
@@ -53,13 +54,18 @@ class HomeSectionArticleTips extends StatelessWidget {
                                     padding: EdgeInsets.symmetric(horizontal: 20.w),
                                     itemBuilder: (context, index) {
                                       final item = state.listArticle.data![index];
-                                      return Container(
-                                        width: ResponsiveWidget.isSmallScreen(context) ? 0.6.sw : 100.w,
-                                        child: CardParallax(
-                                          name: item.title,
-                                          imageUrl: item.cover,
-                                          category: item.categoryTitle,
-                                          // createdAt: item.created,
+                                      return GestureDetector(
+                                        onTap: () {
+                                          context.go(ArticleDetailScreen.routeName + '?id=${item.articleId}&back=home');
+                                        },
+                                        child: Container(
+                                          width: ResponsiveWidget.isSmallScreen(context) ? 0.6.sw : 100.w,
+                                          child: CardParallax(
+                                            name: item.title,
+                                            imageUrl: item.cover,
+                                            category: item.categoryTitle,
+                                            // createdAt: item.created,
+                                          ),
                                         ),
                                       );
                                     },
@@ -125,6 +131,9 @@ class HomeSectionArticleTips extends StatelessWidget {
                                         child: CardTips(
                                           title: item.title,
                                           cover: item.cover,
+                                          onClick: () {
+                                            context.go(TipsDetailScreen.routeName + '?id=${item.tipsId}&back=home');
+                                          },
                                         ),
                                       );
                                     },

@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:temanbumil_web/src/widgets/widgets.dart';
 import 'package:temanbumil_web/src/configs/configs.dart';
 import 'package:temanbumil_web/src/features/features.dart';
@@ -84,7 +85,7 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                               for (ArticleModel item in state.listArticle.data ?? [])
                                 InkWell(
                                   onTap: () {
-                                    bloc.eventOnTapArticle(context, item);
+                                    context.go(ArticleDetailScreen.routeName + '?id=${item.articleId}&back=home-app');
                                   },
                                   child: Container(
                                     width: Helper.responsive(context, lg: 80.w, md: 140.w, sm: 0.94.sw),
@@ -105,6 +106,9 @@ class _HomeAppScreenState extends State<HomeAppScreen> {
                                   child: CardTips(
                                     cover: item.cover,
                                     title: item.title,
+                                    onClick: () {
+                                      context.go(TipsDetailScreen.routeName + '?id=${item.tipsId}&back=home-app');
+                                    },
                                   ),
                                 ),
                             ],

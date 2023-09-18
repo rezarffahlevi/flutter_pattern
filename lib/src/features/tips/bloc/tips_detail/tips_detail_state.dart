@@ -1,12 +1,10 @@
 import 'package:equatable/equatable.dart';
 import 'package:temanbumil_web/src/helpers/helpers.dart';
-import 'package:temanbumil_web/src/repositories/models/article/article_model.dart';
-import 'package:temanbumil_web/src/repositories/models/article/detail_article_response_model.dart';
-import 'package:temanbumil_web/src/repositories/repositories.dart';
+import 'package:temanbumil_web/src/repositories/models/tips/tips_detail_response_model.dart';
 
 class TipsDetailState extends Equatable {
   final double scrollPosition;
-  final ViewData<DetailArticleResponseModel> detail;
+  final ViewData<TipsDetailResponseModel> detail;
   final ViewData<List<Map<String, dynamic>>> menu;
   final String? selectedCategory;
 
@@ -19,7 +17,7 @@ class TipsDetailState extends Equatable {
 
   TipsDetailState copyWith({
     double? scrollPosition,
-    ViewData<DetailArticleResponseModel>? detail,
+    ViewData<TipsDetailResponseModel>? detail,
     ViewData<List<Map<String, dynamic>>>? menu,
     String? selectedCategory,
   }) {
@@ -31,6 +29,5 @@ class TipsDetailState extends Equatable {
   }
 
   @override
-  List get props =>
-      [scrollPosition, detail, menu, selectedCategory];
+  List get props => [scrollPosition, detail, menu, selectedCategory];
 }

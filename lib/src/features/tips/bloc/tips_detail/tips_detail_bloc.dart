@@ -11,12 +11,11 @@ class TipsDetailBloc extends Cubit<TipsDetailState> {
   TipsDetailBloc() : super(TipsDetailState());
 
   final repo = inject<AuthApiRepository>();
-  final articleRepo = inject<ArticleApiRepository>();
   final tipsRepo = inject<TipsApiRepository>();
 
   final ScrollController scrollController = ScrollController();
 
-  init(BuildContext context, String? id) async {
+  init(String? id) async {
     emit(state.copyWith(
         menu: ViewData.loaded([
       {'menu': 'Home', 'link': 'home', 'hover': false},
@@ -36,7 +35,7 @@ class TipsDetailBloc extends Cubit<TipsDetailState> {
   eventOnLoading(String? id) async {
     try {
       emit(state.copyWith(detail: ViewData.loading()));
-      final response = await articleRepo.getDetailArticle(articleId: id);
+      final response = await tipsRepo.getTipsDetail(tipsId: id ?? '');
 
       emit(state.copyWith(
         detail: ViewData.loaded(response),

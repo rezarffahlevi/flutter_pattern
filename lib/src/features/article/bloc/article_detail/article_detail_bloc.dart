@@ -16,7 +16,7 @@ class ArticleDetailBloc extends Cubit<ArticleDetailState> {
 
   final ScrollController scrollController = ScrollController();
 
-  init(BuildContext context, String? id) async {
+  init(String? id) async {
     emit(state.copyWith(
         menu: ViewData.loaded([
       {'menu': 'Home', 'link': 'home', 'hover': false},

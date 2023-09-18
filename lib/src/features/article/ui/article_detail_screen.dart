@@ -18,9 +18,9 @@ import 'package:temanbumil_web/src/themes/themes.dart';
 
 class ArticleDetailScreen extends StatefulWidget {
   static const String routeName = '/article-detail';
-  final ArticleModel? detail;
   final String id;
-  const ArticleDetailScreen({super.key, this.detail, required this.id});
+  final String? back;
+  const ArticleDetailScreen({super.key, this.back, required this.id});
 
   @override
   State<ArticleDetailScreen> createState() => _ArticleDetailScreenState();
@@ -32,7 +32,7 @@ class _ArticleDetailScreenState extends State<ArticleDetailScreen> {
   @override
   void initState() {
     super.initState();
-    bloc.init(context, widget.id);
+    bloc.init(widget.id);
     Helper.fToast.init(
       context,
     );
@@ -47,7 +47,7 @@ class _ArticleDetailScreenState extends State<ArticleDetailScreen> {
           margin: EdgeInsets.all(16.h),
           child: FloatingActionButton(
             onPressed: () {
-              context.go(HomeAppScreen.routeName);
+              context.go(widget.back != null ? '/${widget.back}' : ArticleListScreen.routeName);
             },
             child: Icon(
               Icons.arrow_back_ios,

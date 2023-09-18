@@ -65,8 +65,7 @@ class HomeAppBloc extends Cubit<HomeAppState> {
   eventGetTips() async {
     try {
       emit(state.copyWith(listTips: ViewData.loading()));
-      final response = await tipsRepo.getTipsList(
-          page: 1, bookmark: false, subCategoryId: '1');
+      final response = await tipsRepo.getTipsList(page: 1, bookmark: false, subCategoryId: '1');
 
       final list = response.data?.tips ?? [];
       emit(state.copyWith(
@@ -100,9 +99,5 @@ class HomeAppBloc extends Cubit<HomeAppState> {
 
   eventOnChangeCategory(category) {
     emit(state.copyWith(selectedCategory: category));
-  }
-
-  eventOnTapArticle(BuildContext context, ArticleModel item) {
-    context.go('${ArticleDetailScreen.routeName}?id=${item.articleId}', extra: item);
   }
 }

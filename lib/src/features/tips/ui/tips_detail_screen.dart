@@ -18,9 +18,9 @@ import 'package:temanbumil_web/src/themes/themes.dart';
 
 class TipsDetailScreen extends StatefulWidget {
   static const String routeName = '/tips-detail';
-  final ArticleModel? detail;
   final String id;
-  const TipsDetailScreen({super.key, this.detail, required this.id});
+  final String? back;
+  const TipsDetailScreen({super.key, required this.id, this.back});
 
   @override
   State<TipsDetailScreen> createState() => _TipsDetailScreenState();
@@ -32,7 +32,7 @@ class _TipsDetailScreenState extends State<TipsDetailScreen> {
   @override
   void initState() {
     super.initState();
-    bloc.init(context, widget.id);
+    bloc.init(widget.id);
     Helper.fToast.init(
       context,
     );
@@ -47,7 +47,7 @@ class _TipsDetailScreenState extends State<TipsDetailScreen> {
           margin: EdgeInsets.all(16.h),
           child: FloatingActionButton(
             onPressed: () {
-              context.go(HomeAppScreen.routeName);
+              context.go(widget.back != null ? '/${widget.back}' : HomeAppScreen.routeName);
             },
             child: Icon(
               Icons.arrow_back_ios,
