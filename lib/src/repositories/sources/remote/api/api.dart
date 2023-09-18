@@ -23,18 +23,16 @@ class ApiSources {
   static Future<void> initInjection() async {
     final inject = GetIt.instance;
 
-    inject.registerLazySingleton<CommonApiRepository>(
-        () => CommonApiRepositoryImpl(dio: inject()));
+    inject.registerLazySingleton<CommonApiRepository>(() => CommonApiRepositoryImpl(dio: inject()));
 
-    inject.registerLazySingleton<AuthApiRepository>(
-        () => AuthApiRepositoryImpl(dio: inject()));
+    inject.registerLazySingleton<AuthApiRepository>(() => AuthApiRepositoryImpl(dio: inject()));
 
-    inject.registerLazySingleton<ArticleApiRepository>(() =>
-        ArticleApiRepositoryImpl(
-            dio: inject(), mocky: inject(instanceName: 'mocky')));
+    inject.registerLazySingleton<ArticleApiRepository>(
+        () => ArticleApiRepositoryImpl(dio: inject(), mocky: inject(instanceName: 'mocky')));
 
-    inject.registerLazySingleton<TipsApiRepository>(() =>
-        TipsApiRepositoryImpl(
-            dio: inject(), mocky: inject(instanceName: 'mocky')));
+    inject.registerLazySingleton<TipsApiRepository>(
+        () => TipsApiRepositoryImpl(dio: inject(), mocky: inject(instanceName: 'mocky')));
+
+    inject.registerLazySingleton<ChecklistApiRepository>(() => ChecklistApiRepositoryImpl(dio: inject()));
   }
 }

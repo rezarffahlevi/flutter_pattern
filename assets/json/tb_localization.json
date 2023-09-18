@@ -1,0 +1,36 @@
+{
+  "ID": {
+    "error_message": {
+      "default": "Maaf, terjadi kesalahan. Silakan mencoba kembali",
+      "TB_ORD_001": "Maaf, terjadi kesalahan. Silakan mencoba kembali",
+      "TB_ORD_002": "Maaf, terjadi kesalahan. Silakan mencoba kembali",
+      "TB_ORD_003": "Terdapat merchant yang tidak aktif",
+      "TB_ORD_004": "Maaf, terjadi kesalahan. Silakan mencoba kembali",
+      "TB_ORD_005": "Maaf, terjadi kesalahan. Silakan mencoba kembali",
+      "TB_ORD_006": "Maaf, terjadi kesalahan. Silakan mencoba kembali",
+      "TB_ORD_007": "Detail pembayaran tidak tersedia",
+      "TB_ORD_008": "Barang tidak dapat dibeli, karena tidak aktif atau stok habis",
+      "TB_ORD_009": "Silahkan isi nomor HP pada profile Mums",
+      "TB_ORD_010": "Silahkan pilih pinpoint pada alamat pengiriman",
+      "TB_ORD_011": "Maaf, terjadi kesalahan. Silakan mencoba kembali",
+      "TB_ORD_012": "Silahkan pilih Metode Pengiriman",
+      "TB_ORD_013": "Metode pengiriman tidak tersedia. Silakan pilih metode pengiriman lain",
+      "TB_ORD_014": "Metode pengiriman tidak tersedia. Silakan pilih metode pengiriman lain",
+      "TB_ORD_015": "Metode pembayaran tidak tersedia. Silakan pilih metode pembayaran lain",
+      "TB_ORD_016": "Terdapat perubahan pada produk. Silakan cek kembali",
+      "TB_ORD_017": "Voucher yang Mums gunakan sudah tidak berlaku",
+      "TB_ORD_018": "Barang tidak dapat dibeli, karena tidak aktif atau stok habis",
+      "TB_ORD_019": "Barang tidak dapat dibeli, karena stok habis",
+      "TB_ORD_020": "Maaf, terjadi kesalahan. Silakan mencoba kembali",
+      "TB_ORD_021": "Nomor order tidak tersedia",
+      "TB_ORD_022": "Maaf, terjadi kesalahan. Silakan mencoba kembali",
+      "TB_ORD_023": "Maaf, terjadi kesalahan. Silakan mencoba kembali",
+      "TB_ORD_024": "Maaf, terjadi kesalahan. Silakan mencoba kembali",
+      "TB_MYO_001": "Maaf, terjadi kesalahan. Silakan mencoba kembali",
+      "TB_MYO_002": "Maaf, terjadi kesalahan. Silakan mencoba kembali",
+      "TB_MYO_003": "Maaf, terjadi kesalahan. Silakan mencoba kembali",
+      "TB_MYO_004": "Maaf, terjadi kesalahan. Silakan mencoba kembali",
+      "TB_GEN_005": "Maaf, terjadi kesalahan. Silakan mencoba kembali"
+    }
+  }
+}

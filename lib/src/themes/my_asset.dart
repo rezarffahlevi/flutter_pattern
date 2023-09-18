@@ -4,9 +4,13 @@ class MyAsset {
 
   static String get logoWhite => 'images/logo-white.png';
   static String get logoPurple => 'images/logo-purple.png';
-  
+
   static String get doctor => 'images/general/doctor.png';
   static String get food => 'images/general/food.png';
+
+  static String get checklistChecked => 'images/checklist/checklist_checked.png';
+  static String get checklistUnchecked => 'images/checklist/checklist_unchecked.png';
+  static String get checklistCheckedGreen => 'images/checklist/checklist_checked_green.png';
 }
 
 class _Icons {
@@ -16,7 +20,6 @@ class _Icons {
   String get fb => 'images/icons/ic-fb.png';
   String get apple => 'images/icons/ic-apple.png';
 }
-
 
 class _Background {
   _Background.custom();
@@ -38,4 +41,3 @@ class _Background {
   String get ic2 => 'images/asset_tentang/icon_extra_web_tb_janin.png';
   String get ic3 => 'images/asset_tentang/icon_extra_web_tb_record.png';
 }
-

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import 'package:intl/intl.dart' as intl;
 import 'package:logger/logger.dart';
 import 'package:temanbumil_web/src/themes/themes.dart';
 import 'package:temanbumil_web/src/widgets/widgets.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Helper {
   static final GlobalKey<NavigatorState> navigatorKey = new GlobalKey<NavigatorState>();
@@ -81,6 +83,12 @@ class Helper {
     RegExp exp = RegExp(r"<[^>]*>", multiLine: true, caseSensitive: true);
 
     return htmlText.replaceAll(exp, '');
+  }
+
+  static FutureOr<bool> htmlWidgetUrlOnTapped(String url) async {
+    logger.i('URL Tapped : $url');
+    if (url != null) await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+    return true;
   }
 
   static bool isLoadingPopupShown = false;

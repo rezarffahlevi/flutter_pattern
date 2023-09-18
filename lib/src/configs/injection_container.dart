@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:temanbumil_web/src/features/checklist/checklist.dart';
 import 'package:temanbumil_web/src/features/features.dart';
 import 'package:temanbumil_web/src/helpers/helpers.dart';
 import 'package:temanbumil_web/src/repositories/repositories.dart';
@@ -11,14 +12,13 @@ Future<void> initInjection() async {
   HomeFeature.initInjection();
   ArticleFeature.initInjection();
   TipsFeature.initInjection();
+  ChecklistFeature.initInjection();
 
   // Repository
   ApiSources.initInjection();
 
   // Network
   inject.registerLazySingleton(() => inject<DioClient>().dio);
-  inject.registerLazySingleton(
-      () => DioClient(baseUrl: 'https://run.mocky.io/').dio,
-      instanceName: 'mocky');
+  inject.registerLazySingleton(() => DioClient(baseUrl: 'https://run.mocky.io/').dio, instanceName: 'mocky');
   inject.registerLazySingleton(() => DioClient());
 }
